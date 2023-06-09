@@ -1,5 +1,5 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 // import { Account } from 'src/modules/account/account.entity';
 import { CreateAccountDto } from './create-account.dto';
 import { AccountService } from 'src/services/account/account.service';
@@ -18,6 +18,8 @@ export class AccountController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
+    @ApiResponse({ status: 201, description: 'The record has been successfully created.'})
+    @ApiResponse({ status: 403, description: 'Forbidden.'})
     async create(@Body() accountData: CreateAccountDto){
         console.log('acountData',accountData)
         let response = await this._accountService.create(accountData)
