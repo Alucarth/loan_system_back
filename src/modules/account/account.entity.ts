@@ -9,7 +9,28 @@ export class Account{
     account_name: string
 
     @Column()
+    company_name: string
+
+    @Column()
+    logo_url: string
+
+    @Column()
     interval: number
+
+    @Column({nullable: true})
+    label_1: string
+
+    @Column({nullable: true})
+    label_2: string
+
+    @Column({nullable: true})
+    label_3: string
+
+    @Column({nullable: true})
+    label_4: string
+
+    @Column({nullable: true})
+    label_5: string
 
     @CreateDateColumn()
     created_at: Date; // Creation date

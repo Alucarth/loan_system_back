@@ -15,7 +15,7 @@ export class Branch{
     phone: string
 
     @OneToOne(()=> Account)
-    @JoinColumn()
+    @JoinColumn({ name: 'account_id'})
     account: Account
 
     @CreateDateColumn()
