@@ -21,14 +21,14 @@ export class Person{
     @Column({nullable: true})
     photo_url: string
 
-    @Column()
+    @Column({nullable: true})
     identity_card: number
 
     @OneToOne(()=>City)
     @JoinColumn({name:'identity_card_city_id'})
     city_card: City
 
-    @Column()
+    @Column({nullable: true})
     gender: string
 
     @Column({nullable: true})

@@ -6,5 +6,8 @@ export class PersonType{
     id: number
 
     @Column()
+    name: string
+
+    @Column()
     state: boolean
 }

@@ -7,10 +7,11 @@ import { BranchModule } from './modules/branch/branch.module';
 import { PersonModule } from './modules/person/person.module';
 import { CountryModule } from './modules/country/country.module';
 import { CityModule } from './modules/city/city.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
-  imports: [UserModule,AccountModule, ],
+  imports: [AccountModule, AuthModule, ],
   controllers: [AppController, ],
   providers: [AppService, ],
 })
