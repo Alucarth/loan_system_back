@@ -8,10 +8,11 @@ import { PersonModule } from './modules/person/person.module';
 import { CountryModule } from './modules/country/country.module';
 import { CityModule } from './modules/city/city.module';
 import { AuthModule } from './auth/auth.module';
+import { AddressModule } from './modules/address/address.module';
 
 
 @Module({
-  imports: [AccountModule, AuthModule, ],
+  imports: [AccountModule, AuthModule, PersonModule , AddressModule ],
   controllers: [AppController, ],
   providers: [AppService, ],
 })

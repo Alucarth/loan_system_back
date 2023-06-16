@@ -21,4 +21,7 @@ export class CreatePersonDto{
     @IsNotEmpty()
     country_id: number;
 
+    @IsNotEmpty()
+    account_id: number;
+
 }
