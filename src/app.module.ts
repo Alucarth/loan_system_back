@@ -12,7 +12,7 @@ import { AddressModule } from './modules/address/address.module';
 
 
 @Module({
-  imports: [AccountModule, AuthModule, PersonModule , AddressModule ],
+  imports: [AccountModule, AuthModule, PersonModule , AddressModule,CityModule ],
   controllers: [AppController, ],
   providers: [AppService, ],
 })

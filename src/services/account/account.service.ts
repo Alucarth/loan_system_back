@@ -15,8 +15,9 @@ export class AccountService {
         return this.accountRepository.find();
     }
 
-    create(account: CreateAccountDto): Promise<CreateAccountDto> {
-        return this.accountRepository.save(account);
+    create(account_dto: CreateAccountDto): Promise<CreateAccountDto> 
+    {
+        return this.accountRepository.save(account_dto);
     }
 
     findAccountById(id:number){
