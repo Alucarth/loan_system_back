@@ -26,10 +26,10 @@ export class PersonService {
 
     async create(person_dto: CreatePersonDto): Promise<Person>{
         
-        const city_card: City = await this.cityRepository.findOneBy({id: person_dto.identity_card_city_id}) 
-        const city: City = await this.cityRepository.findOneBy({id: person_dto.city_id})
+        const city_card: City = await this.cityRepository.findOneBy({id: person_dto.identity_card_city.id}) 
+        const city: City = await this.cityRepository.findOneBy({id: person_dto.city.id})
         const account: Account = await this.accountRepository.findOneBy({id: person_dto.account_id})
-        const person_type = await this.personTypeRepository.findOneBy({id: person_dto.person_type_id})
+        const person_type = await this.personTypeRepository.findOneBy({id: person_dto.person_type.id})
 
         const person = new Person();
         person.names = person_dto.names;
