@@ -1,4 +1,4 @@
-import { IsNotEmpty } from "class-validator";
+import { IsEmpty, IsNotEmpty } from "class-validator";
 
 
 export class CreatePersonDto{
@@ -26,5 +26,8 @@ export class CreatePersonDto{
 
     @IsNotEmpty()
     account_id: number;
+
+    @IsEmpty()
+    addresses: any[]
 
 }

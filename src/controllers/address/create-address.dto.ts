@@ -20,9 +20,9 @@ export class CreateAddressDTO{
     status: string;
 
     @IsNotEmpty()
-    city_id: number;
+    city: any;
 
     @IsNotEmpty()
-    person_id: number;
+    person: any;
 
 }

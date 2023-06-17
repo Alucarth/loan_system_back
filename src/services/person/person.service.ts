@@ -39,8 +39,8 @@ export class PersonService {
         person.city = city;
         person.account = account;
         person.person_type = person_type;
-    
-        return this.personRepository.save(person)
+        
+        return await this.personRepository.save(person)
     }
 
     findPersonById(id:number)
