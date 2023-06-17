@@ -16,7 +16,7 @@ export class PersonController {
 
     @Get(':id')
     @HttpCode(HttpStatus.OK)
-    findAccountById(@Param('id',ParseIntPipe) id:number){
+    findPersonById(@Param('id',ParseIntPipe) id:number){
         return this._personService.findPersonById(id)
     }
 
@@ -38,8 +38,8 @@ export class PersonController {
 
     @Patch(':id')
     @HttpCode(HttpStatus.OK)
-    async updateAccountById(@Param('id', ParseIntPipe) id: number, @Body() updateData: Partial<UpdatePersonDto>) {
-        return this._personService.updateAccountById(id, updateData);
+    async updatePersonById(@Param('id', ParseIntPipe) id: number, @Body() updateData: Partial<UpdatePersonDto>) {
+        return this._personService.updatePersonById(id, updateData);
     }
 
     @Delete(':id')

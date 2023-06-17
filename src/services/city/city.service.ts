@@ -14,39 +14,39 @@ import { CreateCityDto } from 'src/controllers/city/create-city.dto'
     async findAll(): Promise<City[]>{
         return this.cityRepository.find()
     }
-    
+
     create(city_dto: CreateCityDto): Promise<CreateCityDto> 
     {
         return this.cityRepository.save(city_dto);
     }
 
-    findPersonById(id:number)
+    findCityById(id:number)
     {
         return this.cityRepository.findOneBy({id:id})
     }
 
     async updateById(id: number, updateData: UpdateCityDto): Promise<City> {
-        const account = await this.cityRepository.findOneBy({id:id});
-        if (!account) {
-            throw new NotFoundException('Account not found');
+        const city = await this.cityRepository.findOneBy({id:id});
+        if (!city) {
+            throw new NotFoundException('City not found');
         }
-        const updatedAccount = Object.assign(account, updateData);
-        return this.cityRepository.save(updatedAccount);
+        const updatedCity = Object.assign(city, updateData);
+        return this.cityRepository.save(updatedCity);
     }
     
-    async updateAccountById(id: number, updateData: Partial<UpdateCityDto>): Promise<City> {
-        const account = await this.cityRepository.findOneBy({id:id});
-        if (!account) {
-            throw new NotFoundException('Account not found');
+    async updateCityById(id: number, updateData: Partial<UpdateCityDto>): Promise<City> {
+        const city = await this.cityRepository.findOneBy({id:id});
+        if (!city) {
+            throw new NotFoundException('City not found');
         }
-        const updatedAccount = Object.assign(account, updateData);
-        return this.cityRepository.save(updatedAccount);
+        const updatedCity = Object.assign(city, updateData);
+        return this.cityRepository.save(updatedCity);
     }
 
     async deleteById(id: number): Promise<void> {
-        const account = await this.cityRepository.findOneBy({id:id});
-        if (!account) {
-          throw new NotFoundException('Account not found!');
+        const city = await this.cityRepository.findOneBy({id:id});
+        if (!city) {
+          throw new NotFoundException('City not found!');
         }
         await this.cityRepository.delete(id);
     }

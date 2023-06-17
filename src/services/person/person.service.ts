@@ -37,27 +37,27 @@ export class PersonService {
     }
 
     async updateById(id: number, updateData: UpdatePersonDto): Promise<Person> {
-        const account = await this.personRepository.findOneBy({id:id});
-        if (!account) {
-            throw new NotFoundException('Account not found');
+        const person = await this.personRepository.findOneBy({id:id});
+        if (!person) {
+            throw new NotFoundException('Person not found');
         }
-        const updatedAccount = Object.assign(account, updateData);
-        return this.personRepository.save(updatedAccount);
+        const updatedPerson = Object.assign(person, updateData);
+        return this.personRepository.save(updatedPerson);
     }
     
-    async updateAccountById(id: number, updateData: Partial<UpdatePersonDto>): Promise<Person> {
-        const account = await this.personRepository.findOneBy({id:id});
-        if (!account) {
-            throw new NotFoundException('Account not found');
+    async updatePersonById(id: number, updateData: Partial<UpdatePersonDto>): Promise<Person> {
+        const person = await this.personRepository.findOneBy({id:id});
+        if (!person) {
+            throw new NotFoundException('Person not found');
         }
-        const updatedAccount = Object.assign(account, updateData);
-        return this.personRepository.save(updatedAccount);
+        const updatedPerson = Object.assign(person, updateData);
+        return this.personRepository.save(updatedPerson);
     }
 
     async deleteById(id: number): Promise<void> {
-        const account = await this.personRepository.findOneBy({id:id});
-        if (!account) {
-          throw new NotFoundException('Account not found!');
+        const person = await this.personRepository.findOneBy({id:id});
+        if (!person) {
+          throw new NotFoundException('Person not found!');
         }
         await this.personRepository.delete(id);
     }

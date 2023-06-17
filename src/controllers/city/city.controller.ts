@@ -17,8 +17,8 @@ export class CityController {
 
     @Get(':id')
     @HttpCode(HttpStatus.OK)
-    findAccountById(@Param('id',ParseIntPipe) id:number){
-        return this._cityService.findPersonById(id)
+    findCityById(@Param('id',ParseIntPipe) id:number){
+        return this._cityService.findCityById(id)
     }
 
     @Post()
@@ -39,8 +39,8 @@ export class CityController {
 
     @Patch(':id')
     @HttpCode(HttpStatus.OK)
-    async updateAccountById(@Param('id', ParseIntPipe) id: number, @Body() updateData: Partial<UpdateCityDto>) {
-        return this._cityService.updateAccountById(id, updateData);
+    async updateCityById(@Param('id', ParseIntPipe) id: number, @Body() updateData: Partial<UpdateCityDto>) {
+        return this._cityService.updateCityById(id, updateData);
     }
 
     @Delete(':id')
