@@ -1,7 +1,8 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Person } from 'src/modules/person/person.entity';
 import { CreatePersonDto } from 'src/controllers/person/create-person.dto';
+import { UpdatePersonDto } from 'src/controllers/person/update-person.dto';
 import { City } from 'src/modules/city/city.entity';
 
 @Injectable()
@@ -33,5 +34,31 @@ export class PersonService {
     findPersonById(id:number)
     {
         return this.personRepository.findOneBy({id:id})
+    }
+
+    async updateById(id: number, updateData: UpdatePersonDto): Promise<Person> {
+        const account = await this.personRepository.findOneBy({id:id});
+        if (!account) {
+            throw new NotFoundException('Account not found');
+        }
+        const updatedAccount = Object.assign(account, updateData);
+        return this.personRepository.save(updatedAccount);
+    }
+    
+    async updateAccountById(id: number, updateData: Partial<UpdatePersonDto>): Promise<Person> {
+        const account = await this.personRepository.findOneBy({id:id});
+        if (!account) {
+            throw new NotFoundException('Account not found');
+        }
+        const updatedAccount = Object.assign(account, updateData);
+        return this.personRepository.save(updatedAccount);
+    }
+
+    async deleteById(id: number): Promise<void> {
+        const account = await this.personRepository.findOneBy({id:id});
+        if (!account) {
+          throw new NotFoundException('Account not found!');
+        }
+        await this.personRepository.delete(id);
     }
 }
