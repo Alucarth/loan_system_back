@@ -1,8 +1,9 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Patch, Post, Put } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 // import { Account } from 'src/modules/account/account.entity';
 import { CreateAccountDto } from './create-account.dto';
 import { AccountService } from 'src/services/account/account.service';
+import { UpdateAccountDto } from './update-account.dto';
 
 @ApiTags('Account')
 @Controller('account')
@@ -30,4 +31,21 @@ export class AccountController {
     findAccountById(@Param('id',ParseIntPipe) id:number){
         return this._accountService.findAccountById(id)
     } 
+    @Put(':id')
+    @HttpCode(HttpStatus.OK)
+    async updateById(@Param('id', ParseIntPipe) id: number, @Body() updateData: UpdateAccountDto) {
+        return this._accountService.updateById(id, updateData);
+    }
+
+    @Patch(':id')
+    @HttpCode(HttpStatus.OK)
+    async updateAccountById(@Param('id', ParseIntPipe) id: number, @Body() updateData: Partial<UpdateAccountDto>) {
+        return this._accountService.updateAccountById(id, updateData);
+    }
+
+    @Delete(':id')
+    @HttpCode(HttpStatus.OK)
+    async deleteById(@Param('id', ParseIntPipe) id: number) {
+        return this._accountService.deleteById(id);
+    }
 }
