@@ -16,6 +16,9 @@ export class CreatePersonDto{
     identity_card_city_id: number;
 
     @IsNotEmpty()
+    person_type_id: number;
+
+    @IsNotEmpty()
     city_id: number;
 
     @IsNotEmpty()

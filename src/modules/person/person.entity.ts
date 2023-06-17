@@ -1,8 +1,9 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PersonType } from "../person_type/person_type.entity";
 import { City } from "../city/city.entity";
 import { Country } from "../country/country.entity";
 import { Account } from "../account/account.entity";
+import { Address } from "../address/address.entity";
 
 @Entity()
 export class Person{
@@ -24,7 +25,7 @@ export class Person{
     @Column({nullable: true})
     identity_card: number
 
-    @OneToOne(()=>City)
+    @ManyToOne(()=>City,(city)=>city.id)
     @JoinColumn({name:'identity_card_city_id'})
     city_card: City
 
@@ -46,15 +47,15 @@ export class Person{
     @Column({nullable: true})
     birth_date: Date
 
-    @OneToOne(()=> City)
+    @ManyToOne(()=> City, (city)=> city.id)
     @JoinColumn({name: 'city_id'})
     city: City
 
-    @OneToOne(()=> Country)
+    @ManyToOne(()=> Country,(country)=>country.id)
     @JoinColumn({name: 'country_id'})
     country: Country
 
-    @OneToOne( ()=> PersonType)
+    @ManyToOne( ()=> PersonType,(person_type)=>person_type.id)
     @JoinColumn({name: 'person_type_id'})
     person_type: PersonType
 
@@ -73,7 +74,7 @@ export class Person{
     @Column({nullable: true})
     value_5: string
 
-    @OneToOne(()=>Account)
+    @ManyToOne(()=>Account,(account)=>account.id)
     @JoinColumn({name: 'account_id'})
     account: Account
 
