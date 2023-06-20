@@ -13,7 +13,7 @@ import { RolModule } from './modules/rol/rol.module';
 
 
 @Module({
-  imports: [AccountModule, AuthModule, PersonModule , AddressModule, CityModule ],
+  imports: [AccountModule, AuthModule, PersonModule , AddressModule, CityModule , CountryModule, RolModule],
   controllers: [AppController, ],
   providers: [AppService, ],
 })

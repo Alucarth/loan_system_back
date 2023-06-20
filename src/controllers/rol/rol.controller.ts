@@ -2,11 +2,12 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPip
 import { CreateRolDto } from './create-rol.dto';
 import { UpdateRolDto } from './update-rol.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { RolService } from 'src/services/rol/rol.service';
 
 @ApiTags('Rol')
 @Controller('rol')
 export class RolController {
-    constructor(private readonly _rolService:RolController){}
+    constructor(private readonly _rolService:RolService){}
 
     @Get()
     @HttpCode(HttpStatus.OK)

@@ -2,11 +2,12 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPip
 import { ApiTags } from '@nestjs/swagger';
 import { CreateCountryDto } from './create-country.dto';
 import { UpdateCountryDto } from './update-country.dto';
+import { CountryService } from 'src/services/country/country.service';
 
 @ApiTags('Country')
 @Controller('country')
 export class CountryController {
-    constructor(private readonly _countryService:CountryController){}
+    constructor(private readonly _countryService:CountryService){}
 
     @Get()
     @HttpCode(HttpStatus.OK)
