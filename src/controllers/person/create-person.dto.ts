@@ -1,4 +1,4 @@
-import { IsNotEmpty } from "class-validator";
+import { IsEmpty, IsNotEmpty } from "class-validator";
 
 
 export class CreatePersonDto{
@@ -13,15 +13,21 @@ export class CreatePersonDto{
     mother_last_name: string;
 
     @IsNotEmpty()
-    identity_card_city_id: number;
+    identity_card_city: any;
 
     @IsNotEmpty()
-    city_id: number;
+    person_type: any;
 
     @IsNotEmpty()
-    country_id: number;
+    city: any;
+
+    @IsNotEmpty()
+    country: any;
 
     @IsNotEmpty()
     account_id: number;
+
+    @IsEmpty()
+    addresses: any[]
 
 }

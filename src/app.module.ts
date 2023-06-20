@@ -10,10 +10,12 @@ import { CityModule } from './modules/city/city.module';
 import { AuthModule } from './auth/auth.module';
 import { AddressModule } from './modules/address/address.module';
 import { RolModule } from './modules/rol/rol.module';
+import { PersonTypeModule } from './modules/person_type/person_type.module';
+
 
 
 @Module({
-  imports: [AccountModule, AuthModule, PersonModule , AddressModule, CityModule , CountryModule, RolModule],
+  imports: [AccountModule, AuthModule, PersonModule , AddressModule,CityModule, CountryModule , PersonTypeModule, RolModule ],
   controllers: [AppController, ],
   providers: [AppService, ],
 })

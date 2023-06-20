@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { City } from "../city/city.entity";
 import { Person } from "../person/person.entity";
 
@@ -6,6 +6,15 @@ import { Person } from "../person/person.entity";
 export class Address{
     @PrimaryGeneratedColumn()
     id: number
+
+    @ManyToOne(()=> Person,(person)=>person.id)
+    @JoinColumn({name: 'person_id'})
+    person: Person
+
+    @ManyToOne(()=>City,(city)=>city.id)
+    @JoinColumn({name: 'city_id'})
+    city: City
+
 
     @Column()
     address: string
@@ -29,13 +38,7 @@ export class Address{
     @Column()
     status: string
 
-    @OneToOne(()=>City)
-    @JoinColumn({name: 'city_id'})
-    city: City
-
-    @OneToOne(()=> Person)
-    @JoinColumn({name: 'person_id'})
-    person: Person
+     
 
     @CreateDateColumn()
     created_at: Date; // Creation date
