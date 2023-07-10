@@ -15,7 +15,7 @@ import { PersonTypeModule } from './modules/person_type/person_type.module';
 
 
 @Module({
-  imports: [AccountModule, AuthModule, PersonModule , AddressModule,CityModule, CountryModule , PersonTypeModule, RolModule ],
+  imports: [AccountModule, AuthModule, PersonModule , AddressModule,CityModule, CountryModule , PersonTypeModule, RolModule, BranchModule ],
   controllers: [AppController, ],
   providers: [AppService, ],
 })

@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Branch } from '../branch/branch.entity';
 
 @Entity()
 export class Account{
@@ -40,4 +41,8 @@ export class Account{
 
     @DeleteDateColumn()
     deleted_at: Date; // Deletion date
+
+    @OneToOne(() => Branch, branch => branch.account)
+    branch: Branch;
+    
 }
