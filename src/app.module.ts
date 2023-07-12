@@ -11,11 +11,11 @@ import { AuthModule } from './auth/auth.module';
 import { AddressModule } from './modules/address/address.module';
 import { RolModule } from './modules/rol/rol.module';
 import { PersonTypeModule } from './modules/person_type/person_type.module';
-
+import { OcupationModule } from './modules/ocupation/ocupation.module';
 
 
 @Module({
-  imports: [AccountModule, AuthModule, PersonModule , AddressModule,CityModule, CountryModule , PersonTypeModule, RolModule ],
+  imports: [AccountModule, AuthModule, PersonModule , AddressModule,CityModule, CountryModule , PersonTypeModule, RolModule, BranchModule, OcupationModule ],
   controllers: [AppController, ],
   providers: [AppService, ],
 })
