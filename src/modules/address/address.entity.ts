@@ -50,7 +50,7 @@ export class Address{
     @DeleteDateColumn()
     deleted_at: Date; // Deletion date
 
-    @OneToOne(() => Ocupation, ocupation => ocupation.address)
+    @OneToOne(() => Ocupation, (ocupation) => ocupation.address)
     ocupation: Ocupation;
 
 }

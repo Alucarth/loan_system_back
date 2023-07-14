@@ -11,8 +11,8 @@ export class AccountService {
         private accountRepository: Repository<Account>
     ){}
 
-    async findAll(): Promise<Account[]>{
-        return this.accountRepository.find();
+    async findAll(): Promise<Account[]> {
+        return this.accountRepository.find({ relations: ['branch'] });
     }
 
     create(account_dto: CreateAccountDto): Promise<CreateAccountDto> 
@@ -20,9 +20,14 @@ export class AccountService {
         return this.accountRepository.save(account_dto);
     }
 
-    findAccountById(id:number){
+    /*findAccountById(id:number){
         return this.accountRepository.findOneBy({id:id});
+    }*/
+
+    async findAccountById(id: number): Promise<Account> {
+        return this.accountRepository.findOne({ where: { id:id }, relations: ['branch'] });
     }
+
     async updateById(id: number, updateData: UpdateAccountDto): Promise<Account> {
         const account = await this.accountRepository.findOneBy({id:id});
         if (!account) {
