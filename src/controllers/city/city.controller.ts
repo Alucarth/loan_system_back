@@ -24,6 +24,7 @@ export class CityController {
     @Post()
     @HttpCode(HttpStatus.CREATED)
     async create(@Body() cityData: CreateCityDto){
+        console.log('ingresando')
         console.log('cityData',cityData)
         let response = await this._cityService.create(cityData)
         //guardar las direcciones tambien 

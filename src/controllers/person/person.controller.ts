@@ -17,6 +17,13 @@ export class PersonController {
         return this._personService.findAll()
     }
 
+    @Get('clients')
+    @HttpCode(HttpStatus.OK)
+    async findAllClients(){
+        return await this._personService.findAllClients()
+    }
+
+
     @Get(':id')
     @HttpCode(HttpStatus.OK)
     findPersonById(@Param('id',ParseIntPipe) id:number){

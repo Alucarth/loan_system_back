@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PersonType } from "../person_type/person_type.entity";
 import { City } from "../city/city.entity";
 import { Country } from "../country/country.entity";
@@ -31,6 +31,9 @@ export class Person{
 
     @Column({nullable: true})
     gender: string
+
+    @Column({nullable: true})
+    age: number
 
     @Column({nullable: true})
     material_status: string
@@ -78,4 +81,11 @@ export class Person{
     @JoinColumn({name: 'account_id'})
     account: Account
 
+    //referencia de persona 
+    @Column({nullable: true , name: 'person_id'})
+    person_id: number
+
+    @ManyToOne(()=> Person, (person)=> person.id)
+    @JoinColumn({name: 'person_id', referencedColumnName: 'id'})
+    person: Person
 }

@@ -28,6 +28,20 @@ export class PersonService {
         return this.personRepository.find({ relations: ['city','country','account','person_type'] });
     }
 
+    async findAllClients(): Promise<Person[]>{
+        console.log('get clients')
+        return await this.personRepository.find({
+            relations:{
+                person_type: true
+            },
+            where:{
+                person_type:{
+                    name: 'cliente'
+                }
+            }
+        })
+    }
+
     /*async create(person_dto: CreatePersonDto): Promise<Person>{
         
         const city_card: City = await this.cityRepository.findOneBy({id: person_dto.identity_card_city.id}) 
