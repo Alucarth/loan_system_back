@@ -12,7 +12,7 @@ export class CitySeeder implements OnModuleInit {
         ) {}
 
     async onModuleInit() {
-        await this.cityRepository.query('TRUNCATE TABLE city RESTART IDENTITY CASCADE');
+        // await this.cityRepository.query('TRUNCATE TABLE city RESTART IDENTITY CASCADE');
 
         const cities = [
             { name: 'New York', short_name: 'NY' },

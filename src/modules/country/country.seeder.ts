@@ -13,7 +13,7 @@ export class CountrySeeder implements OnModuleInit {
 
     async onModuleInit() {
 
-        await this.countryRepository.query('TRUNCATE TABLE country RESTART IDENTITY CASCADE');
+        // await this.countryRepository.query('TRUNCATE TABLE country RESTART IDENTITY CASCADE');
 
         const countriesData = [
             { name: 'Bolivia', short_name: 'BO' },

@@ -13,7 +13,7 @@ export class AccountSeeder implements OnModuleInit {
 
     async onModuleInit() {
 
-        await this.accountRepository.query('TRUNCATE TABLE account RESTART IDENTITY CASCADE');
+        //await this.accountRepository.query('TRUNCATE TABLE account RESTART IDENTITY CASCADE');
 
         const accountData = [
             {

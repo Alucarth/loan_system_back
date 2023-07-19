@@ -13,7 +13,7 @@ export class BranchSeeder implements OnModuleInit {
 
     async onModuleInit() {
 
-        await this.branchRepository.query('TRUNCATE TABLE branch RESTART IDENTITY CASCADE');
+        //await this.branchRepository.query('TRUNCATE TABLE branch RESTART IDENTITY CASCADE');
         const branchData = [
             {
               name: 'Sucursal 1',
