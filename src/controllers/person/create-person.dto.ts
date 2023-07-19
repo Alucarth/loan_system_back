@@ -16,8 +16,8 @@ export class CreatePersonDto{
     @IsNotEmpty()
     mother_last_name: string;
 
-    /*@IsNotEmpty()
-    identity_card_city: any;*/
+    @IsNotEmpty()
+    identity_card_city: any;
 
     @IsNotEmpty()
     person_type: PersonType;
@@ -31,8 +31,8 @@ export class CreatePersonDto{
     @IsNotEmpty()
     account: Account;
 
-    /*@IsEmpty()
+    @IsEmpty()
     addresses: any[]
-    */
+    
 
 }

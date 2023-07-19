@@ -19,9 +19,12 @@ export class AuthService {
         //const { password, ...result} = user
 
         //jwt logic here
-
+        // add rol 
         return {
-            access_token: await this.jwtService.signAsync(payload)
+            access_token: await this.jwtService.signAsync(payload),
+            user: payload,
+            person: user.person,
+            account: user.person.account
         }
     }
 }

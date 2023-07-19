@@ -14,6 +14,13 @@ export class UserService {
     }
 
     findOne(username: string): Promise<any> {
-        return this.userRepository.findOne({where:{username: username}})
+        return this.userRepository.findOne({
+            relations:{
+                person: {
+                    account:true
+                }
+            },
+            where:{username: username}
+        })
     }
 }

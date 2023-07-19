@@ -12,10 +12,10 @@ export class User{
     @Column('text')
     password: string;
 
-    @Column()
+    @Column({nullable: true})
     added_user_id: number
 
-    @Column()
+    @Column({nullable: true})
     deleted_user_id: number
     
     @OneToOne(()=>Person)
