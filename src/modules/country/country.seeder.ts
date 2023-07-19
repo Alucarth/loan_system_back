@@ -1,12 +1,20 @@
-import { Injectable, OnModuleInit } from "@nestjs/common";
+import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
 import { Country } from "./country.entity";
 import { CountryService } from "src/services/country/country.service";
+import { Repository } from "typeorm";
 
 @Injectable()
 export class CountrySeeder implements OnModuleInit {
-    constructor(private readonly countryService: CountryService) {}
+    constructor(
+        private readonly countryService: CountryService,
+        @Inject('COUNTRY_REPOSITORY')
+        private countryRepository: Repository<Country>
+        ) {}
 
     async onModuleInit() {
+
+        await this.countryRepository.query('TRUNCATE TABLE country RESTART IDENTITY CASCADE');
+
         const countriesData = [
             { name: 'Bolivia', short_name: 'BO' },
             { name: 'Argentina', short_name: 'AR' },

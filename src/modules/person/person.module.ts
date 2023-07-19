@@ -10,6 +10,7 @@ import { countryProviders } from 'src/services/country/country.providers';
 import { personProviders } from 'src/services/person/person.providers';
 import { PersonService } from 'src/services/person/person.service';
 import { personTypeProviders } from 'src/services/person_type/person_type.providers';
+import { PersonSeeder } from './person.seeder';
 
 
 @Module({
@@ -23,7 +24,8 @@ import { personTypeProviders } from 'src/services/person_type/person_type.provid
         ...addressProviders,
         ...countryProviders,
         PersonService,
-        AddressService
+        AddressService,
+        PersonSeeder
     ]
 })
 export class PersonModule {}

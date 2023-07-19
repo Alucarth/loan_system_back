@@ -1,12 +1,20 @@
-import { Injectable, OnModuleInit } from "@nestjs/common";
+import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
 import { Account } from "./account.entity";
 import { AccountService } from "src/services/account/account.service";
+import { Repository } from "typeorm";
 
 @Injectable()
 export class AccountSeeder implements OnModuleInit {
-    constructor(private readonly _accountService: AccountService) {}
+    constructor(
+        private readonly _accountService: AccountService,
+        @Inject('ACCOUNT_REPOSITORY')
+        private accountRepository: Repository<Account>,
+        ) {}
 
     async onModuleInit() {
+
+        await this.accountRepository.query('TRUNCATE TABLE account RESTART IDENTITY CASCADE');
+
         const accountData = [
             {
               account_name: 'Cuenta 1',

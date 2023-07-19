@@ -1,12 +1,19 @@
-import { Injectable, OnModuleInit } from "@nestjs/common";
+import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
 import { BranchService } from "src/services/branch/branch.service";
 import { Branch } from "./branch.entity";
+import { Repository } from "typeorm";
 
 @Injectable()
 export class BranchSeeder implements OnModuleInit {
-    constructor(private readonly _branchService: BranchService) {}
+    constructor(
+        private readonly _branchService: BranchService,
+        @Inject('BRANCH_REPOSITORY')
+        private branchRepository: Repository<Branch>,
+        ) {}
 
     async onModuleInit() {
+
+        await this.branchRepository.query('TRUNCATE TABLE branch RESTART IDENTITY CASCADE');
         const branchData = [
             {
               name: 'Sucursal 1',
