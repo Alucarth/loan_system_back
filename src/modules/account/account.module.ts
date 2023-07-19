@@ -3,12 +3,14 @@ import { DatabaseModule } from 'src/database/database.module';
 import { accountProviders } from 'src/services/account/account.providers';
 import { AccountService } from 'src/services/account/account.service';
 import { AccountController } from 'src/controllers/account/account.controller';
+import { AccountSeeder } from './account.seeder';
 @Module({
     imports: [DatabaseModule],
     controllers: [AccountController],
     providers: [
         ...accountProviders,
-        AccountService
+        AccountService,
+        AccountSeeder
     ]
 })
 export class AccountModule {}
