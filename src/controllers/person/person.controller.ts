@@ -33,7 +33,7 @@ export class PersonController {
     @Post()
     @HttpCode(HttpStatus.CREATED)
     async create(@Body() personData: CreatePersonDto){
-        console.log('personData',personData)
+        console.log('personData aaaaaaaaaa',personData)
         let person = await this._personService.create(personData)
         //guardar las direcciones tambien 
         // personData.addresses.forEach(address => {

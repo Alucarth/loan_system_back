@@ -1,37 +1,37 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty,IsOptional } from "class-validator";
 
 export class CreateOcupationDto{
     @IsNotEmpty()
     ocupation: string
 
-    @IsNotEmpty()
+    @IsOptional()
     ocupation_type: string
 
-    @IsNotEmpty()
+    @IsOptional()
     main_ocupation: string
 
-    @IsNotEmpty()
+    @IsOptional()
     company_name: string
 
-    @IsNotEmpty()
+    @IsOptional()
     work_them: string
 
-    @IsNotEmpty()
+    @IsOptional()
     net_income: string
 
-    @IsNotEmpty()
+    @IsOptional()
     periodicity_income: string
 
-    @IsNotEmpty()
+    @IsOptional()
     workdays: number
 
-    @IsNotEmpty()
+    @IsOptional()
     working_hours: number
 
-    @IsNotEmpty()
+    @IsOptional()
     status: string
 
-    @IsNotEmpty()
+    @IsOptional()
     description: string
 }
 

@@ -64,11 +64,12 @@ export class PersonService {
     async create(person_dto: CreatePersonDto): Promise<Person>{
         
         // Buscar entidades relacionadas
-        //const city_card: City = await this.cityRepository.findOneBy({id: person_dto.identity_card_city.id}) 
-        const city: City = await this.cityRepository.findOneBy({id: person_dto.city.id})
-        const account: Account = await this.accountRepository.findOneBy({id: person_dto.account.id})
-        const person_type: PersonType = await this.personTypeRepository.findOneBy({id: person_dto.person_type.id})
-        const country: Country = await this.countryRepository.findOneBy({id: person_dto.country.id})
+        // if(person_dto.identity_card_city.id)
+        const city_card: City = await this.cityRepository.findOneBy({id: person_dto.identity_card_city_id}) 
+        const city: City = await this.cityRepository.findOneBy({id: person_dto.city_id})
+        const account: Account = await this.accountRepository.findOneBy({id: person_dto.account_id})
+        const person_type: PersonType = await this.personTypeRepository.findOneBy({id: person_dto.person_type_id})
+        const country: Country = await this.countryRepository.findOneBy({id: person_dto.country_id})
     
         // Crear una nueva entidad Persona y rellenar sus propiedades
         const person = new Person();
@@ -77,11 +78,24 @@ export class PersonService {
         person.mother_last_name = person_dto.mother_last_name;
     
         // Establecer relaciones entre entidades
-        //person.city_card = city_card; 
-        person.city = city; 
+        person.city_card = city_card; 
+        
+        // valores no obligatorio
+        person.gender = person_dto.gender ?? null
+        person.photo_url = person_dto.photo_url ?? null
+        person.material_status = person_dto.material_status ?? null
+        person.dependents = person_dto.dependents ?? null
+        person.personal_number = person_dto.personal_number ?? null
+        person.email = person_dto.email ?? null
+        person.birth_date = person_dto.birth_date ?? null
+        person.age = person_dto.age ?? null
+
+
+        person.city = city ?? null; 
+        person.country = country ?? null;
+       
         person.account = account; 
         person.person_type = person_type;
-        person.country = country;
             
         // Save the new Person entity to the database
         return await this.personRepository.save(person)

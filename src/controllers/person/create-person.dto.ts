@@ -1,4 +1,4 @@
-import { IsEmpty, IsNotEmpty } from "class-validator";
+import { IsEmail, IsOptional, IsNotEmpty } from "class-validator";
 import { Account } from "src/modules/account/account.entity";
 import { Address } from "src/modules/address/address.entity";
 import { City } from "src/modules/city/city.entity";
@@ -18,19 +18,46 @@ export class CreatePersonDto{
     mother_last_name: string;
 
     @IsNotEmpty()
-    identity_card_city: City;
+    identity_card_city_id: number;
+    // identity_card_city: City;
 
     @IsNotEmpty()
-    person_type: PersonType;
+    person_type_id: number
+    // person_type: PersonType;
+    @IsOptional()
+    city_id: number;
+
+    @IsOptional()
+    country_id: number;
 
     @IsNotEmpty()
-    city: City;
+    account_id: number;
 
-    @IsNotEmpty()
-    country: Country;
+    @IsOptional()
+    personal_number: string;
 
-    @IsNotEmpty()
-    account: Account;
+    @IsEmail()
+    email: string;
+
+    @IsOptional()
+    gender: string;
+
+    @IsOptional()
+    birth_date: Date;
+
+    @IsOptional()
+    age: number;
+
+    @IsOptional()
+    material_status: string;
+
+    @IsOptional()
+    dependents: string;
+    
+    @IsOptional()
+    photo_url: string;
+    // @IsNotEmpty()
+    // account: Account;
     
 
 }

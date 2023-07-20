@@ -1,4 +1,4 @@
-import { IsEmpty, IsNotEmpty } from "class-validator";
+import { IsOptional, IsNotEmpty } from "class-validator";
 
 export class CreateAddressDTO{
     @IsNotEmpty()
@@ -13,10 +13,10 @@ export class CreateAddressDTO{
     @IsNotEmpty()
     address_type: string;
 
-    @IsEmpty()
+    @IsOptional()
     comments: string;
 
-    @IsEmpty()
+    @IsOptional()
     status: string;
 
     @IsNotEmpty()
