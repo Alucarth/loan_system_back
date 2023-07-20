@@ -11,7 +11,7 @@ import { BranchSeeder } from './branch.seeder';
     providers: [
         ...branchProviders,
         BranchService,
-        BranchSeeder
+        // BranchSeeder
     ]
 })
 export class BranchModule {}
