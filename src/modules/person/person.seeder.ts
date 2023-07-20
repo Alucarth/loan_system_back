@@ -5,9 +5,21 @@ import { Country } from "../country/country.entity";
 import { Account } from "../account/account.entity";
 import { PersonType } from "../person_type/person_type.entity";
 import { Repository } from "typeorm";
-
+import { DependsOn } from "@nestjs/schedule";
+import { CityService } from "src/services/city/city.service";
+import { CountryService } from "src/services/country/country.service";
+import { PersonTypeService } from "src/services/person_type/person_type.service";
+import { AccountService } from "src/services/account/account.service";
+import { PersonService } from "src/services/person/person.service";
   
 @Injectable()
+@DependsOn(
+  CityService,
+  CountryService,
+  PersonTypeService,
+  AccountService,
+  PersonService,
+)
 export class PersonSeeder implements OnModuleInit {
     constructor(
         @Inject('PERSON_REPOSITORY')
@@ -24,13 +36,13 @@ export class PersonSeeder implements OnModuleInit {
       ) {}
 
     async onModuleInit() {
-    // Eliminar todos los registros existentes de la entidad Person
-    await this.personRepository.delete({});
-    // reinicia el id (por que si se iniciar varias veces se ire sumando sus id)
-    // ejemplo primera ves solo sera 1 dato siguiente deberia ser igual solo ese dato
-    // pero se suma ahora son 2 datos repetidos y asis sucesivamente
-    // esto arregla eso
-    await this.personRepository.query('TRUNCATE TABLE person RESTART IDENTITY CASCADE');
+
+    const exist = await this.personRepository.find();
+    if (exist.length > 0) {
+      console.log('Saltando proceso del seeder -> (Person). Ya existen registros en la base de datos.');
+      return;
+    }
+    console.log('Iniciando el seeder -> (Person). Cargando registros en la base de datos.');
 
     const cities = await this.cityRepository.find();
     const countries = await this.countryRepository.find();

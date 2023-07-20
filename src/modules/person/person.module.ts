@@ -25,7 +25,7 @@ import { PersonSeeder } from './person.seeder';
         ...countryProviders,
         PersonService,
         AddressService,
-        // PersonSeeder
+        PersonSeeder
     ]
 })
 export class PersonModule {}
