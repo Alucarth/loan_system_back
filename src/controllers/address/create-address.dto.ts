@@ -7,10 +7,10 @@ export class CreateAddressDTO{
     @IsNotEmpty()
     phone_number: number;
 
-    @IsNotEmpty()
+    @IsOptional()
     zone: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     address_type: string;
 
     @IsOptional()
@@ -19,10 +19,13 @@ export class CreateAddressDTO{
     @IsOptional()
     status: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     city: any;
 
     @IsNotEmpty()
-    person: any;
+    person: any
+
+    @IsOptional()
+    ocupations: Array<any>
 
 }

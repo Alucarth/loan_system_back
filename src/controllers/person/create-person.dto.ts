@@ -3,6 +3,7 @@ import { Account } from "src/modules/account/account.entity";
 import { Address } from "src/modules/address/address.entity";
 import { City } from "src/modules/city/city.entity";
 import { Country } from "src/modules/country/country.entity";
+import { Person } from "src/modules/person/person.entity";
 import { PersonType } from "src/modules/person_type/person_type.entity";
 
 
@@ -56,6 +57,9 @@ export class CreatePersonDto{
     
     @IsOptional()
     photo_url: string;
+
+    @IsOptional()
+    person_id: number;
     // @IsNotEmpty()
     // account: Account;
     

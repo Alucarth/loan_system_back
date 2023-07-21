@@ -12,31 +12,35 @@ export class Address{
     @JoinColumn({name: 'person_id'})
     person: Person
 
+    @Column({nullable: true , name: 'city_id'})
+    city_id: number
+
+
     @ManyToOne(()=>City,(city)=>city.id)
-    @JoinColumn({name: 'city_id'})
+    @JoinColumn({name: 'city_id', referencedColumnName: 'id'})
     city: City
 
 
     @Column()
     address: string
 
-    @Column()
+    @Column({nullable: true})
     phone_number: number
 
     //puede seruna tabla pero estoy hay que discutirlo
-    @Column()
+    @Column({nullable: true})
     zone: string
 
-    @Column()
+    @Column({nullable: true})
     property: string
     
-    @Column()
+    @Column({nullable: true})
     address_type: string 
 
-    @Column()
+    @Column({nullable: true})
     comments: string
 
-    @Column()
+    @Column({nullable: true})
     status: string
 
      

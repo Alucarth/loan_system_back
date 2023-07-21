@@ -20,6 +20,7 @@ export class AddressService {
 
     async create(address: CreateAddressDTO): Promise<Address>
     {
+        console.log('address XD',address)
         return this.addressRepository.save(address)
     }
     

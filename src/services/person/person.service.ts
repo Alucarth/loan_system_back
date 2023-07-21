@@ -89,7 +89,7 @@ export class PersonService {
         person.email = person_dto.email ?? null
         person.birth_date = person_dto.birth_date ?? null
         person.age = person_dto.age ?? null
-
+        person.person_id = person_dto.person_id ?? null
 
         person.city = city ?? null; 
         person.country = country ?? null;
