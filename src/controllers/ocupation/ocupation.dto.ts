@@ -1,8 +1,14 @@
 import { IsNotEmpty,IsOptional } from "class-validator";
 
 export class CreateOcupationDto{
+    
+  
+
     @IsNotEmpty()
     ocupation: string
+
+    @IsNotEmpty()
+    address_id: number
 
     @IsOptional()
     ocupation_type: string

@@ -19,6 +19,9 @@ export class CreatePersonDto{
     mother_last_name: string;
 
     @IsNotEmpty()
+    identity_card: number
+
+    @IsNotEmpty()
     identity_card_city_id: number;
     // identity_card_city: City;
 

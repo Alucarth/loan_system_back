@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Address } from "../address/address.entity";
 
 @Entity()
@@ -39,8 +39,13 @@ export class Ocupation{
     @Column({nullable: true})
     description: string
 
-    @OneToOne(()=>Address)
-    @JoinColumn({name: 'address_id'})
+    //sin la referencia no guarda la llave foranea verificar en las demas tablas esto
+    //trabajo para el pasante 
+    @Column({nullable: true , name: 'address_id'})
+    address_id: number
+
+    @ManyToOne(()=>Address ,(address) => address.ocupations)
+    @JoinColumn({name: 'address_id', referencedColumnName: 'id'})
     address: Address
 
     @CreateDateColumn()

@@ -32,12 +32,24 @@ export class PersonService {
         console.log('get clients')
         return await this.personRepository.find({
             relations:{
-                person_type: true
+                person_type: true,
+
             },
             where:{
                 person_type:{
                     name: 'cliente'
                 }
+            }
+        })
+    }
+
+    async findReferences(cliente_id: number): Promise<Person[]>{
+        return await this.personRepository.find({
+            relations:{
+                person_type: true,
+            },
+            where:{
+                person_id: cliente_id
             }
         })
     }
@@ -76,9 +88,10 @@ export class PersonService {
         person.names = person_dto.names;
         person.father_last_name = person_dto.father_last_name;
         person.mother_last_name = person_dto.mother_last_name;
+        person.identity_card = person_dto.identity_card;
     
         // Establecer relaciones entre entidades
-        person.city_card = city_card; 
+        person.city_card = city_card ?? null; 
         
         // valores no obligatorio
         person.gender = person_dto.gender ?? null
@@ -104,7 +117,7 @@ export class PersonService {
 
     findPersonById(id:number)
     {
-        return this.personRepository.findOne({ where: { id:id }, relations: ['city','country','account','person_type'] })
+        return this.personRepository.findOne({ where: { id:id }, relations: ['city','city_card','country','account','person_type'] })
     }
 
     async updateById(id: number, updateData: UpdatePersonDto): Promise<Person> {

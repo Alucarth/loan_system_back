@@ -12,8 +12,13 @@ export class AddressService {
     async findAllByPersonId(person_id: any): Promise<Address[]>
     {
         return this.addressRepository.find({
+            relations:{
+                ocupations: true
+            },
             where:{
-                person: person_id
+                person: {
+                    id: person_id
+                }
             }
         })
     }
@@ -21,7 +26,7 @@ export class AddressService {
     async create(address: CreateAddressDTO): Promise<Address>
     {
         console.log('address XD',address)
-        return this.addressRepository.save(address)
+        return await this.addressRepository.save(address)
     }
     
 }
