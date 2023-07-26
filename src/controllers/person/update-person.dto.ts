@@ -1,27 +1,68 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsOptional } from "class-validator";
 
 
 export class UpdatePersonDto{
     
-    // @IsNotEmpty()
-    // names: string;
+    @IsOptional()
+    names?: string;
 
-    // @IsNotEmpty()
-    // father_last_name: string;
+    @IsOptional()
+    father_last_name?: string;
 
-    // @IsNotEmpty()
-    // mother_last_name: string;
+    @IsOptional()
+    mother_last_name?: string;
 
-    // @IsNotEmpty()
-    // identity_card_city_id: number;
+    @IsOptional()
+    photo_url?: string;
+    
+    @IsOptional()
+    identity_card?: number;
 
-    // @IsNotEmpty()
-    // city_id: number;
+    @IsOptional()
+    identity_card_city_id?: number; //City 
 
-    // @IsNotEmpty()
-    // country_id: number;
+    @IsOptional()
+    gender?: string;
 
-    // @IsNotEmpty()
-    // account_id: number;
+    @IsOptional()
+    age?: number;
+
+    @IsOptional()
+    material_status?: string;
+
+    @IsOptional()
+    dependents?: string;
+
+    @IsOptional()
+    personal_number?: string;
+
+    @IsOptional()
+    email?: string;
+
+    @IsOptional()
+    birth_date?: Date;
+
+    @IsOptional()
+    city_id?: number;    //City
+
+    @IsOptional()
+    country_id?: number; //Country
+
+    @IsOptional()
+    person_type_id?: number; //PersonType
+
+    @IsOptional()
+    value_1?: string;
+    @IsOptional()
+    value_2?: string;
+    @IsOptional()
+    value_3?: string;
+    @IsOptional()
+    value_4?: string;
+    @IsOptional()
+    value_5?: string;
+
+    @IsOptional()
+    account_id?: number; //Account
 
 }

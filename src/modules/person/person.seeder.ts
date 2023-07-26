@@ -5,21 +5,9 @@ import { Country } from "../country/country.entity";
 import { Account } from "../account/account.entity";
 import { PersonType } from "../person_type/person_type.entity";
 import { Repository } from "typeorm";
-import { DependsOn } from "@nestjs/schedule";
-import { CityService } from "src/services/city/city.service";
-import { CountryService } from "src/services/country/country.service";
-import { PersonTypeService } from "src/services/person_type/person_type.service";
-import { AccountService } from "src/services/account/account.service";
-import { PersonService } from "src/services/person/person.service";
+
   
 @Injectable()
-@DependsOn(
-  CityService,
-  CountryService,
-  PersonTypeService,
-  AccountService,
-  PersonService,
-)
 export class PersonSeeder implements OnModuleInit {
     constructor(
         @Inject('PERSON_REPOSITORY')
@@ -42,12 +30,15 @@ export class PersonSeeder implements OnModuleInit {
       console.log('Saltando proceso del seeder -> (Person). Ya existen registros en la base de datos.');
       return;
     }
-    console.log('Iniciando el seeder -> (Person). Cargando registros en la base de datos.');
-
-    const cities = await this.cityRepository.find();
-    const countries = await this.countryRepository.find();
-    const personTypes = await this.personTypeRepository.find();
-    const accounts = await this.accountRepository.find();
+    console.log('Iniciando el seeder -> (Person).');
+    console.log('Esperando a los datos de las tablas relacionadas a Person');
+    const [cities, countries, personTypes, accounts] = await Promise.all([
+      this.cityRepository.find(),
+      this.countryRepository.find(),
+      this.personTypeRepository.find(),
+      this.accountRepository.find(),
+    ]);
+    console.log('datos cargados de las tablas relacionadas a Person');
 
 
     const personData = [
@@ -57,7 +48,7 @@ export class PersonSeeder implements OnModuleInit {
             mother_last_name: 'Gonzalez',
             photo_url: 'https://example.com/photo1.jpg',
             identity_card: 123456,
-            identity_card_city: cities[0],
+            identity_card_city: cities[2],
             gender: 'Male',
             age: 25,
             material_status: 'Single',
@@ -66,7 +57,7 @@ export class PersonSeeder implements OnModuleInit {
             email: 'juan@perez.com',
             birth_date: new Date('1998-05-15'),
             city: cities[1],
-            country: countries[0],
+            country: countries[1],
             person_type: personTypes[0],
             value_1: 'Value 1',
             value_2: 'Value 2',
@@ -80,10 +71,10 @@ export class PersonSeeder implements OnModuleInit {
       ];
     
       for (const person of personData) {
-        const {  city, country, person_type, account, ...personData } = person;
+        const { identity_card_city,city, country, person_type, account, ...personData } = person;
         const newPerson = this.personRepository.create({
           ...personData,
-        
+          identity_card_city: identity_card_city,
           city: city,
           country: country,
           person_type: person_type,
@@ -91,6 +82,7 @@ export class PersonSeeder implements OnModuleInit {
         });
         await this.personRepository.save(newPerson);
       }
+      console.log('Cargando registros de Person en la base de datos...');
     }
 }
   
