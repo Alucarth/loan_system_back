@@ -60,7 +60,9 @@ export class CreatePersonDto{
     value_4?: string;
     @IsOptional()
     value_5?: string;
-
+    @IsOptional()
+    person_id:number;
+    
     @IsOptional()
     account_id: number; //Account
 

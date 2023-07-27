@@ -19,6 +19,13 @@ export class AddressController {
         return this._addressService.findAll();
     }
 
+    // conflicto con findAll y en service esta de tipo any person_id
+    /*@Get(':person_id')
+    @HttpCode(HttpStatus.OK)
+    async findAll(@Param('person_id',ParseIntPipe) person_id:number){
+        return this._addressService.findAllByPersonId(person_id)
+    }*/
+
     @Post()
     @HttpCode(HttpStatus.CREATED)
     @ApiResponse({ status: 201, description: 'The record has been successfully created.'})

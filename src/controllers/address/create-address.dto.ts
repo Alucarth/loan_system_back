@@ -29,6 +29,12 @@ export class CreateAddressDTO{
     @IsNotEmpty()
     person_id: number;
 
+    @IsOptional()
+    person: any
+
+    @IsOptional()
+    ocupations: Array<any>
+
 }
 
 export class UpdateAddressDTO{
@@ -58,4 +64,10 @@ export class UpdateAddressDTO{
 
     @IsOptional()
     person_id: number;
+
+    @IsOptional()
+    person: any
+
+    @IsOptional()
+    ocupations: Array<any>
 }

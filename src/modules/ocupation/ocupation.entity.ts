@@ -9,34 +9,34 @@ export class Ocupation{
     @Column()
     ocupation: string
 
-    @Column()
+    @Column({nullable: true})
     ocupation_type: string
 
-    @Column()
+    @Column({nullable: true})
     main_ocupation: string
 
-    @Column()
+    @Column({nullable: true})
     company_name: string
 
-    @Column()
+    @Column({nullable: true})
     work_them: string
 
-    @Column()
+    @Column({nullable: true})
     net_income: string
 
-    @Column()
+    @Column({nullable: true})
     periodicity_income: string
 
-    @Column()
+    @Column({nullable: true})
     workdays: number
 
-    @Column()
+    @Column({nullable: true})
     working_hours: number
 
-    @Column()
+    @Column({nullable: true})
     status: string
 
-    @Column()
+    @Column({nullable: true})
     description: string
 
     @ManyToOne(()=>Address)
