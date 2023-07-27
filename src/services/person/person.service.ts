@@ -70,12 +70,13 @@ export class PersonService {
         person.email = person_dto.email ?? null
         person.birth_date = person_dto.birth_date ?? null
         person.age = person_dto.age ?? null
+        
         person.value_1 = person_dto.value_1 ?? null
         person.value_2 = person_dto.value_2 ?? null
         person.value_3 = person_dto.value_3 ?? null
         person.value_4 = person_dto.value_4 ?? null
         person.value_5 = person_dto.value_5 ?? null
-
+        person.person_id = person_dto.person_id ?? null
 
         person.city = city ?? null; 
         person.country = country ?? null;
