@@ -35,14 +35,19 @@ export class PersonController {
     async create(@Body() personData: CreatePersonDto){
         console.log('personData aaaaaaaaaa',personData)
         let person = await this._personService.create(personData)
-        //guardar las direcciones tambien 
-        // personData.addresses.forEach(address => {
-        //     let payload = address
-        //     payload.person = person
-        //     this._addressService.create(payload)
-        // });
-
         return person
+    }
+
+    @Post('reference')
+    @HttpCode(HttpStatus.CREATED)
+    async createReference(@Body() personArray: any[]){
+        console.log('array person',personArray)
+        personArray.forEach(async (person: CreatePersonDto) => {
+            await this._personService.create(person)
+            
+        });
+        // aqui devolver array con lo guardado tarea para el pasante jajaja
+        return 'person reference register'
     }
     
     @Put(':id')
