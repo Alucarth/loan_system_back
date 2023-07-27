@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PersonType } from "../person_type/person_type.entity";
 import { City } from "../city/city.entity";
 import { Country } from "../country/country.entity";
@@ -88,4 +88,7 @@ export class Person{
     @ManyToOne(()=> Person, (person)=> person.id)
     @JoinColumn({name: 'person_id', referencedColumnName: 'id'})
     person: Person
+
+    @OneToMany(() => Address, address => address.person) // Corrección: Establecer la relación inversa en 'address.person'
+    address: Address[];
 }

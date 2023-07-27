@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Address } from "../address/address.entity";
 
 @Entity()
@@ -39,7 +39,7 @@ export class Ocupation{
     @Column()
     description: string
 
-    @OneToOne(()=>Address)
+    @ManyToOne(()=>Address)
     @JoinColumn({name: 'address_id'})
     address: Address
 

@@ -1,10 +1,4 @@
-import { IsEmail, IsOptional, IsNotEmpty } from "class-validator";
-import { Account } from "src/modules/account/account.entity";
-import { Address } from "src/modules/address/address.entity";
-import { City } from "src/modules/city/city.entity";
-import { Country } from "src/modules/country/country.entity";
-import { PersonType } from "src/modules/person_type/person_type.entity";
-
+import { IsOptional, IsNotEmpty } from "class-validator";
 
 export class CreatePersonDto{
     
