@@ -39,9 +39,18 @@ export class Ocupation{
     @Column({nullable: true})
     description: string
 
-    @ManyToOne(()=>Address)
-    @JoinColumn({name: 'address_id'})
+    @ManyToOne(()=>Address ,(address) => address.ocupations)
+    @JoinColumn({name: 'address_id', referencedColumnName: 'id'})
     address: Address
+    //sin la referencia no guarda la llave foranea verificar en las demas tablas esto
+    //trabajo para el pasante 
+    /*@Column({nullable: true , name: 'address_id'})
+    address_id: number
+
+    @ManyToOne(()=>Address ,(address) => address.ocupations)
+    @JoinColumn({name: 'address_id', referencedColumnName: 'id'})
+    
+    address: Address*/
 
     @CreateDateColumn()
     created_at: Date; // Creation date

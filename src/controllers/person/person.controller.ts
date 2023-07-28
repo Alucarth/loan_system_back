@@ -37,6 +37,12 @@ export class PersonController {
         let person = await this._personService.create(personData)
         return person
     }
+    
+    @Get('references/:client_id')
+    @HttpCode(HttpStatus.OK)
+    async findReferencesByClientId(@Param('client_id',ParseIntPipe) client_id:number){
+        return this._personService.findReferences(client_id)
+    }
 
     @Post('reference')
     @HttpCode(HttpStatus.CREATED)

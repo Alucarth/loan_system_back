@@ -3,6 +3,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateAddressDTO, UpdateAddressDTO } from './create-address.dto';
 import { AddressService } from 'src/services/address/address.service';
 import { OcupationService } from 'src/services/ocupation/ocupation.service';
+import { CreateOcupationDto } from '../ocupation/ocupation.dto';
 
 @ApiTags('Address')
 @Controller('address')
@@ -46,15 +47,29 @@ export class AddressController {
     async create(@Body() addressArray: any)
     {
         console.log('address',addressArray)
-        addressArray.forEach(async (address_row:any) => {
-            let response: any =  await this._addressService.create(address_row)
-            let address = response.data
-            address_row.ocupations.forEach(async (ocupation: any) => {
-                let ocupation_payload = ocupation
-                ocupation_payload.address = address
-                await this._ocupationService.create(ocupation_payload)
-            });
-        })
+        await Promise.all(
+            addressArray.map(async (address_row:CreateAddressDTO)=>{
+                let address: any =  await this._addressService.create(address_row)
+                
+                console.log('address',address) 
+                await Promise.all(
+                    address_row.ocupations.map( async( ocupation:any)=>{
+                        let ocupation_payload:CreateOcupationDto = ocupation
+                        ocupation_payload.address_id = address.id
+                        console.log('ocupation',ocupation_payload)
+                        await this._ocupationService.create(ocupation_payload)
+                    })
+                )
+            })
+        )
+
+        // addressArray.forEach(async (address_row:any) => {
+        //     let response: any =  await this._addressService.create(address_row)
+        //     let address = response.data
+        //     address_row.ocupations.forEach(async (ocupation: any) => {
+               
+        //     });
+        // })
         // aqui devolver array con lo guardado tarea para el pasante jajaja
         return 'addresses created'
     }*/

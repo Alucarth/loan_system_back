@@ -32,7 +32,8 @@ export class PersonService {
         console.log('get clients')
         return await this.personRepository.find({
             relations:{
-                person_type: true
+                person_type: true,
+
             },
             where:{
                 person_type:{
@@ -41,6 +42,36 @@ export class PersonService {
             }
         })
     }
+
+    async findReferences(cliente_id: number): Promise<Person[]>{
+        return await this.personRepository.find({
+            relations:{
+                person_type: true,
+            },
+            where:{
+                person_id: cliente_id
+            }
+        })
+    }
+
+    /*async create(person_dto: CreatePersonDto): Promise<Person>{
+        
+        const city_card: City = await this.cityRepository.findOneBy({id: person_dto.identity_card_city.id}) 
+        const city: City = await this.cityRepository.findOneBy({id: person_dto.city.id})
+        const account: Account = await this.accountRepository.findOneBy({id: person_dto.account_id})
+        const person_type = await this.personTypeRepository.findOneBy({id: person_dto.person_type.id})
+
+        const person = new Person();
+        person.names = person_dto.names;
+        person.father_last_name = person_dto.father_last_name;
+        person.mother_last_name = person_dto.mother_last_name;
+        person.city_card = city_card;
+        person.city = city;
+        person.account = account;
+        person.person_type = person_type;
+        
+        return await this.personRepository.save(person)
+    }*/
 
     async create(person_dto: CreatePersonDto): Promise<Person>{
         
@@ -56,6 +87,7 @@ export class PersonService {
         person.names = person_dto.names;
         person.father_last_name = person_dto.father_last_name;
         person.mother_last_name = person_dto.mother_last_name;
+        person.identity_card = person_dto.identity_card;
     
         // Establecer relaciones entre entidades
         person.identity_card_city = identity_card_city; 
@@ -91,7 +123,7 @@ export class PersonService {
 
     findPersonById(id:number)
     {
-        return this.personRepository.findOne({ where: { id:id }, relations: ['city','country','account','person_type'] })
+        return this.personRepository.findOne({ where: { id:id }, relations: ['city','city_card','country','account','person_type'] })
     }
 
     async updateById(id: number, updateData: UpdatePersonDto): Promise<Person> {
