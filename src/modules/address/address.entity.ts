@@ -55,6 +55,6 @@ export class Address{
     deleted_at: Date; // Deletion date
 
     @OneToMany(() => Ocupation, (ocupation) => ocupation.address)
-    ocupations: Ocupation;
+    ocupation: Ocupation;
 
 }

@@ -19,7 +19,7 @@ export class AddressService {
     {
         return this.addressRepository.find({
             relations:{
-                ocupations: true
+                ocupation: true
             },
             where:{
                 person: {

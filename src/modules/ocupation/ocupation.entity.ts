@@ -39,7 +39,7 @@ export class Ocupation{
     @Column({nullable: true})
     description: string
 
-    @ManyToOne(()=>Address ,(address) => address.ocupations)
+    @ManyToOne(()=>Address ,(address) => address.ocupation)
     @JoinColumn({name: 'address_id', referencedColumnName: 'id'})
     address: Address
     //sin la referencia no guarda la llave foranea verificar en las demas tablas esto
