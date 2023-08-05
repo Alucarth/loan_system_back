@@ -4,6 +4,7 @@ import { DatabaseModule } from 'src/database/database.module';
 import { addressProviders } from 'src/services/address/address.providers';
 import { ocupationProviders } from 'src/services/ocupation/ocupation.providers';
 import { OcupationService } from 'src/services/ocupation/ocupation.service';
+import { OcupationSeeder } from './ocupation.seeder';
 
 @Module({
     imports: [DatabaseModule],
@@ -12,6 +13,7 @@ import { OcupationService } from 'src/services/ocupation/ocupation.service';
         ...ocupationProviders,
         ...addressProviders,
         OcupationService,
+        OcupationSeeder
     ]
 })
 export class OcupationModule {}
