@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { Address } from "./address.entity";
 import { Person } from "../person/person.entity";
 import { City } from "../city/city.entity";
-import { CreateAddressDTO } from "src/controllers/address/create-address.dto";
+import { CreateAddressDTO } from "src/controllers/address/address.dto";
 
 @Injectable()
 export class AddressSeeder implements OnModuleInit {

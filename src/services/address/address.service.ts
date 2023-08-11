@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Address } from 'src/modules/address/address.entity';
-import { CreateAddressDTO, UpdateAddressDTO } from 'src/controllers/address/create-address.dto';
+import { CreateAddressDTO, UpdateAddressDTO } from 'src/controllers/address/address.dto';
 import { Person } from 'src/modules/person/person.entity';
 import { City } from 'src/modules/city/city.entity';
 @Injectable()
@@ -15,7 +15,7 @@ export class AddressService {
         private cityRepository: Repository<City>,
     ){}
 
-    async findAllByPersonId(person_id: any): Promise<Address[]>
+    async findAllByPersonId(person_id: number): Promise<Address[]>
     {
         return this.addressRepository.find({
             relations:{
@@ -27,6 +27,9 @@ export class AddressService {
                 }
             }
         })
+    }
+    async findAllPerson_id(): Promise<Address[]> {
+        return this.addressRepository.find({ relations: ['city', 'person'] });
     }
     
     async findAll(): Promise<Address[]> {

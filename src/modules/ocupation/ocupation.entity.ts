@@ -43,7 +43,8 @@ export class Ocupation{
     @JoinColumn({name: 'address_id', referencedColumnName: 'id'})
     address: Address
     //sin la referencia no guarda la llave foranea verificar en las demas tablas esto
-    //trabajo para el pasante 
+    //address_id es el id de Address que en entity seria de tipo "address: Address"
+    //que ya esta haciendo refencia siendo un ManyToOne
     /*@Column({nullable: true , name: 'address_id'})
     address_id: number
 

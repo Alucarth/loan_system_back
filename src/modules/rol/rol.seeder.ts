@@ -1,7 +1,7 @@
 import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Rol } from "./rol.entity";
-import { CreateRolDto } from "src/controllers/rol/create-rol.dto";
+import { CreateRolDto } from "src/controllers/rol/rol.dto";
 import { RolService } from "src/services/rol/rol.service";
 
 @Injectable()

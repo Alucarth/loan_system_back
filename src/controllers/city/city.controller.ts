@@ -1,8 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Patch, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CityService } from 'src/services/city/city.service';
-import { UpdateCityDto } from 'src/controllers/city/update-city.dto'
-import { CreateCityDto } from 'src/controllers/city/create-city.dto'
+import { CreateCityDto, UpdateCityDto } from 'src/controllers/city/city.dto'
 
 @ApiTags('City')
 @Controller('city')

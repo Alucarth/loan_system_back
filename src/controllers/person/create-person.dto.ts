@@ -1,69 +1,95 @@
-import { IsOptional, IsNotEmpty } from "class-validator";
+import { IsOptional, IsNotEmpty, IsString, IsNumber, IsDate } from "class-validator";
 
 export class CreatePersonDto{
-    
     @IsNotEmpty()
+    @IsString()
     names: string;
 
     @IsNotEmpty()
+    @IsString()
     father_last_name: string;
 
     @IsNotEmpty()
+    @IsString()
     mother_last_name: string;
 
-    @IsOptional()
-    photo_url?: string;
+    @IsNotEmpty()
+    @IsString()
+    photo_url: string;
     
-    @IsOptional()
-    identity_card?: number;
+    @IsNotEmpty()
+    @IsNumber()
+    identity_card: number;
 
-    @IsOptional()
+    @IsNotEmpty()
+    @IsNumber()
     identity_card_city_id: number; //City
 
-    @IsOptional()
-    gender?: string;
+    @IsNotEmpty()
+    @IsString()
+    gender: string;
 
-    @IsOptional()
-    age?: number;
+    @IsNotEmpty()
+    @IsNumber()
+    age: number;
 
-    @IsOptional()
+    @IsNotEmpty()
+    @IsString()
     material_status?: string;
 
-    @IsOptional()
+    @IsNotEmpty()
+    @IsString()
     dependents?: string;
 
-    @IsOptional()
-    personal_number?: string;
+    @IsNotEmpty()
+    @IsString()
+    personal_number: string;
 
-    @IsOptional()
+    @IsNotEmpty()
+    @IsString()
     email?: string;
 
-    @IsOptional()
-    birth_date?: Date;
+    @IsNotEmpty()
+    @IsDate()
+    birth_date: Date;
 
-    @IsOptional()
+    @IsNotEmpty()
+    @IsNumber()
     city_id: number;    //City
 
-    @IsOptional()
+    @IsNotEmpty()
+    @IsNumber()
     country_id: number; //Country
 
-    @IsOptional()
+    @IsNotEmpty()
+    @IsNumber()
     person_type_id: number; //PersonType
 
     @IsOptional()
+    @IsString()
     value_1?: string;
+
     @IsOptional()
+    @IsString()
     value_2?: string;
+
     @IsOptional()
+    @IsString()
     value_3?: string;
+
     @IsOptional()
+    @IsString()
     value_4?: string;
+
     @IsOptional()
+    @IsString()
     value_5?: string;
-    @IsOptional()
+
+    @IsNotEmpty()
+    @IsNumber()
     person_id:number;
     
-    @IsOptional()
+    @IsNotEmpty()
+    @IsNumber()
     account_id: number; //Account
-
 }

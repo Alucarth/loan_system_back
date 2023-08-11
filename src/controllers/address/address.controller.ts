@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Patch, Post, Put } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateAddressDTO, UpdateAddressDTO } from './create-address.dto';
+import { CreateAddressDTO, UpdateAddressDTO } from './address.dto';
 import { AddressService } from 'src/services/address/address.service';
 import { OcupationService } from 'src/services/ocupation/ocupation.service';
 import { CreateOcupationDto } from '../ocupation/ocupation.dto';
@@ -21,11 +21,11 @@ export class AddressController {
     }
 
     // conflicto con findAll y en service esta de tipo any person_id
-    /*@Get(':person_id')
+    @Get(':person_id')
     @HttpCode(HttpStatus.OK)
-    async findAll(@Param('person_id',ParseIntPipe) person_id:number){
+    async findAllPerson_id(@Param('person_id',ParseIntPipe) person_id:number){
         return this._addressService.findAllByPersonId(person_id)
-    }*/
+    }
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
