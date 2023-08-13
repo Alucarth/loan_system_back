@@ -1,15 +1,19 @@
 import { Module } from '@nestjs/common';
 import { OcupationController } from 'src/controllers/ocupation/ocupation.controller';
 import { DatabaseModule } from 'src/database/database.module';
+import { addressProviders } from 'src/services/address/address.providers';
 import { ocupationProviders } from 'src/services/ocupation/ocupation.providers';
 import { OcupationService } from 'src/services/ocupation/ocupation.service';
+import { OcupationSeeder } from './ocupation.seeder';
 
 @Module({
     imports: [DatabaseModule],
     controllers: [OcupationController],
     providers: [
         ...ocupationProviders,
-        OcupationService
+        ...addressProviders,
+        OcupationService,
+        OcupationSeeder
     ]
 })
 export class OcupationModule {}

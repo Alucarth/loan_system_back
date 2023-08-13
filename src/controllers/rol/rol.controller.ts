@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Patch, Post, Put } from '@nestjs/common';
-import { CreateRolDto } from './create-rol.dto';
-import { UpdateRolDto } from './update-rol.dto';
+import { CreateRolDto, UpdateRolDto } from './rol.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { RolService } from 'src/services/rol/rol.service';
 

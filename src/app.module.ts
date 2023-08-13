@@ -15,8 +15,8 @@ import { OcupationModule } from './modules/ocupation/ocupation.module';
 
 
 @Module({
-  imports: [AccountModule, AuthModule, PersonModule , AddressModule,CityModule, CountryModule , PersonTypeModule, RolModule, BranchModule, OcupationModule ],
-  controllers: [AppController, ],
-  providers: [AppService, ],
+  imports: [CityModule, CountryModule, AccountModule, BranchModule, PersonTypeModule, PersonModule, RolModule, UserModule, AddressModule, OcupationModule, AuthModule],
+  controllers: [AppController,],
+  providers: [AppService,],
 })
-export class AppModule {}
+export class AppModule { }

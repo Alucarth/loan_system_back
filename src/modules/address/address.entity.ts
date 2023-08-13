@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { City } from "../city/city.entity";
 import { Person } from "../person/person.entity";
 import { Ocupation } from "../ocupation/ocupation.entity";
@@ -55,6 +55,6 @@ export class Address{
     deleted_at: Date; // Deletion date
 
     @OneToMany(() => Ocupation, (ocupation) => ocupation.address)
-    ocupations: Ocupation[];
+    ocupation: Ocupation;
 
 }

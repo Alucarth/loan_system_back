@@ -1,70 +1,95 @@
-import { IsEmail, IsOptional, IsNotEmpty } from "class-validator";
-import { Account } from "src/modules/account/account.entity";
-import { Address } from "src/modules/address/address.entity";
-import { City } from "src/modules/city/city.entity";
-import { Country } from "src/modules/country/country.entity";
-import { Person } from "src/modules/person/person.entity";
-import { PersonType } from "src/modules/person_type/person_type.entity";
-
+import { IsOptional, IsNotEmpty, IsString, IsNumber, IsDate } from "class-validator";
 
 export class CreatePersonDto{
-    
     @IsNotEmpty()
+    @IsString()
     names: string;
 
     @IsNotEmpty()
+    @IsString()
     father_last_name: string;
 
     @IsNotEmpty()
+    @IsString()
     mother_last_name: string;
 
     @IsNotEmpty()
-    identity_card: number
+    @IsString()
+    photo_url: string;
+    
+    @IsNotEmpty()
+    @IsNumber()
+    identity_card: number;
 
     @IsNotEmpty()
-    identity_card_city_id: number;
-    // identity_card_city: City;
+    @IsNumber()
+    identity_card_city_id: number; //City
 
     @IsNotEmpty()
-    person_type_id: number
-    // person_type: PersonType;
-    @IsOptional()
-    city_id: number;
-
-    @IsOptional()
-    country_id: number;
-
-    @IsNotEmpty()
-    account_id: number;
-
-    @IsOptional()
-    personal_number: string;
-
-    @IsEmail()
-    email: string;
-
-    @IsOptional()
+    @IsString()
     gender: string;
 
-    @IsOptional()
-    birth_date: Date;
-
-    @IsOptional()
+    @IsNotEmpty()
+    @IsNumber()
     age: number;
 
-    @IsOptional()
-    material_status: string;
+    @IsNotEmpty()
+    @IsString()
+    material_status?: string;
+
+    @IsNotEmpty()
+    @IsString()
+    dependents?: string;
+
+    @IsNotEmpty()
+    @IsString()
+    personal_number: string;
+
+    @IsNotEmpty()
+    @IsString()
+    email?: string;
+
+    @IsNotEmpty()
+    @IsDate()
+    birth_date: Date;
+
+    @IsNotEmpty()
+    @IsNumber()
+    city_id: number;    //City
+
+    @IsNotEmpty()
+    @IsNumber()
+    country_id: number; //Country
+
+    @IsNotEmpty()
+    @IsNumber()
+    person_type_id: number; //PersonType
 
     @IsOptional()
-    dependents: string;
+    @IsString()
+    value_1?: string;
+
+    @IsOptional()
+    @IsString()
+    value_2?: string;
+
+    @IsOptional()
+    @IsString()
+    value_3?: string;
+
+    @IsOptional()
+    @IsString()
+    value_4?: string;
+
+    @IsOptional()
+    @IsString()
+    value_5?: string;
+
+    @IsNotEmpty()
+    @IsNumber()
+    person_id:number;
     
-    @IsOptional()
-    photo_url: string;
-
-    @IsOptional()
-    person_id: number;
-    // @IsNotEmpty()
-    // account: Account;
-    
-
+    @IsNotEmpty()
+    @IsNumber()
+    account_id: number; //Account
 }

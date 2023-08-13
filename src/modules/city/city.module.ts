@@ -11,7 +11,7 @@ import { CitySeeder } from './city.seeder';
     providers: [
         ...cityProviders,
         CityService,
-        // CitySeeder
+        CitySeeder
     ]
 })
 export class CityModule {}

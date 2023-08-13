@@ -76,13 +76,12 @@ export class PersonService {
     async create(person_dto: CreatePersonDto): Promise<Person>{
         
         // Buscar entidades relacionadas
-        // if(person_dto.identity_card_city.id)
-        const city_card: City = await this.cityRepository.findOneBy({id: person_dto.identity_card_city_id}) 
+        const identity_card_city: City = await this.cityRepository.findOneBy({id: person_dto.identity_card_city_id}) 
         const city: City = await this.cityRepository.findOneBy({id: person_dto.city_id})
         const account: Account = await this.accountRepository.findOneBy({id: person_dto.account_id})
         const person_type: PersonType = await this.personTypeRepository.findOneBy({id: person_dto.person_type_id})
         const country: Country = await this.countryRepository.findOneBy({id: person_dto.country_id})
-    
+
         // Crear una nueva entidad Persona y rellenar sus propiedades
         const person = new Person();
         person.names = person_dto.names;
@@ -91,9 +90,10 @@ export class PersonService {
         person.identity_card = person_dto.identity_card;
     
         // Establecer relaciones entre entidades
-        person.city_card = city_card ?? null; 
+        person.identity_card_city = identity_card_city; 
         
         // valores no obligatorio
+        person.identity_card = person_dto.identity_card ?? null
         person.gender = person_dto.gender ?? null
         person.photo_url = person_dto.photo_url ?? null
         person.material_status = person_dto.material_status ?? null
@@ -102,6 +102,12 @@ export class PersonService {
         person.email = person_dto.email ?? null
         person.birth_date = person_dto.birth_date ?? null
         person.age = person_dto.age ?? null
+        
+        person.value_1 = person_dto.value_1 ?? null
+        person.value_2 = person_dto.value_2 ?? null
+        person.value_3 = person_dto.value_3 ?? null
+        person.value_4 = person_dto.value_4 ?? null
+        person.value_5 = person_dto.value_5 ?? null
         person.person_id = person_dto.person_id ?? null
 
         person.city = city ?? null; 

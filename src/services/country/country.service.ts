@@ -1,6 +1,5 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { CreateCountryDto } from 'src/controllers/country/create-country.dto';
-import { UpdateCountryDto } from 'src/controllers/country/update-country.dto';
+import { CreateCountryDto, UpdateCountryDto } from 'src/controllers/country/country.dto';
 import { Country } from 'src/modules/country/country.entity';
 import { Repository } from 'typeorm';
 

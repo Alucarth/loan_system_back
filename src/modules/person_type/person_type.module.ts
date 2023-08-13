@@ -11,7 +11,7 @@ import { PersonTypeSeeder } from './person_type.seeder';
     providers: [
         ...personTypeProviders,
         PersonTypeService,
-        // PersonTypeSeeder
+        PersonTypeSeeder
     ]
 })
 export class PersonTypeModule {}

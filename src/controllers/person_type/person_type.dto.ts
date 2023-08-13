@@ -1,17 +1,21 @@
-import { IsNotEmpty } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class CreatePersonTypeDto{
     @IsNotEmpty()
-    name: string
+    @IsString()
+    name: string;
 
     @IsNotEmpty()
-    state: boolean
+    @IsBoolean()
+    state: boolean;
 }
 
 export class UpdatePersonTypeDto{
-    @IsNotEmpty()
-    name: string
+    @IsOptional()
+    @IsString()
+    name: string;
 
-    @IsNotEmpty()
-    state: boolean
+    @IsOptional()
+    @IsBoolean()
+    state: boolean;
 }

@@ -3,6 +3,8 @@ import { DatabaseModule } from 'src/database/database.module';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { userProviders } from './user.providers';
+import { UserSeeder } from './user.seeder';
+import { personProviders } from 'src/services/person/person.providers';
 
 
 @Module({
@@ -10,7 +12,9 @@ import { userProviders } from './user.providers';
   controllers: [UserController],
   providers: [
     ...userProviders,
-    UserService
+    ...personProviders,
+    UserService,
+    UserSeeder
   ],
   exports: [UserService]
 })

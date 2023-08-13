@@ -1,77 +1,101 @@
-import { IsNotEmpty,IsOptional } from "class-validator";
+import { IsNotEmpty,IsNumber,IsOptional, IsString } from "class-validator";
 
 export class CreateOcupationDto{
-    
-  
+    @IsNotEmpty()
+    @IsString()
+    ocupation: string;
 
     @IsNotEmpty()
-    ocupation: string
+    @IsNumber()
+    address_id: number;
 
     @IsNotEmpty()
-    address_id: number
+    @IsString()
+    ocupation_type: string;
 
-    @IsOptional()
-    ocupation_type: string
+    @IsNotEmpty()
+    @IsString()
+    main_ocupation: string;
 
-    @IsOptional()
-    main_ocupation: string
+    @IsNotEmpty()
+    @IsString()
+    company_name: string;
 
-    @IsOptional()
-    company_name: string
+    @IsNotEmpty()
+    @IsString()
+    work_them: string;
 
-    @IsOptional()
-    work_them: string
+    @IsNotEmpty()
+    @IsString()
+    net_income: string;
 
-    @IsOptional()
-    net_income: string
+    @IsNotEmpty()
+    @IsString()
+    periodicity_income: string;
 
-    @IsOptional()
-    periodicity_income: string
+    @IsNotEmpty()
+    @IsNumber()
+    workdays: number;
 
-    @IsOptional()
-    workdays: number
+    @IsNotEmpty()
+    @IsNumber()
+    working_hours: number;
 
-    @IsOptional()
-    working_hours: number
+    @IsNotEmpty()
+    @IsString()
+    status: string;
 
-    @IsOptional()
-    status: string
-
-    @IsOptional()
-    description: string
+    @IsNotEmpty()
+    @IsString()
+    description: string;
 }
 
 export class UpdateOcupationDto{
-    @IsNotEmpty()
-    ocupation: string
+    @IsOptional()
+    @IsString()
+    ocupation: string;
 
-    @IsNotEmpty()
-    ocupation_type: string
+    @IsOptional()
+    @IsNumber()
+    address_id: number;
 
-    @IsNotEmpty()
-    main_ocupation: string
+    @IsOptional()
+    @IsString()
+    ocupation_type: string;
 
-    @IsNotEmpty()
-    company_name: string
+    @IsOptional()
+    @IsString()
+    main_ocupation: string;
 
-    @IsNotEmpty()
-    work_them: string
+    @IsOptional()
+    @IsString()
+    company_name: string;
 
-    @IsNotEmpty()
-    net_income: string
+    @IsOptional()
+    @IsString()
+    work_them: string;
 
-    @IsNotEmpty()
-    periodicity_income: string
+    @IsOptional()
+    @IsString()
+    net_income: string;
 
-    @IsNotEmpty()
-    workdays: number
+    @IsOptional()
+    @IsString()
+    periodicity_income: string;
 
-    @IsNotEmpty()
-    working_hours: number
+    @IsOptional()
+    @IsNumber()
+    workdays: number;
 
-    @IsNotEmpty()
-    status: string
+    @IsOptional()
+    @IsNumber()
+    working_hours: number;
 
-    @IsNotEmpty()
-    description: string
+    @IsOptional()
+    @IsString()
+    status: string;
+
+    @IsOptional()
+    @IsString()
+    description: string;
 }

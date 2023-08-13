@@ -14,6 +14,12 @@ export class BranchSeeder implements OnModuleInit {
     async onModuleInit() {
 
         //await this.branchRepository.query('TRUNCATE TABLE branch RESTART IDENTITY CASCADE');
+        const exist = await this.branchRepository.find();
+        if (exist.length > 0) {
+            console.log('Saltando proceso del seeder -> (Branch). Ya existen registros en la base de datos.');
+            return;
+        }
+        console.log('Iniciando el seeder -> (Branch). Cargando registros en la base de datos.');
         const branchData = [
             {
               name: 'Sucursal 1',

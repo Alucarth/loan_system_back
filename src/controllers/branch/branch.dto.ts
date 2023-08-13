@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class CreateBranchDto {
   @IsNotEmpty()
@@ -8,22 +8,22 @@ export class CreateBranchDto {
   @IsNotEmpty()
   @IsString()
   address: string;
-
+  // el dato phone en Entity esta con dato String
   @IsNotEmpty()
   @IsString()
   phone: string;
 }
 
 export class UpdateBranchDto {
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   address: string;
-
-  @IsNotEmpty()
+  // el dato phone en Entity esta con dato String
+  @IsOptional()
   @IsString()
   phone: string;
 }

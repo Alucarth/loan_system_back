@@ -10,7 +10,7 @@ import { AccountSeeder } from './account.seeder';
     providers: [
         ...accountProviders,
         AccountService,
-        // AccountSeeder
+        AccountSeeder
     ]
 })
 export class AccountModule {}
