@@ -54,6 +54,10 @@ export class Person{
     @JoinColumn({name: 'city_id'})
     city: City
 
+    @ManyToOne(()=> City, (city)=> city.id)
+    @JoinColumn({name: 'city_card_id'})
+    city_card: City
+
     @ManyToOne(()=> Country,(country)=>country.id)
     @JoinColumn({name: 'country_id'})
     country: Country
