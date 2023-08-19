@@ -4,6 +4,7 @@ import { City } from "../city/city.entity";
 import { Country } from "../country/country.entity";
 import { Account } from "../account/account.entity";
 import { Address } from "../address/address.entity";
+import { User } from "src/user/user.entity";
 
 @Entity()
 export class Person{
@@ -95,4 +96,7 @@ export class Person{
 
     @OneToMany(() => Address, address => address.person) // Corrección: Establecer la relación inversa en 'address.person'
     address: Address[];
+
+    @OneToOne(() => User, user => user.person )
+    user: User;
 }

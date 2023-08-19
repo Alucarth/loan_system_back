@@ -3,6 +3,7 @@ import { Repository } from "typeorm";
 import { User } from "./user.entity";
 import { UserService } from "./user.service";
 import { Person } from "src/modules/person/person.entity";
+import { CreateUserDto } from "./user.dto";
 
 @Injectable()
 export class UserSeeder implements OnModuleInit {
@@ -29,27 +30,27 @@ export class UserSeeder implements OnModuleInit {
             {
                 username: "dilan",
                 password: "123456",
-                person: persons[0],
+                person_id: persons[0],
             },
             {
                 username: "david",
                 password: "123456",
-                person: persons[1],
+                person_id: persons[1],
             },
             {
                 username: "keyrus",
                 password: "123456",
-                person: persons[2],
+                person_id: persons[2],
             },            
             // Agregar más objetos con datos de prueba
           ];
     
           for (const data of userData) {
-            const user = new User();
+            const user = new CreateUserDto();
             
             user.username = data.username;
             user.password = data.password;
-            user.person = data.person;
+            user.person_id = data.person_id.id; 
 
             await this._userService.create(user);
         }

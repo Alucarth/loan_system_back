@@ -18,7 +18,7 @@ export class CreateUserDto {
     deleted_user_id: number;
 
     @IsNotEmpty()
-    person: number;
+    person_id: number;
 }
 
 export class UpdateUserDto {
@@ -39,5 +39,5 @@ export class UpdateUserDto {
     deleted_user_id: number;
   
     @IsOptional()
-    person: number;
+    person_id: number;
 }

@@ -2,7 +2,6 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/commo
 import { UserService } from './user.service';
 import { CreateUserDto } from './user.dto';
 import { ApiResponse } from '@nestjs/swagger';
-import { User } from './user.entity';
 
 @Controller('user')
 export class UserController {
@@ -25,7 +24,7 @@ export class UserController {
     @HttpCode(HttpStatus.CREATED)
     @ApiResponse({ status: 201, description: 'The record has been successfully created.'})
     @ApiResponse({ status: 403, description: 'Forbidden.'})
-    async create(@Body() userData: User){
+    async create(@Body() userData: CreateUserDto){
         console.log('userData',userData)
         let response = await this._userService.create(userData)
         return response
