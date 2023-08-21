@@ -4,7 +4,7 @@ import { City } from "../city/city.entity";
 import { Country } from "../country/country.entity";
 import { Account } from "../account/account.entity";
 import { Address } from "../address/address.entity";
-import { User } from "src/user/user.entity";
+import { User } from "../user/user.entity";
 
 @Entity()
 export class Person{

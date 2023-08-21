@@ -1,12 +1,12 @@
-import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
+import { Inject, Injectable, OnApplicationBootstrap, OnModuleInit } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { User } from "./user.entity";
-import { UserService } from "./user.service";
+import { UserService } from "src/services/user/user.service";
 import { Person } from "src/modules/person/person.entity";
-import { CreateUserDto } from "./user.dto";
+import { CreateUserDto } from "src/controllers/user/user.dto";
 
 @Injectable()
-export class UserSeeder implements OnModuleInit {
+export class UserSeeder implements OnApplicationBootstrap {
     constructor(
         @Inject('USER_REPOSITORY')
         private userRepository: Repository<User>,
@@ -14,9 +14,7 @@ export class UserSeeder implements OnModuleInit {
         @Inject('PERSON_REPOSITORY')
         private personRepository: Repository<Person>,
         ) {}
-
-    async onModuleInit() {
-
+    async onApplicationBootstrap() {
         const exist = await this.userRepository.find();
         if (exist.length > 0) {
             console.log('Saltando proceso del seeder -> (User). Ya existen registros en la base de datos.');
@@ -24,6 +22,8 @@ export class UserSeeder implements OnModuleInit {
         }
         console.log('Iniciando el seeder -> (User). Cargando registros en la base de datos.');
 
+        // Esperando que PersonModule se inicialice antes 
+        await new Promise(resolve => setTimeout(resolve, 5000));
         const persons = await this.personRepository.find();
 
         const userData = [
@@ -47,14 +47,14 @@ export class UserSeeder implements OnModuleInit {
     
           for (const data of userData) {
             const user = new CreateUserDto();
-            
+            //console.log(data);
             user.username = data.username;
             user.password = data.password;
-            user.person_id = data.person_id.id; 
+            user.person_id = data.person_id.id;
 
             await this._userService.create(user);
         }
-    
     }
+
 }
   

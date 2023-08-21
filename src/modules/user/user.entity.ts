@@ -1,5 +1,6 @@
 import { Person } from "src/modules/person/person.entity";
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToOne, JoinColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
+import { UserRol } from "../user_rol/user_rol.entity";
 
 @Entity()
 export class User{
@@ -30,5 +31,8 @@ export class User{
 
     @DeleteDateColumn()
     deleted_at: Date; // Deletion date
+
+    @OneToMany(() => UserRol, (userRol) => userRol.user) // Corrección: Establecer la relación inversa en 'address.person'
+    userRol: UserRol[];
 
 }

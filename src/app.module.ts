@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
+import { UserModule } from './modules/user/user.module';
 import { AccountModule } from './modules/account/account.module';
 import { BranchModule } from './modules/branch/branch.module';
 import { PersonModule } from './modules/person/person.module';
@@ -12,10 +12,11 @@ import { AddressModule } from './modules/address/address.module';
 import { RolModule } from './modules/rol/rol.module';
 import { PersonTypeModule } from './modules/person_type/person_type.module';
 import { OcupationModule } from './modules/ocupation/ocupation.module';
+import { UserRolModule } from './modules/user_rol/user_rol.module';
 
 
 @Module({
-  imports: [CityModule, CountryModule, AccountModule, BranchModule, PersonTypeModule, PersonModule, RolModule, UserModule, AddressModule, OcupationModule, AuthModule],
+  imports: [CityModule, CountryModule, AccountModule, BranchModule, PersonTypeModule, PersonModule, RolModule, UserModule, UserRolModule, AddressModule, OcupationModule, AuthModule],
   controllers: [AppController,],
   providers: [AppService,],
 })
