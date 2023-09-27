@@ -14,7 +14,7 @@ import {
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateAddressDTO, UpdateAddressDTO } from './address.dto';
 import { AddressService } from './address.service';
-import { OcupationService } from 'src/services/ocupation/ocupation.service';
+import { OcupationService } from '../ocupation/ocupation.service';
 
 @ApiTags('Address')
 @Controller('address')

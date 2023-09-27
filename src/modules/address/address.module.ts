@@ -4,11 +4,11 @@ import { DatabaseModule } from 'src/database/database.module';
 import { addressProviders } from './address.providers';
 import { AddressService } from './address.service';
 import { cityProviders } from 'src/services/city/city.providers';
-import { ocupationProviders } from 'src/services/ocupation/ocupation.providers';
-import { OcupationService } from 'src/services/ocupation/ocupation.service';
 
 import { AddressSeeder } from './address.seeder';
 import { personProviders } from '../person/person.providers';
+import { ocupationProviders } from '../ocupation/ocupation.providers';
+import { OcupationService } from '../ocupation/ocupation.service';
 @Module({
   imports: [DatabaseModule],
   controllers: [AddressController],
