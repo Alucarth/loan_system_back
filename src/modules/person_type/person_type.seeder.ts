@@ -29,13 +29,13 @@ export class PersonTypeSeeder implements OnModuleInit {
       { name: 'Doctor', state: true },
       { name: 'Artista', state: true },
     ];
+    //TareaDIla: revisar por que no funciona
+    // for (const data of personTypeData) {
+    //   const person_type = new PersonType();
+    //   person_type.name = data.name;
+    //   person_type.state = data.state;
 
-    for (const data of personTypeData) {
-      const person_type = new PersonType();
-      person_type.name = data.name;
-      person_type.state = data.state;
-
-      await this._personTypeService.create(person_type);
-    }
+    //   await this._personTypeService.create(person_type);
+    // }
   }
 }

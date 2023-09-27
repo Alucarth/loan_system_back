@@ -1,34 +1,42 @@
-import { Person } from "src/modules/person/person.entity";
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToOne, JoinColumn } from "typeorm";
+import { Person } from 'src/modules/person/person.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 
 @Entity()
-export class User{
-    @PrimaryGeneratedColumn()
-    id: number;
+export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({ length: 500})
-    username: string;
+  @Column({ length: 500 })
+  username: string;
 
-    @Column('text')
-    password: string;
+  @Column('text')
+  password: string;
 
-    @Column({nullable: true})
-    added_user_id: number
+  @Column({ nullable: true })
+  added_user_id: number;
 
-    @Column({nullable: true})
-    deleted_user_id: number
-    
-    @OneToOne(()=>Person)
-    @JoinColumn({name:'person_id'})
-    person: Person
+  @Column({ nullable: true })
+  deleted_user_id: number;
 
-    @CreateDateColumn()
-    created_at: Date; // Creation date
+  @OneToOne(() => Person)
+  @JoinColumn({ name: 'person_id' })
+  person: Person;
 
-    @UpdateDateColumn()
-    updated_at: Date; // Last updated date
+  @CreateDateColumn()
+  created_at: Date; // Creation date
 
-    @DeleteDateColumn()
-    deleted_at: Date; // Deletion date
+  @UpdateDateColumn()
+  updated_at: Date; // Last updated date
 
+  @DeleteDateColumn()
+  deleted_at: Date; // Deletion date
 }

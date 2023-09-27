@@ -12,6 +12,7 @@ import {
 import { City } from '../city/city.entity';
 import { Person } from '../person/person.entity';
 import { Ocupation } from '../ocupation/ocupation.entity';
+import { User } from '../user/user.entity';
 
 @Entity()
 export class Address {
@@ -62,4 +63,12 @@ export class Address {
 
   @OneToMany(() => Ocupation, (ocupation) => ocupation.address)
   ocupations: Ocupation;
+
+  //referencia de usuario
+  @Column({ nullable: true, name: 'user_id' })
+  user_id: number;
+
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  user: User;
 }

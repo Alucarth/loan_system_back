@@ -60,21 +60,21 @@ export class AddressSeeder implements OnModuleInit {
 
       // Agregar más objetos con datos de prueba
     ];
+    //TareaDilan: Revisar
+    // for (const data of addressData) {
+    //   const address = new CreateAddressDTO();
 
-    for (const data of addressData) {
-      const address = new CreateAddressDTO();
+    //   address.address = data.address;
+    //   address.phone_number = data.phone_number;
+    //   address.zone = data.zone;
+    //   address.property = data.property;
+    //   address.address_type = data.address_type;
+    //   address.comments = data.comments;
+    //   address.status = data.status;
+    //   address.city_id = data.city_id.id;
+    //   address.person_id = data.person_id.id;
 
-      address.address = data.address;
-      address.phone_number = data.phone_number;
-      address.zone = data.zone;
-      address.property = data.property;
-      address.address_type = data.address_type;
-      address.comments = data.comments;
-      address.status = data.status;
-      address.city_id = data.city_id.id;
-      address.person_id = data.person_id.id;
-
-      await this._addressService.create(address);
-    }
+    //   await this._addressService.create(address);
+    // }
   }
 }

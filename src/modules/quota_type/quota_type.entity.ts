@@ -3,9 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { User } from '../user/user.entity';
 
 @Entity()
 export class QuotaType {
@@ -39,6 +42,11 @@ export class QuotaType {
   @DeleteDateColumn()
   deleted_at: Date;
 
-  @Column()
+  //referencia de usuario
+  @Column({ nullable: true, name: 'user_id' })
   user_id: number;
+
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  user: User;
 }

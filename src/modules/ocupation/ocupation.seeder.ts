@@ -62,23 +62,23 @@ export class OcupationSeeder implements OnModuleInit {
       // Agregar más objetos con datos de prueba
     ];
 
-    for (const data of ocupationData) {
-      const ocupation = new CreateOcupationDto();
+    // for (const data of ocupationData) {
+    //   const ocupation = new CreateOcupationDto();
 
-      ocupation.address_id = data.address_id.id;
-      ocupation.company_name = data.company_name;
-      ocupation.description = data.description;
-      ocupation.main_ocupation = data.main_ocupation;
-      ocupation.net_income = data.net_income;
-      ocupation.ocupation = data.ocupation;
-      ocupation.ocupation_type = data.ocupation_type;
-      ocupation.periodicity_income = data.periodicity_income;
-      ocupation.working_hours = data.working_hours;
-      ocupation.status = data.status;
-      ocupation.work_them = data.work_them;
-      ocupation.workdays = data.workdays;
+    //   ocupation.address_id = data.address_id.id;
+    //   ocupation.company_name = data.company_name;
+    //   ocupation.description = data.description;
+    //   ocupation.main_ocupation = data.main_ocupation;
+    //   ocupation.net_income = data.net_income;
+    //   ocupation.ocupation = data.ocupation;
+    //   ocupation.ocupation_type = data.ocupation_type;
+    //   ocupation.periodicity_income = data.periodicity_income;
+    //   ocupation.working_hours = data.working_hours;
+    //   ocupation.status = data.status;
+    //   ocupation.work_them = data.work_them;
+    //   ocupation.workdays = data.workdays;
 
-      await this._ocupationService.create(ocupation);
-    }
+    //   await this._ocupationService.create(ocupation);
+    // }
   }
 }

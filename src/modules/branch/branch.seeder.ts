@@ -39,14 +39,14 @@ export class BranchSeeder implements OnModuleInit {
       },
       // Agregar más objetos con datos de prueba
     ];
+    //TareaDilan: corregir este punto deberia ejectuar el usuario antes
+    // for (const data of branchData) {
+    //   const branch = new Branch();
+    //   branch.name = data.name;
+    //   branch.address = data.address;
+    //   branch.phone = data.phone;
 
-    for (const data of branchData) {
-      const branch = new Branch();
-      branch.name = data.name;
-      branch.address = data.address;
-      branch.phone = data.phone;
-
-      await this._branchService.create(branch);
-    }
+    //   await this._branchService.create(branch);
+    // }
   }
 }

@@ -1,21 +1,21 @@
-import { IsBoolean, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class CreatePersonTypeDto{
-    @IsNotEmpty()
-    @IsString()
-    name: string;
+export class CreatePersonTypeDto {
+  @IsNotEmpty()
+  @IsString()
+  name: string;
 
-    @IsNotEmpty()
-    @IsBoolean()
-    state: boolean;
+  @IsNotEmpty()
+  @IsBoolean()
+  state: boolean;
 }
 
-export class UpdatePersonTypeDto{
-    @IsOptional()
-    @IsString()
-    name: string;
+export class UpdatePersonTypeDto {
+  @IsOptional()
+  @IsString()
+  name: string;
 
-    @IsOptional()
-    @IsBoolean()
-    state: boolean;
+  @IsOptional()
+  @IsBoolean()
+  state: boolean;
 }
