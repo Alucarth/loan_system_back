@@ -15,6 +15,7 @@ import { OcupationModule } from './modules/ocupation/ocupation.module';
 import { QuotaTypeService } from './modules/quota_type/quota_type.service';
 import { QuotaTypeModule } from './modules/quota_type/quota_type.module';
 import { GuarantyTypeModule } from './modules/guaranty_type/guaranty_type.module';
+import { ClientTypeModule } from './modules/client_type/client_type.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { GuarantyTypeModule } from './modules/guaranty_type/guaranty_type.module
     AuthModule,
     QuotaTypeModule,
     GuarantyTypeModule,
+    ClientTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService, QuotaTypeService],
