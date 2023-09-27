@@ -16,6 +16,7 @@ import { QuotaTypeService } from './modules/quota_type/quota_type.service';
 import { QuotaTypeModule } from './modules/quota_type/quota_type.module';
 import { GuarantyTypeModule } from './modules/guaranty_type/guaranty_type.module';
 import { ClientTypeModule } from './modules/client_type/client_type.module';
+import { CreditTypeModule } from './modules/credit_type/credit_type.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ClientTypeModule } from './modules/client_type/client_type.module';
     QuotaTypeModule,
     GuarantyTypeModule,
     ClientTypeModule,
+    CreditTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService, QuotaTypeService],
