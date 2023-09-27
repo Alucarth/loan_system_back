@@ -14,7 +14,7 @@ import {
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 // import { Account } from 'src/modules/account/account.entity';
 import { CreateAccountDto, UpdateAccountDto } from './account.dto';
-import { AccountService } from 'src/services/account/account.service';
+import { AccountService } from './account.service';
 
 @ApiTags('Account')
 @Controller('account')
@@ -36,7 +36,7 @@ export class AccountController {
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(@Body() accountData: CreateAccountDto) {
     console.log('acountData', accountData);
-    let response = await this._accountService.create(accountData);
+    const response = await this._accountService.create(accountData);
     return response;
   }
   @Get(':id')
