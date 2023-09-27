@@ -6,8 +6,9 @@ import { AddressService } from './address.service';
 import { cityProviders } from 'src/services/city/city.providers';
 import { ocupationProviders } from 'src/services/ocupation/ocupation.providers';
 import { OcupationService } from 'src/services/ocupation/ocupation.service';
-import { personProviders } from 'src/services/person/person.providers';
+
 import { AddressSeeder } from './address.seeder';
+import { personProviders } from '../person/person.providers';
 @Module({
   imports: [DatabaseModule],
   controllers: [AddressController],
