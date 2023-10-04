@@ -117,25 +117,25 @@ export class PersonSeeder implements OnModuleInit {
       },
     ];
     //TareaDilan: revisar funcionalidad
-    // for (const person of personData) {
-    //   const {
-    //     identity_card_city,
-    //     city,
-    //     country,
-    //     person_type,
-    //     account,
-    //     ...personData
-    //   } = person;
-    //   const newPerson = this.personRepository.create({
-    //     ...personData,
-    //     identity_card_city: identity_card_city,
-    //     city: city,
-    //     country: country,
-    //     person_type: person_type,
-    //     account: account,
-    //   });
-    //   await this.personRepository.save(newPerson);
-    // }
+   for (const person of personData) {
+       const {
+         identity_card_city,
+         city,
+         country,
+         person_type,
+         account,
+         ...personData
+       } = person;
+       const newPerson = this.personRepository.create({
+         ...personData,
+         identity_card_city: identity_card_city,
+         city: city,
+         country: country,
+         person_type: person_type,
+         account: account,
+       });
+       await this.personRepository.save(newPerson);
+     }
     console.log('Cargando registros de Person en la base de datos...');
   }
 }
