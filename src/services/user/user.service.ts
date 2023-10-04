@@ -20,7 +20,7 @@ export class UserService {
     findOne(username: string): Promise<any> {
         return this.userRepository.findOne({
             relations:{
-                person: {
+                persons: {
                     account:true
                 }
             },
@@ -28,21 +28,20 @@ export class UserService {
         })
     }
 
-    async create(user_dto: CreateUserDto): Promise<User>{
-        
+    async create(user_dto: CreateUserDto): Promise<User> {
         // Buscar entidades relacionadas
-        const person: Person = await this.personRepository.findOneBy({id: user_dto.person_id})
-
-        // Crear una nueva entidad Address y rellenar sus propiedades
+        const persons: Person[] = await this.personRepository.find({ where: { id: user_dto.person_id } });
+        
+        // Crear una nueva entidad User y rellenar sus propiedades
         const user = new User();
-
+        
         user.username = user_dto.username;
-        user.password = user_dto.password
-        user.person = person;
-            
-        // Save the new Address entity to the database
-        return await this.userRepository.save(user)
-    }
+        user.password = user_dto.password;
+        user.persons = persons;
+        
+        // Save the new User entity to the database
+        return await this.userRepository.save(user);
+    }      
 
     findUserById(id:number)
     {

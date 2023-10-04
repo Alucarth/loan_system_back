@@ -16,7 +16,7 @@ export class UserService {
   findOne(username: string): Promise<any> {
     return this.userRepository.findOne({
       relations: {
-        person: {
+        persons: {
           account: true,
         },
       },

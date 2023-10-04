@@ -9,17 +9,7 @@ import { personProviders } from 'src/modules/person/person.providers';
 @Module({
   imports: [DatabaseModule],
   controllers: [UserController],
-<<<<<<< HEAD
-  providers: [
-    ...personProviders,
-    ...userProviders,    
-    UserService,
-    UserSeeder
-  ],
-  exports: [UserService]
-=======
-  providers: [...userProviders, ...personProviders, UserService, UserSeeder],
+  providers: [...userProviders, ...personProviders, UserService],
   exports: [UserService],
->>>>>>> 590ead470683b44369ed726a211b4c484638bd80
 })
 export class UserModule {}

@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { Column, Entity, JoinColumn, JoinTable, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { PersonType } from "../person_type/person_type.entity";
-import { City } from "../city/city.entity";
-import { Country } from "../country/country.entity";
-import { Account } from "../account/account.entity";
-import { Address } from "../address/address.entity";
-import { User } from "../user/user.entity";
-=======
 import {
   Column,
   CreateDateColumn,
@@ -24,7 +15,6 @@ import { Country } from '../country/country.entity';
 import { Account } from '../account/account.entity';
 import { Address } from '../address/address.entity';
 import { User } from '../user/user.entity';
->>>>>>> 590ead470683b44369ed726a211b4c484638bd80
 
 @Entity()
 export class Person {
@@ -46,7 +36,7 @@ export class Person {
   @Column({ nullable: true })
   identity_card: number;
 
-  @ManyToOne(() => City, (city) => city.id)
+  @ManyToOne(() => City, (city) => city.persons)
   @JoinColumn({ name: 'identity_card_city_id' })
   identity_card_city: City;
 
@@ -71,19 +61,19 @@ export class Person {
   @Column({ nullable: true })
   birth_date: Date;
 
-  @ManyToOne(() => City, (city) => city.id)
+  @ManyToOne(() => City, (city) => city.persons)
   @JoinColumn({ name: 'city_id' })
   city: City;
 
-  @ManyToOne(() => City, (city) => city.id)
+  @ManyToOne(() => City, (city) => city.persons)
   @JoinColumn({ name: 'city_card_id' })
   city_card: City;
 
-  @ManyToOne(() => Country, (country) => country.id)
+  @ManyToOne(() => Country, (country) => country.persons)
   @JoinColumn({ name: 'country_id' })
   country: Country;
 
-  @ManyToOne(() => PersonType, (person_type) => person_type.id)
+  @ManyToOne(() => PersonType, (person_type) => person_type.persons)
   @JoinColumn({ name: 'person_type_id' })
   person_type: PersonType;
 
@@ -114,14 +104,6 @@ export class Person {
   @JoinColumn({ name: 'person_id', referencedColumnName: 'id' })
   person: Person;
 
-<<<<<<< HEAD
-    @OneToMany(() => Address, address => address.person) // Corrección: Establecer la relación inversa en 'address.person'
-    address: Address[];
-
-    @OneToOne(() => User, user => user.person )
-    user: User;
-}
-=======
   @OneToMany(() => Address, (address) => address.person) // Corrección: Establecer la relación inversa en 'address.person'
   address: Address[];
 
@@ -138,8 +120,7 @@ export class Person {
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.persons)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
 }
->>>>>>> 590ead470683b44369ed726a211b4c484638bd80

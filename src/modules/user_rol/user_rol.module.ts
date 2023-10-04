@@ -3,7 +3,7 @@ import { UserRolController } from 'src/controllers/user_rol/user_rol.controller'
 import { DatabaseModule } from 'src/database/database.module';
 import { UserRolService } from 'src/services/user_rol/user_rol.service';
 import { userRolProviders } from 'src/services/user_rol/user_rol.providers';
-import { rolProviders } from 'src/services/rol/rol.providers';
+import { rolProviders } from '../rol/rol.providers';
 import { userProviders } from 'src/services/user/user.providers';
 import { UserRolSeeder } from './user_rol.seeder';
 

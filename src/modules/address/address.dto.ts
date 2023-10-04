@@ -1,93 +1,92 @@
 import { IsOptional, IsNotEmpty, IsString, IsNumber } from "class-validator";
 
-export class CreateAddressDTO{
-
-    @IsNotEmpty()
+export class CreateAddressDTO {
     @IsNumber()
-    person_id: number;
-
-    @IsNotEmpty()
+    id: number;
+  
     @IsNumber()
+    @IsOptional()
     city_id: number;
-
-    @IsNotEmpty()
+  
     @IsString()
     address: string;
-
-    @IsNotEmpty()
+  
     @IsNumber()
+    @IsOptional()
     phone_number: number;
-
-    @IsNotEmpty()
+  
     @IsString()
+    @IsOptional()
     zone: string;
-
-    @IsNotEmpty()
+  
     @IsString()
+    @IsOptional()
     property: string;
-
-    @IsNotEmpty()
+  
     @IsString()
+    @IsOptional()
     address_type: string;
-
-    @IsNotEmpty()
+  
     @IsString()
+    @IsOptional()
     comments: string;
-
-    @IsNotEmpty()
+  
     @IsString()
+    @IsOptional()
     status: string;
-
-    //este dato no esta en entity pero si el person_id que si hace refencia al id de Person
-    @IsOptional()
-    person: any
-    //este dato es una relacion refencial que no tiene una columna creada en Address si no en Ocupation
-    @IsOptional()
-    ocupations: Array<any>
-
-}
-
-export class UpdateAddressDTO{
-    @IsOptional()
+  
     @IsNumber()
+    @IsOptional()
+    user_id: number;
+
+    @IsNumber()
+    @IsOptional()
     person_id: number;
+}  
 
-    @IsOptional()
+export class UpdateAddressDTO {
     @IsNumber()
+    @IsOptional()
+    id: number;
+  
+    @IsNumber()
+    @IsOptional()
     city_id: number;
-
-    @IsOptional()
+  
     @IsString()
+    @IsOptional()
     address: string;
-
-    @IsOptional()
+  
     @IsNumber()
+    @IsOptional()
     phone_number: number;
-
-    @IsOptional()
+  
     @IsString()
+    @IsOptional()
     zone: string;
-
-    @IsOptional()
+  
     @IsString()
+    @IsOptional()
     property: string;
-
-    @IsOptional()
+  
     @IsString()
+    @IsOptional()
     address_type: string;
-
-    @IsOptional()
+  
     @IsString()
+    @IsOptional()
     comments: string;
-
-    @IsOptional()
+  
     @IsString()
+    @IsOptional()
     status: string;
+  
+    @IsNumber()
+    @IsOptional()
+    user_id: number;
 
-    //este dato no esta en entity pero si el person_id que si hace refencia al id de Person
+    @IsNumber()
     @IsOptional()
-    person: any
-    //este dato es una relacion refencial que no tiene una columna creada en Address si no en Ocupation
-    @IsOptional()
-    ocupations: Array<any>
-}
+    person_id: number;
+  }
+  

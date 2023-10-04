@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Address } from '../address/address.entity';
+import { Person } from '../person/person.entity';
 
 @Entity()
 export class City {
@@ -13,5 +14,8 @@ export class City {
   short_name: string;
 
   @OneToMany(() => Address, (address) => address.city) // Corrección: Establecer la relación inversa en 'address.city'
-  address: Address[];
+  addresses: Address[];
+
+  @OneToMany(() => Person, (person) => person.city) // Corrección: Establecer la relación inversa en 'address.city'
+  persons: Person[];
 }

@@ -30,7 +30,8 @@ export class CreditType {
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.creditTypes)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
+
 }
