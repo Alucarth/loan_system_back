@@ -1,11 +1,10 @@
-import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
-import { Person } from "./person.entity";
-import { City } from "../city/city.entity";
-import { Country } from "../country/country.entity";
-import { Account } from "../account/account.entity";
-import { PersonType } from "../person_type/person_type.entity";
-import { Repository } from "typeorm";
-
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { Person } from './person.entity';
+import { City } from '../city/city.entity';
+import { Country } from '../country/country.entity';
+import { Account } from '../account/account.entity';
+import { PersonType } from '../person_type/person_type.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PersonSeeder implements OnModuleInit {
@@ -19,15 +18,15 @@ export class PersonSeeder implements OnModuleInit {
     @Inject('PERSON_TYPE_REPOSITORY')
     private personTypeRepository: Repository<PersonType>,
     @Inject('COUNTRY_REPOSITORY')
-    private countryRepository: Repository<Country>
-
-  ) { }
+    private countryRepository: Repository<Country>,
+  ) {}
 
   async onModuleInit() {
-
     const exist = await this.personRepository.find();
     if (exist.length > 0) {
-      console.log('Saltando proceso del seeder -> (Person). Ya existen registros en la base de datos.');
+      console.log(
+        'Saltando proceso del seeder -> (Person). Ya existen registros en la base de datos.',
+      );
       return;
     }
     console.log('Iniciando el seeder -> (Person).');
@@ -39,7 +38,6 @@ export class PersonSeeder implements OnModuleInit {
       this.accountRepository.find(),
     ]);
     console.log('datos cargados de las tablas relacionadas a Person');
-
 
     const personData = [
       {
@@ -66,7 +64,6 @@ export class PersonSeeder implements OnModuleInit {
         value_5: 'Value 5',
         account: accounts[0],
         person_id: null,
-
       },
       {
         names: 'Dilan',
@@ -92,7 +89,6 @@ export class PersonSeeder implements OnModuleInit {
         value_5: 'Value 5',
         account: accounts[0],
         person_id: null,
-
       },
       {
         names: 'David',
@@ -118,22 +114,28 @@ export class PersonSeeder implements OnModuleInit {
         value_5: 'Value 5',
         account: accounts[0],
         person_id: null,
-
-      }
+      },
     ];
-
-    for (const person of personData) {
-      const { identity_card_city, city, country, person_type, account, ...personData } = person;
-      const newPerson = this.personRepository.create({
-        ...personData,
-        identity_card_city: identity_card_city,
-        city: city,
-        country: country,
-        person_type: person_type,
-        account: account
-      });
-      await this.personRepository.save(newPerson);
-    }
+    //TareaDilan: revisar funcionalidad
+    // for (const person of personData) {
+    //   const {
+    //     identity_card_city,
+    //     city,
+    //     country,
+    //     person_type,
+    //     account,
+    //     ...personData
+    //   } = person;
+    //   const newPerson = this.personRepository.create({
+    //     ...personData,
+    //     identity_card_city: identity_card_city,
+    //     city: city,
+    //     country: country,
+    //     person_type: person_type,
+    //     account: account,
+    //   });
+    //   await this.personRepository.save(newPerson);
+    // }
     console.log('Cargando registros de Person en la base de datos...');
   }
 }

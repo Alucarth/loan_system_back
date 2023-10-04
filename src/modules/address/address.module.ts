@@ -1,24 +1,25 @@
 import { Module } from '@nestjs/common';
-import { AddressController } from 'src/controllers/address/address.controller';
+import { AddressController } from './address.controller';
 import { DatabaseModule } from 'src/database/database.module';
-import { addressProviders } from 'src/services/address/address.providers';
-import { AddressService } from 'src/services/address/address.service';
-import { cityProviders } from 'src/services/city/city.providers';
-import { ocupationProviders } from 'src/services/ocupation/ocupation.providers';
-import { OcupationService } from 'src/services/ocupation/ocupation.service';
-import { personProviders } from 'src/services/person/person.providers';
+import { addressProviders } from './address.providers';
+import { AddressService } from './address.service';
+
 import { AddressSeeder } from './address.seeder';
+import { personProviders } from '../person/person.providers';
+import { ocupationProviders } from '../ocupation/ocupation.providers';
+import { OcupationService } from '../ocupation/ocupation.service';
+import { cityProviders } from '../city/city.providers';
 @Module({
-    imports: [DatabaseModule],
-    controllers: [AddressController],
-    providers:[
-        ...addressProviders,
-        ...cityProviders,
-        ...personProviders,
-        ...ocupationProviders,
-        OcupationService,
-        AddressService,
-        AddressSeeder
-    ]
+  imports: [DatabaseModule],
+  controllers: [AddressController],
+  providers: [
+    ...addressProviders,
+    ...cityProviders,
+    ...personProviders,
+    ...ocupationProviders,
+    OcupationService,
+    AddressService,
+    AddressSeeder,
+  ],
 })
 export class AddressModule {}

@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
-import { OcupationController } from 'src/controllers/ocupation/ocupation.controller';
 import { DatabaseModule } from 'src/database/database.module';
-import { addressProviders } from 'src/services/address/address.providers';
-import { ocupationProviders } from 'src/services/ocupation/ocupation.providers';
-import { OcupationService } from 'src/services/ocupation/ocupation.service';
 import { OcupationSeeder } from './ocupation.seeder';
+import { OcupationController } from './ocupation.controller';
+import { ocupationProviders } from './ocupation.providers';
+import { addressProviders } from '../address/address.providers';
+import { OcupationService } from './ocupation.service';
 
 @Module({
-    imports: [DatabaseModule],
-    controllers: [OcupationController],
-    providers: [
-        ...ocupationProviders,
-        ...addressProviders,
-        OcupationService,
-        OcupationSeeder
-    ]
+  imports: [DatabaseModule],
+  controllers: [OcupationController],
+  providers: [
+    ...ocupationProviders,
+    ...addressProviders,
+    OcupationService,
+    OcupationSeeder,
+  ],
 })
 export class OcupationModule {}

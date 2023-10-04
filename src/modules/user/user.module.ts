@@ -4,12 +4,12 @@ import { UserController } from 'src/controllers/user/user.controller';
 import { UserService } from 'src/services/user/user.service';
 import { userProviders } from 'src/services/user/user.providers';
 import { UserSeeder } from './user.seeder';
-import { personProviders } from 'src/services/person/person.providers';
-
+import { personProviders } from 'src/modules/person/person.providers';
 
 @Module({
-  imports:[DatabaseModule],
+  imports: [DatabaseModule],
   controllers: [UserController],
+<<<<<<< HEAD
   providers: [
     ...personProviders,
     ...userProviders,    
@@ -17,5 +17,9 @@ import { personProviders } from 'src/services/person/person.providers';
     UserSeeder
   ],
   exports: [UserService]
+=======
+  providers: [...userProviders, ...personProviders, UserService, UserSeeder],
+  exports: [UserService],
+>>>>>>> 590ead470683b44369ed726a211b4c484638bd80
 })
 export class UserModule {}

@@ -1,6 +1,6 @@
 import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
 import { Account } from "./account.entity";
-import { AccountService } from "src/services/account/account.service";
+import { AccountService } from "src/modules/account/account.service";
 import { Repository } from "typeorm";
 
 @Injectable()
