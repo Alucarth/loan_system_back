@@ -4,6 +4,7 @@ import { ClientTypeController } from './client_type.controller';
 import { clientTypeProviders } from './client_type.providers';
 import { ClientTypeService } from './client_type.service';
 import { userProviders } from 'src/services/user/user.providers';
+import { ClientTypeSeeder } from './client_type.seeder';
 
 @Module({
     imports: [DatabaseModule],
@@ -12,6 +13,7 @@ import { userProviders } from 'src/services/user/user.providers';
       ...clientTypeProviders,
       ...userProviders,
       ClientTypeService,
+      ClientTypeSeeder
     ],
   })
 export class ClientTypeModule {}
