@@ -14,21 +14,21 @@ export class ClientTypeService {
     return this.clientTypeRepository.find({ relations: ['user'] });
   }
 
-  create(city_dto: CreateClientTypeDto): Promise<ClientType> {
-    return this.clientTypeRepository.save(city_dto);
+  create(clientType_dto: CreateClientTypeDto): Promise<ClientType> {
+    return this.clientTypeRepository.save(clientType_dto);
   }
 
-  async findClientTypeById(id: number) {
+  async findClientTypeById(id: number) { // le puse find y no findOne por que resive mas de un dato
     return this.clientTypeRepository.find({ where: { id:id }, relations: ['user'] });
   }
 
   async updateById(id: number, updateData: UpdateClientTypeDto): Promise<ClientType> {
-    const city = await this.clientTypeRepository.findOneBy({ id: id });
-    if (!city) {
+    const creditType = await this.clientTypeRepository.findOneBy({ id: id });
+    if (!creditType) {
       throw new NotFoundException('Client Type not found');
     }
-    const updatedCity = Object.assign(city, updateData);
-    return this.clientTypeRepository.save(updatedCity);
+    const updatedCreditType = Object.assign(creditType, updateData);
+    return this.clientTypeRepository.save(updatedCreditType);
   }
 
   async updateClientTypeById(

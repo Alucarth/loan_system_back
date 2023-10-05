@@ -1,14 +1,14 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { ClientTypeService } from './client_type.service';
 import { Repository } from 'typeorm';
-import { ClientType } from './client_type.entity';
+import { CreditTypeService } from './credit_type.service';
+import { CreditType } from './credit_type.entity';
 
 @Injectable()
-export class ClientTypeSeeder implements OnModuleInit {
+export class CreditTypeSeeder implements OnModuleInit {
   constructor(
-    private readonly clientTypeService: ClientTypeService,
-    @Inject('CLIENT_TYPE_REPOSITORY')
-    private clientTypeRepository: Repository<ClientType>,
+    private readonly creditTypeService: CreditTypeService,
+    @Inject('CREDIT_TYPE_REPOSITORY')
+    private clientTypeRepository: Repository<CreditType>,
   ) {}
 
   async onModuleInit() {
@@ -16,18 +16,18 @@ export class ClientTypeSeeder implements OnModuleInit {
     const exist = await this.clientTypeRepository.find();
     if (exist.length > 0) {
       console.log(
-        'Saltando proceso del seeder -> (Client Type). Ya existen registros en la base de datos.',
+        'Saltando proceso del seeder -> (Credit Type). Ya existen registros en la base de datos.',
       );
       return;
     }
     console.log(
-      'Iniciando el seeder -> (Client Type). Cargando registros en la base de datos.',
+      'Iniciando el seeder -> (Credit Type). Cargando registros en la base de datos.',
     );
 
-    const sqlInsertQuery = `INSERT INTO client_type (name, user_id) 
-    VALUES  ('nombre 1', 1), 
-            ('nombre 2', 2), 
-            ('nombre 3', 3);`; 
+    const sqlInsertQuery = `INSERT INTO credit_type (state, user_id) 
+    VALUES  ( true , 1), 
+            ( false , 2), 
+            ( true, 3);`; 
     // use `` solo para ser mas ordenado e ir agregando facilmente mas datos en el seeder por que funciona "" sin problemas
 
     try {
