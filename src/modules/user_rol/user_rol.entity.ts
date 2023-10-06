@@ -7,11 +7,11 @@ export class UserRol {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => Rol)
+  @OneToOne(() => Rol, rol => rol.userRol)
   @JoinColumn({ name: 'rol_id' })
   rol: Rol;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, user => user.userRol)
   @JoinColumn({ name: 'user_id' })
   user: User;
 }

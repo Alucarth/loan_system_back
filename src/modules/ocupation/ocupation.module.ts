@@ -13,7 +13,7 @@ import { OcupationService } from './ocupation.service';
     ...ocupationProviders,
     ...addressProviders,
     OcupationService,
-    OcupationSeeder,
+    
   ],
 })
 export class OcupationModule {}

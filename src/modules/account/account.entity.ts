@@ -54,12 +54,13 @@ export class Account {
   deleted_at: Date; // Deletion date
 
   @OneToMany(() => Branch, (branch) => branch.account)
-  branches: Branch;
+  branches: Branch[];
+
   //referencia de usuario
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.accounts)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
 }

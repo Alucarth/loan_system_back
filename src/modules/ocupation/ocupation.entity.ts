@@ -52,16 +52,6 @@ export class Ocupation {
   @ManyToOne(() => Address, (address) => address.ocupations)
   @JoinColumn({ name: 'address_id', referencedColumnName: 'id' })
   address: Address;
-  //sin la referencia no guarda la llave foranea verificar en las demas tablas esto
-  //address_id es el id de Address que en entity seria de tipo "address: Address"
-  //que ya esta haciendo refencia siendo un ManyToOne
-  /*@Column({nullable: true , name: 'address_id'})
-    address_id: number
-
-    @ManyToOne(()=>Address ,(address) => address.ocupations)
-    @JoinColumn({name: 'address_id', referencedColumnName: 'id'})
-    
-    address: Address*/
 
   @CreateDateColumn()
   created_at: Date; // Creation date
@@ -76,7 +66,7 @@ export class Ocupation {
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.ocupations)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
 }

@@ -8,6 +8,6 @@ import { PersonTypeSeeder } from './person_type.seeder';
 @Module({
   imports: [DatabaseModule],
   controllers: [PersonTypeController],
-  providers: [...personTypeProviders, PersonTypeService, PersonTypeSeeder],
+  providers: [...personTypeProviders, PersonTypeService],
 })
 export class PersonTypeModule {}

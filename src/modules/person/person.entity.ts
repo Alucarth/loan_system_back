@@ -36,7 +36,7 @@ export class Person {
   @Column({ nullable: true })
   identity_card: number;
 
-  @ManyToOne(() => City, (city) => city.id)
+  @ManyToOne(() => City, (city) => city.persons)
   @JoinColumn({ name: 'identity_card_city_id' })
   identity_card_city: City;
 
@@ -61,19 +61,19 @@ export class Person {
   @Column({ nullable: true })
   birth_date: Date;
 
-  @ManyToOne(() => City, (city) => city.id)
+  @ManyToOne(() => City, (city) => city.persons)
   @JoinColumn({ name: 'city_id' })
   city: City;
 
-  @ManyToOne(() => City, (city) => city.id)
+  @ManyToOne(() => City, (city) => city.persons)
   @JoinColumn({ name: 'city_card_id' })
   city_card: City;
 
-  @ManyToOne(() => Country, (country) => country.id)
+  @ManyToOne(() => Country, (country) => country.persons)
   @JoinColumn({ name: 'country_id' })
   country: Country;
 
-  @ManyToOne(() => PersonType, (person_type) => person_type.id)
+  @ManyToOne(() => PersonType, (person_type) => person_type.persons)
   @JoinColumn({ name: 'person_type_id' })
   person_type: PersonType;
 
@@ -120,7 +120,7 @@ export class Person {
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.persons)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
 }

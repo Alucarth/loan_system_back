@@ -19,14 +19,14 @@ export class Address {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Person, (person) => person.id)
+  @ManyToOne(() => Person, (person) => person.address)
   @JoinColumn({ name: 'person_id' })
   person: Person;
 
   @Column({ nullable: true, name: 'city_id' })
   city_id: number;
 
-  @ManyToOne(() => City, (city) => city.id)
+  @ManyToOne(() => City, (city) => city.addresses)
   @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
   city: City;
 
@@ -62,13 +62,13 @@ export class Address {
   deleted_at: Date; // Deletion date
 
   @OneToMany(() => Ocupation, (ocupation) => ocupation.address)
-  ocupations: Ocupation;
+  ocupations: Ocupation[];
 
   //referencia de usuario
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.addresses)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
 }

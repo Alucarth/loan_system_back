@@ -24,7 +24,7 @@ export class Branch {
   @Column()
   phone: string;
 
-  @ManyToOne(() => Account)
+  @ManyToOne(() => Account, (account) => account.branches)
   @JoinColumn({ name: 'account_id' })
   account: Account;
 
@@ -41,7 +41,7 @@ export class Branch {
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.branches)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
 }
