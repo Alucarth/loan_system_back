@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { PersonController } from './person.controller';
 import { DatabaseModule } from 'src/database/database.module';
-
-import { PersonSeeder } from './person.seeder';
 import { accountProviders } from '../account/account.providers';
 import { personProviders } from './person.providers';
 import { addressProviders } from '../address/address.providers';
