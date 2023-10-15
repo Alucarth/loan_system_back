@@ -26,7 +26,7 @@ export class Address {
   @Column({ nullable: true, name: 'city_id' })
   city_id: number;
 
-  @ManyToOne(() => City, (city) => city.addresses)
+  @ManyToOne(() => City, (city) => city.id)
   @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
   city: City;
 
@@ -68,7 +68,7 @@ export class Address {
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.addresses)
+  @ManyToOne(() => User, (user) => user.id)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
 }

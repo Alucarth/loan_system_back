@@ -7,13 +7,13 @@ import { GuarantyTypeController } from './guaranty_type.controller';
 import { GuarantyTypeSeeder } from './guaranty_type.seeder';
 
 @Module({
-    imports: [DatabaseModule],
-    controllers: [GuarantyTypeController],
-    providers: [
-      ...guarantyTypeProviders,
-      ...userProviders,
-      GuarantyTypeService,
-      GuarantyTypeSeeder
-    ],
-  })
+  imports: [DatabaseModule],
+  controllers: [GuarantyTypeController],
+  providers: [
+    ...guarantyTypeProviders,
+    ...userProviders,
+    GuarantyTypeService,
+    // GuarantyTypeSeeder,
+  ],
+})
 export class GuarantyTypeModule {}

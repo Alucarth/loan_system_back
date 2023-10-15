@@ -13,29 +13,26 @@ export class CreditTypeSeeder implements OnModuleInit {
 
   async onModuleInit() {
     // await this.cityRepository.query('TRUNCATE TABLE city RESTART IDENTITY CASCADE');
-    const exist = await this.clientTypeRepository.find();
-    if (exist.length > 0) {
-      console.log(
-        'Saltando proceso del seeder -> (Credit Type). Ya existen registros en la base de datos.',
-      );
-      return;
-    }
-    console.log(
-      'Iniciando el seeder -> (Credit Type). Cargando registros en la base de datos.',
-    );
-
-    const sqlInsertQuery = `INSERT INTO credit_type (state, user_id) 
-    VALUES  ( true , 1), 
-            ( false , 2), 
-            ( true, 3);`; 
-    // use `` solo para ser mas ordenado e ir agregando facilmente mas datos en el seeder por que funciona "" sin problemas
-
-    try {
-        await this.clientTypeRepository.query(sqlInsertQuery);
-        console.log('Seeder (Client Type) completado.');
-    } catch (error) {
-        console.error('Error en el Seeder (Client Type) :', error);
-    }
-
+    // const exist = await this.clientTypeRepository.find();
+    // if (exist.length > 0) {
+    //   console.log(
+    //     'Saltando proceso del seeder -> (Credit Type). Ya existen registros en la base de datos.',
+    //   );
+    //   return;
+    // }
+    // console.log(
+    //   'Iniciando el seeder -> (Credit Type). Cargando registros en la base de datos.',
+    // );
+    // const sqlInsertQuery = `INSERT INTO credit_type (state, user_id)
+    // VALUES  ( true , 1),
+    //         ( false , 2),
+    //         ( true, 3);`;
+    // // use `` solo para ser mas ordenado e ir agregando facilmente mas datos en el seeder por que funciona "" sin problemas
+    // try {
+    //   await this.clientTypeRepository.query(sqlInsertQuery);
+    //   console.log('Seeder (Client Type) completado.');
+    // } catch (error) {
+    //   console.error('Error en el Seeder (Client Type) :', error);
+    // }
   }
 }

@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -16,6 +17,7 @@ import { Account } from '../account/account.entity';
 import { Address } from '../address/address.entity';
 import { User } from '../user/user.entity';
 
+@Index(['public_id', 'account_id'], { unique: true })
 @Entity()
 export class Person {
   @PrimaryGeneratedColumn()
@@ -36,7 +38,7 @@ export class Person {
   @Column({ nullable: true })
   identity_card: number;
 
-  @ManyToOne(() => City, (city) => city.persons)
+  @ManyToOne(() => City, (city) => city.id)
   @JoinColumn({ name: 'identity_card_city_id' })
   identity_card_city: City;
 
@@ -61,19 +63,19 @@ export class Person {
   @Column({ nullable: true })
   birth_date: Date;
 
-  @ManyToOne(() => City, (city) => city.persons)
+  @ManyToOne(() => City, (city) => city.id)
   @JoinColumn({ name: 'city_id' })
   city: City;
 
-  @ManyToOne(() => City, (city) => city.persons)
+  @ManyToOne(() => City, (city) => city.id)
   @JoinColumn({ name: 'city_card_id' })
   city_card: City;
 
-  @ManyToOne(() => Country, (country) => country.persons)
+  @ManyToOne(() => Country, (country) => country.id)
   @JoinColumn({ name: 'country_id' })
   country: Country;
 
-  @ManyToOne(() => PersonType, (person_type) => person_type.persons)
+  @ManyToOne(() => PersonType, (person_type) => person_type.id)
   @JoinColumn({ name: 'person_type_id' })
   person_type: PersonType;
 
@@ -92,9 +94,17 @@ export class Person {
   @Column({ nullable: true })
   value_5: string;
 
+  //referencia al account_id
+  @Column({ name: 'account_id' })
+  account_id: number;
+
   @ManyToOne(() => Account, (account) => account.id)
-  @JoinColumn({ name: 'account_id' })
+  @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
   account: Account;
+
+  //public id unique by account_id
+  @Column({ name: 'public_id' })
+  public_id: number;
 
   //referencia de persona
   @Column({ nullable: true, name: 'person_id' })
@@ -120,7 +130,7 @@ export class Person {
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.persons)
+  @ManyToOne(() => User, (user) => user.id)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
 }

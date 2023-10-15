@@ -27,15 +27,14 @@ export class GuarantyTypeSeeder implements OnModuleInit {
     const sqlInsertQuery = `INSERT INTO guaranty_type (name, description, state, user_id) 
     VALUES  ( "nombre 1", "descripcion1", true , 1), 
             ( "nombre 2", "descripcion2", false , 2), 
-            ( "nombre 3", "descripcion3", true, 3);`; 
+            ( "nombre 3", "descripcion3", true, 3);`;
     // use `` solo para ser mas ordenado e ir agregando facilmente mas datos en el seeder por que funciona "" sin problemas
 
     try {
-        await this.guarantyTypeRepository.query(sqlInsertQuery);
-        console.log('Seeder (Guaranty Type) completado.');
+      await this.guarantyTypeRepository.query(sqlInsertQuery);
+      console.log('Seeder (Guaranty Type) completado.');
     } catch (error) {
-        console.error('Error en el Seeder (Guaranty Type) :', error);
+      console.error('Error en el Seeder (Guaranty Type) :', error);
     }
-
   }
 }

@@ -24,7 +24,6 @@ import { personTypeProviders } from '../person_type/person_type.providers';
     ...countryProviders,
     PersonService,
     AddressService,
-    PersonSeeder
   ],
 })
 export class PersonModule {}

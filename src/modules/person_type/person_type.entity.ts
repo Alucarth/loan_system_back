@@ -36,10 +36,7 @@ export class PersonType {
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.personTypes)
+  @ManyToOne(() => User, (user) => user.id)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
-
-  @OneToMany(() => Person, person => person.person_type)
-  persons: Person[];
 }

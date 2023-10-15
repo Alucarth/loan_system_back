@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -10,6 +11,7 @@ import {
 } from 'typeorm';
 import { Account } from '../account/account.entity';
 import { User } from '../user/user.entity';
+@Index(['public_id', 'account_id'], { unique: true })
 @Entity()
 export class Branch {
   @PrimaryGeneratedColumn()
@@ -24,9 +26,17 @@ export class Branch {
   @Column()
   phone: string;
 
+  //referencia al account_id
+  @Column({ name: 'account_id' })
+  account_id: number;
+
   @ManyToOne(() => Account, (account) => account.branches)
-  @JoinColumn({ name: 'account_id' })
+  @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
   account: Account;
+
+  //public id unique by account_id
+  @Column({ name: 'public_id' })
+  public_id: number;
 
   @CreateDateColumn()
   created_at: Date; // Creation date
@@ -41,7 +51,7 @@ export class Branch {
   @Column({ nullable: true, name: 'user_id' })
   user_id: number;
 
-  @ManyToOne(() => User, (user) => user.branches)
+  @ManyToOne(() => User, (user) => user.id)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
 }

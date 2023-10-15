@@ -8,6 +8,6 @@ import { BranchSeeder } from './branch.seeder';
 @Module({
   imports: [DatabaseModule],
   controllers: [BranchController],
-  providers: [...branchProviders, BranchService, BranchSeeder],
+  providers: [...branchProviders, BranchService], //se esta quitando los seedders por que se requiere adicionar triggers y en nest no esta disponible todabia esta funcionalidad
 })
 export class BranchModule {}

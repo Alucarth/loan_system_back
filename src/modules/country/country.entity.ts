@@ -11,7 +11,4 @@ export class Country {
 
   @Column()
   short_name: string;
-
-  @OneToMany(() => Person, person => person.country)
-  persons: Person[]; // Agregado esta propiedad para la relacion con Person
 }

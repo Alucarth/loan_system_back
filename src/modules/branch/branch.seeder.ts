@@ -40,13 +40,17 @@ export class BranchSeeder implements OnModuleInit {
       // Agregar más objetos con datos de prueba
     ];
     //TareaDilan: corregir este punto deberia ejectuar el usuario antes
-    // for (const data of branchData) {
-    //   const branch = new Branch();
-    //   branch.name = data.name;
-    //   branch.address = data.address;
-    //   branch.phone = data.phone;
+    await this.branchRepository.query(
+      'CREATE TRIGGER `public`.`branch_public_id` BEFORE INSERT ON `public`.`branch` FOR EACH ROW BEGIN SET NEW.public_id = (SELECT COALESCE (MAX(public_id),0) + 1 FROM `public`.`branch` WHERE account_id = NEW.account_id );',
+    );
+    for (const data of branchData) {
+      const branch = new Branch();
+      branch.name = data.name;
+      branch.address = data.address;
+      branch.phone = data.phone;
+      branch.account_id = 1;
 
-    //   await this._branchService.create(branch);
-    // }
+      await this._branchService.create(branch);
+    }
   }
 }

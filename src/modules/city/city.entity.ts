@@ -12,10 +12,5 @@ export class City {
 
   @Column()
   short_name: string;
-
-  @OneToMany(() => Address, (address) => address.city) // Corrección: Establecer la relación inversa en 'address.city'
-  addresses: Address[];
-
-  @OneToMany(() => Person, (person) => person.city) // Corrección: Establecer la relación inversa en 'address.city'
-  persons: Person[];
+  // no hacer esto por que no habra consulta a la inversa esto esta mal siempre es e un solo sentido para estos casos si se requiere se realizara una consulta especifica
 }

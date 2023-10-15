@@ -19,7 +19,6 @@ import { cityProviders } from '../city/city.providers';
     ...ocupationProviders,
     OcupationService,
     AddressService,
-    AddressSeeder,
   ],
 })
 export class AddressModule {}

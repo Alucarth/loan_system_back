@@ -7,14 +7,8 @@ import { CreditTypeSeeder } from './credit_type.seeder';
 import { CreditTypeController } from './credit_type.controller';
 
 @Module({
-    imports: [DatabaseModule],
-    controllers: [CreditTypeController],
-    providers: [
-      ...creditTypeProviders,
-      ...userProviders,
-      CreditTypeService,
-      CreditTypeSeeder
-    ],
-  })
+  imports: [DatabaseModule],
+  controllers: [CreditTypeController],
+  providers: [...creditTypeProviders, ...userProviders, CreditTypeService],
+})
 export class CreditTypeModule {}
-
