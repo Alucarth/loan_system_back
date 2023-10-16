@@ -1,6 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class CreatePersonTypeDto {
+export class CreateEmployeeTypeDto {
   @IsNotEmpty()
   @IsString()
   name: string;
@@ -10,7 +10,7 @@ export class CreatePersonTypeDto {
   state: boolean;
 }
 
-export class UpdatePersonTypeDto {
+export class UpdateEmployeeTypeDto {
   @IsOptional()
   @IsString()
   name: string;

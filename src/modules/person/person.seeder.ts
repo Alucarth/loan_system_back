@@ -3,7 +3,6 @@ import { Person } from './person.entity';
 import { City } from '../city/city.entity';
 import { Country } from '../country/country.entity';
 import { Account } from '../account/account.entity';
-import { PersonType } from '../person_type/person_type.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -15,8 +14,6 @@ export class PersonSeeder implements OnModuleInit {
     private cityRepository: Repository<City>,
     @Inject('ACCOUNT_REPOSITORY')
     private accountRepository: Repository<Account>,
-    @Inject('PERSON_TYPE_REPOSITORY')
-    private personTypeRepository: Repository<PersonType>,
     @Inject('COUNTRY_REPOSITORY')
     private countryRepository: Repository<Country>,
   ) {}
@@ -31,10 +28,9 @@ export class PersonSeeder implements OnModuleInit {
     }
     console.log('Iniciando el seeder -> (Person).');
     console.log('Esperando a los datos de las tablas relacionadas a Person');
-    const [cities, countries, personTypes, accounts] = await Promise.all([
+    const [cities, countries, accounts] = await Promise.all([
       this.cityRepository.find(),
       this.countryRepository.find(),
-      this.personTypeRepository.find(),
       this.accountRepository.find(),
     ]);
     console.log('datos cargados de las tablas relacionadas a Person');

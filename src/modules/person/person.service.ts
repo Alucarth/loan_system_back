@@ -5,7 +5,6 @@ import { CreatePersonDto } from './create-person.dto';
 import { UpdatePersonDto } from './update-person.dto';
 import { City } from 'src/modules/city/city.entity';
 import { Account } from 'src/modules/account/account.entity';
-import { PersonType } from 'src/modules/person_type/person_type.entity';
 import { Country } from 'src/modules/country/country.entity';
 
 @Injectable()
@@ -17,8 +16,6 @@ export class PersonService {
     private cityRepository: Repository<City>,
     @Inject('ACCOUNT_REPOSITORY')
     private accountRepository: Repository<Account>,
-    @Inject('PERSON_TYPE_REPOSITORY')
-    private personTypeRepository: Repository<PersonType>,
     @Inject('COUNTRY_REPOSITORY')
     private countryRepository: Repository<Country>,
   ) {}
@@ -69,9 +66,6 @@ export class PersonService {
     });
     const account: Account = await this.accountRepository.findOneBy({
       id: person_dto.account_id,
-    });
-    const person_type: PersonType = await this.personTypeRepository.findOneBy({
-      id: person_dto.person_type_id,
     });
     const country: Country = await this.countryRepository.findOneBy({
       id: person_dto.country_id,

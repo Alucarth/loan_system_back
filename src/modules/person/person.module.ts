@@ -8,7 +8,6 @@ import { PersonService } from './person.service';
 import { AddressService } from '../address/address.service';
 import { cityProviders } from '../city/city.providers';
 import { countryProviders } from '../country/country.providers';
-import { personTypeProviders } from '../person_type/person_type.providers';
 
 @Module({
   imports: [DatabaseModule],
@@ -17,7 +16,6 @@ import { personTypeProviders } from '../person_type/person_type.providers';
     ...personProviders,
     ...cityProviders,
     ...accountProviders,
-    ...personTypeProviders,
     ...addressProviders,
     ...countryProviders,
     PersonService,

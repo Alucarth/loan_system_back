@@ -1,18 +1,19 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { PersonTypeService } from './person_type.service';
-import { PersonType } from './person_type.entity';
+
 import { Repository } from 'typeorm';
+import { EmployeeTypeService } from './employee_type.service';
+import { EmployeeType } from './employee_type.entity';
 
 @Injectable()
-export class PersonTypeSeeder implements OnModuleInit {
+export class EmployeeTypeSeeder implements OnModuleInit {
   constructor(
-    private readonly _personTypeService: PersonTypeService,
+    private readonly _employeeTypeService: EmployeeTypeService,
     @Inject('PERSON_TYPE_REPOSITORY')
-    private personTypeRepository: Repository<PersonType>,
+    private employeeTypeRepository: Repository<EmployeeType>,
   ) {}
 
   async onModuleInit() {
-    const exist = await this.personTypeRepository.find();
+    const exist = await this.employeeTypeRepository.find();
     if (exist.length > 0) {
       console.log(
         'Saltando proceso del seeder -> (Person_Type). Ya existen registros en la base de datos.',
@@ -35,7 +36,7 @@ export class PersonTypeSeeder implements OnModuleInit {
     //   person_type.name = data.name;
     //   person_type.state = data.state;
 
-    //   await this._personTypeService.create(person_type);
+    //   await this._employeeTypeService.create(person_type);
     // }
   }
 }

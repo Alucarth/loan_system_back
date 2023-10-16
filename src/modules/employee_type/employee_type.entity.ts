@@ -5,15 +5,13 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../user/user.entity';
-import { Person } from '../person/person.entity';
 
 @Entity()
-export class PersonType {
+export class EmployeeType {
   @PrimaryGeneratedColumn()
   id: number;
 
