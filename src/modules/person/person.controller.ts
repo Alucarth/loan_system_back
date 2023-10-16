@@ -31,11 +31,11 @@ export class PersonController {
     return this._personService.findAll();
   }
 
-  @Get('clients')
-  @HttpCode(HttpStatus.OK)
-  async findAllClients() {
-    return await this._personService.findAllClients();
-  }
+  // @Get('clients')
+  // @HttpCode(HttpStatus.OK)
+  // async findAllClients() {
+  //   return await this._personService.findAllClients();
+  // }
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
@@ -51,13 +51,13 @@ export class PersonController {
     return person;
   }
 
-  @Get('references/:client_id')
-  @HttpCode(HttpStatus.OK)
-  async findReferencesByClientId(
-    @Param('client_id', ParseIntPipe) client_id: number,
-  ) {
-    return this._personService.findReferences(client_id);
-  }
+  // @Get('references/:client_id')
+  // @HttpCode(HttpStatus.OK)
+  // async findReferencesByClientId(
+  //   @Param('client_id', ParseIntPipe) client_id: number,
+  // ) {
+  //   return this._personService.findReferences(client_id);
+  // }
 
   @Post('reference')
   @HttpCode(HttpStatus.CREATED)

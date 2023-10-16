@@ -29,30 +29,16 @@ export class PersonService {
     });
   }
 
-  async findAllClients(): Promise<Person[]> {
-    console.log('get clients');
-    return await this.personRepository.find({
-      relations: {
-        person_type: true,
-      },
-      where: {
-        person_type: {
-          name: 'cliente',
-        },
-      },
-    });
-  }
-
-  async findReferences(cliente_id: number): Promise<Person[]> {
-    return await this.personRepository.find({
-      relations: {
-        person_type: true,
-      },
-      where: {
-        person_id: cliente_id,
-      },
-    });
-  }
+  // async findReferences(cliente_id: number): Promise<Person[]> {
+  //   return await this.personRepository.find({
+  //     relations: {
+  //       person_type: true,
+  //     },
+  //     where: {
+  //       person_id: cliente_id,
+  //     },
+  //   });
+  // }
 
   /*async create(person_dto: CreatePersonDto): Promise<Person>{
         
@@ -96,34 +82,34 @@ export class PersonService {
     person.names = person_dto.names;
     person.father_last_name = person_dto.father_last_name;
     person.mother_last_name = person_dto.mother_last_name;
-    person.identity_card = person_dto.identity_card;
+    // person.identity_card = person_dto.identity_card;
 
     // Establecer relaciones entre entidades
-    person.identity_card_city = identity_card_city;
+    // person.identity_card_city = identity_card_city;
 
     // valores no obligatorio
-    person.identity_card = person_dto.identity_card ?? null;
+    // person.identity_card = person_dto.identity_card ?? null;
     person.gender = person_dto.gender ?? null;
     person.photo_url = person_dto.photo_url ?? null;
     person.material_status = person_dto.material_status ?? null;
-    person.dependents = person_dto.dependents ?? null;
-    person.personal_number = person_dto.personal_number ?? null;
-    person.email = person_dto.email ?? null;
+    // person.dependents = person_dto.dependents ?? null;
+    // person.personal_number = person_dto.personal_number ?? null;
+    // person.email = person_dto.email ?? null;
     person.birth_date = person_dto.birth_date ?? null;
     person.age = person_dto.age ?? null;
 
-    person.value_1 = person_dto.value_1 ?? null;
-    person.value_2 = person_dto.value_2 ?? null;
-    person.value_3 = person_dto.value_3 ?? null;
-    person.value_4 = person_dto.value_4 ?? null;
-    person.value_5 = person_dto.value_5 ?? null;
-    person.person_id = person_dto.person_id ?? null;
+    // person.value_1 = person_dto.value_1 ?? null;
+    // person.value_2 = person_dto.value_2 ?? null;
+    // person.value_3 = person_dto.value_3 ?? null;
+    // person.value_4 = person_dto.value_4 ?? null;
+    // person.value_5 = person_dto.value_5 ?? null;
+    // person.person_id = person_dto.person_id ?? null;
 
-    person.city = city ?? null;
-    person.country = country ?? null;
+    // person.city = city ?? null;
+    // person.country = country ?? null;
 
     person.account = account;
-    person.person_type = person_type;
+    // person.person_type = person_type;
 
     // Save the new Person entity to the database
     return await this.personRepository.save(person);
