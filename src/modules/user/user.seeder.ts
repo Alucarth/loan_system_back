@@ -6,9 +6,8 @@ import {
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
-import { UserService } from 'src/services/user/user.service';
 import { Person } from 'src/modules/person/person.entity';
-import { CreateUserDto } from 'src/controllers/user/user.dto';
+import { UserService } from './user.service';
 
 @Injectable()
 export class UserSeeder implements OnApplicationBootstrap {

@@ -7,9 +7,8 @@ import {
   Post,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './user.dto';
+
 import { ApiResponse } from '@nestjs/swagger';
-import { User } from './user.entity';
 
 @Controller('user')
 export class UserController {
@@ -32,9 +31,33 @@ export class UserController {
     description: 'The record has been successfully created.',
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create(@Body() userData: User) {
+  async create(@Body() userData: any) {
     console.log('userData', userData);
     const response = await this._userService.create(userData);
     return response;
   }
+
+  // @Put(':id')
+  // @HttpCode(HttpStatus.OK)
+  // async updateById(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Body() updateData: UpdateUserDto,
+  // ) {
+  //   return this._userService.updateById(id, updateData);
+  // }
+
+  // @Patch(':id')
+  // @HttpCode(HttpStatus.OK)
+  // async updateUserById(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Body() updateData: Partial<UpdateUserDto>,
+  // ) {
+  //   return this._userService.updateUserById(id, updateData);
+  // }
+
+  // @Delete(':id')
+  // @HttpCode(HttpStatus.OK)
+  // async deleteById(@Param('id', ParseIntPipe) id: number) {
+  //   return this._userService.deleteById(id);
+  // }
 }

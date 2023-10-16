@@ -1,12 +1,10 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import {
-  CreateUserRolDto,
-  UpdateUserRolDto,
-} from 'src/controllers/user_rol/user_rol.dto';
+
 import { Rol } from 'src/modules/rol/rol.entity';
 import { User } from 'src/modules/user/user.entity';
 import { UserRol } from 'src/modules/user_rol/user_rol.entity';
 import { Repository } from 'typeorm';
+import { CreateUserRolDto, UpdateUserRolDto } from './user_rol.dto';
 
 @Injectable()
 export class UserRolService {

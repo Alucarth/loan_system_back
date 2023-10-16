@@ -39,9 +39,12 @@ export class BranchSeeder implements OnModuleInit {
       },
       // Agregar más objetos con datos de prueba
     ];
-    //TareaDilan: corregir este punto deberia ejectuar el usuario antes
+    //TODO DILAN: corregir este punto deberia ejectuar el usuario antes
     await this.branchRepository.query(
-      'CREATE TRIGGER `public`.`branch_public_id` BEFORE INSERT ON `public`.`branch` FOR EACH ROW BEGIN SET NEW.public_id = (SELECT COALESCE (MAX(public_id),0) + 1 FROM `public`.`branch` WHERE account_id = NEW.account_id );',
+      'DROP TRIGGER IF EXISTS branch_public_id;',
+    );
+    await this.branchRepository.query(
+      'CREATE TRIGGER branch_public_id before INSERT  on branch for EACH ROW BEGIN  set new.public_id = (SELECT COALESCE (max(public_id),0) +1 from branch WHERE account_id = NEW.account_id);  END',
     );
     for (const data of branchData) {
       const branch = new Branch();
@@ -49,7 +52,7 @@ export class BranchSeeder implements OnModuleInit {
       branch.address = data.address;
       branch.phone = data.phone;
       branch.account_id = 1;
-
+      branch.public_id = 0;
       await this._branchService.create(branch);
     }
   }
