@@ -18,9 +18,6 @@ export class AddressService {
 
   async findAllByPersonId(person_id: number): Promise<Address[]> {
     return this.addressRepository.find({
-      relations: {
-        ocupations: true,
-      },
       where: {
         person: {
           id: person_id,
