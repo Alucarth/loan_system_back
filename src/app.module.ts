@@ -20,6 +20,8 @@ import { CreditTypeModule } from './modules/credit_type/credit_type.module';
 import { ClientModule } from './modules/client/client.module';
 import { EmployeeModule } from './modules/employee/employee.module';
 import { EmployeeTypeModule } from './modules/employee_type/employee_type.module';
+import { ProductModule } from './modules/product/product.module';
+import { CurrencyModule } from './modules/currency/currency.module';
 @Module({
   imports: [
     CityModule,
@@ -39,6 +41,8 @@ import { EmployeeTypeModule } from './modules/employee_type/employee_type.module
     CreditTypeModule,
     ClientModule,
     EmployeeModule,
+    ProductModule,
+    CurrencyModule,
   ],
   controllers: [AppController],
   providers: [AppService, QuotaTypeService],

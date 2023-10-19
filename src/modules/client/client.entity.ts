@@ -6,6 +6,7 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -27,7 +28,7 @@ export class Client {
   @Column({ name: 'person_id' })
   person_id: number;
 
-  @ManyToOne(() => Person, (person) => [person.id])
+  @ManyToOne(() => Person, (person) => person.id)
   @JoinColumn({ name: 'person_id', referencedColumnName: 'id' })
   person: Person;
 
