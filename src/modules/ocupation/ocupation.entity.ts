@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -10,7 +11,8 @@ import {
 } from 'typeorm';
 import { Address } from '../address/address.entity';
 import { User } from '../user/user.entity';
-
+import { Account } from '../account/account.entity';
+@Index(['public_id', 'account_id'], { unique: true })
 @Entity()
 export class Ocupation {
   @PrimaryGeneratedColumn()
@@ -49,9 +51,21 @@ export class Ocupation {
   @Column({ nullable: true })
   description: string;
 
-  @ManyToOne(() => Address, (address) => address.ocupations)
+  @ManyToOne(() => Address, (address) => address.id)
   @JoinColumn({ name: 'address_id', referencedColumnName: 'id' })
   address: Address;
+
+  //referencia al account_id
+  @Column({ name: 'account_id' })
+  account_id: number;
+
+  @ManyToOne(() => Account, (account) => account.id)
+  @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
+  account: Account;
+
+  //public id unique by account_id
+  @Column({ name: 'public_id' })
+  public_id: number;
 
   @CreateDateColumn()
   created_at: Date; // Creation date

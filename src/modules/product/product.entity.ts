@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -14,7 +15,7 @@ import { Account } from '../account/account.entity';
 import { User } from '../user/user.entity';
 import { Currency } from '../currency/currency.entity';
 import { CreditType } from '../credit_type/credit_type.entity';
-
+@Index(['public_id', 'account_id'], { unique: true })
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()

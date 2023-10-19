@@ -3,14 +3,15 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../user/user.entity';
-
-@Entity()
+import { Account } from '../account/account.entity';
+@Index(['public_id', 'account_id'], { unique: true })
 export class QuotaType {
   @PrimaryGeneratedColumn()
   id: number;
@@ -33,14 +34,26 @@ export class QuotaType {
   @Column()
   state: boolean;
 
+  //referencia al account_id
+  @Column({ name: 'account_id' })
+  account_id: number;
+
+  @ManyToOne(() => Account, (account) => account.branches)
+  @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
+  account: Account;
+
+  //public id unique by account_id
+  @Column({ name: 'public_id' })
+  public_id: number;
+
   @CreateDateColumn()
-  created_at: Date;
+  created_at: Date; // Creation date
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updated_at: Date; // Last updated date
 
   @DeleteDateColumn()
-  deleted_at: Date;
+  deleted_at: Date; // Deletion date
 
   //referencia de usuario
   @Column({ nullable: true, name: 'user_id' })

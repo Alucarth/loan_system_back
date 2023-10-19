@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -13,7 +14,8 @@ import { City } from '../city/city.entity';
 import { Person } from '../person/person.entity';
 import { Ocupation } from '../ocupation/ocupation.entity';
 import { User } from '../user/user.entity';
-
+import { Account } from '../account/account.entity';
+@Index(['public_id', 'account_id'], { unique: true })
 @Entity()
 export class Address {
   @PrimaryGeneratedColumn()
@@ -52,6 +54,18 @@ export class Address {
   @Column({ nullable: true })
   status: string;
 
+  //referencia al account_id
+  @Column({ name: 'account_id' })
+  account_id: number;
+
+  @ManyToOne(() => Account, (account) => account.branches)
+  @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
+  account: Account;
+
+  //public id unique by account_id
+  @Column({ name: 'public_id' })
+  public_id: number;
+
   @CreateDateColumn()
   created_at: Date; // Creation date
 
@@ -60,9 +74,6 @@ export class Address {
 
   @DeleteDateColumn()
   deleted_at: Date; // Deletion date
-
-  @OneToMany(() => Ocupation, (ocupation) => ocupation.address)
-  ocupations: Ocupation[];
 
   //referencia de usuario
   @Column({ nullable: true, name: 'user_id' })
