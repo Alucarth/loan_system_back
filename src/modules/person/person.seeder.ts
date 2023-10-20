@@ -1,21 +1,16 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Person } from './person.entity';
-import { City } from '../city/city.entity';
-import { Country } from '../country/country.entity';
-import { Account } from '../account/account.entity';
 import { Repository } from 'typeorm';
+import { Account } from '../account/account.entity';
+import { CreatePersonDto } from './create-person.dto';
 
 @Injectable()
 export class PersonSeeder implements OnModuleInit {
   constructor(
     @Inject('PERSON_REPOSITORY')
     private personRepository: Repository<Person>,
-    @Inject('CITY_REPOSITORY')
-    private cityRepository: Repository<City>,
     @Inject('ACCOUNT_REPOSITORY')
     private accountRepository: Repository<Account>,
-    @Inject('COUNTRY_REPOSITORY')
-    private countryRepository: Repository<Country>,
   ) {}
 
   async onModuleInit() {
@@ -28,110 +23,32 @@ export class PersonSeeder implements OnModuleInit {
     }
     console.log('Iniciando el seeder -> (Person).');
     console.log('Esperando a los datos de las tablas relacionadas a Person');
-    const [cities, countries, accounts] = await Promise.all([
-      this.cityRepository.find(),
-      this.countryRepository.find(),
+    const accounts = await Promise.all([
       this.accountRepository.find(),
     ]);
     console.log('datos cargados de las tablas relacionadas a Person');
 
-    // const personData = [
-    //   {
-    //     names: 'Juan',
-    //     father_last_name: 'Perez',
-    //     mother_last_name: 'Gonzalez',
-    //     photo_url: 'https://example.com/photo1.jpg',
-    //     identity_card: 123456,
-    //     identity_card_city: cities[2],
-    //     gender: 'Male',
-    //     age: 25,
-    //     material_status: 'Single',
-    //     dependents: '0',
-    //     personal_number: '789456',
-    //     email: 'juan@perez.com',
-    //     birth_date: new Date('1998-05-15'),
-    //     city: cities[1],
-    //     country: countries[1],
-    //     person_type: personTypes[0],
-    //     value_1: 'Value 1',
-    //     value_2: 'Value 2',
-    //     value_3: 'Value 3',
-    //     value_4: 'Value 4',
-    //     value_5: 'Value 5',
-    //     account: accounts[0],
-    //     person_id: null,
-    //   },
-    //   {
-    //     names: 'Dilan',
-    //     father_last_name: 'Torrez',
-    //     mother_last_name: 'Salinas',
-    //     photo_url: 'https://example.com/photo1.jpg',
-    //     identity_card: 123456,
-    //     identity_card_city: cities[2],
-    //     gender: 'Male',
-    //     age: 25,
-    //     material_status: 'Single',
-    //     dependents: '0',
-    //     personal_number: '789456',
-    //     email: 'dilan@torrez.com',
-    //     birth_date: new Date('1997-08-27'),
-    //     city: cities[1],
-    //     country: countries[1],
-    //     person_type: personTypes[0],
-    //     value_1: 'Value 1',
-    //     value_2: 'Value 2',
-    //     value_3: 'Value 3',
-    //     value_4: 'Value 4',
-    //     value_5: 'Value 5',
-    //     account: accounts[0],
-    //     person_id: null,
-    //   },
-    //   {
-    //     names: 'David',
-    //     father_last_name: 'Torrez',
-    //     mother_last_name: 'Salinas',
-    //     photo_url: 'https://example.com/photo1.jpg',
-    //     identity_card: 123456,
-    //     identity_card_city: cities[2],
-    //     gender: 'Male',
-    //     age: 25,
-    //     material_status: 'Single',
-    //     dependents: '0',
-    //     personal_number: '789456',
-    //     email: 'David@Torrez.com',
-    //     birth_date: new Date('1998-05-15'),
-    //     city: cities[1],
-    //     country: countries[1],
-    //     person_type: personTypes[0],
-    //     value_1: 'Value 1',
-    //     value_2: 'Value 2',
-    //     value_3: 'Value 3',
-    //     value_4: 'Value 4',
-    //     value_5: 'Value 5',
-    //     account: accounts[0],
-    //     person_id: null,
-    //   },
-    // ];
-    // //TareaDilan: revisar funcionalidad
-    // for (const person of personData) {
-    //   const {
-    //     identity_card_city,
-    //     city,
-    //     country,
-    //     person_type,
-    //     account,
-    //     ...personData
-    //   } = person;
-    //   const newPerson = this.personRepository.create({
-    //     ...personData,
-    //     identity_card_city: identity_card_city,
-    //     city: city,
-    //     country: country,
-    //     person_type: person_type,
-    //     account: account,
-    //   });
-    //   await this.personRepository.save(newPerson);
-    // }
-    // console.log('Cargando registros de Person en la base de datos...');
+    // Perform database population logic here
+    const personsToCreate: CreatePersonDto[] = [
+      // Define the data for the persons you want to create
+      {
+        names: 'John',
+        father_last_name: 'Doe',
+        mother_last_name: 'Smith',
+        photo_url: 'https://example.com/photo.jpg',
+        identity_card: '123456789',
+        gender: 'Male',
+        age: 30,
+        material_status: 'Single',
+        birth_date: new Date('1993-01-01'),
+        account_id: 1, //accounts[0].id, // Suponiendo que se desea saber si existe y asignar el primer account
+        public_id: 1,
+        user_id: 2, 
+      },
+      // aqui se van añadiendo mas personas si es nesesario
+    ];
+
+    const createdPersons = await this.personRepository.save(personsToCreate);
+    console.log('Created persons:', createdPersons);
   }
 }

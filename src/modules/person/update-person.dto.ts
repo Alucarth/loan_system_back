@@ -1,91 +1,53 @@
+import { Type } from 'class-transformer';
 import { IsDate, IsNumber, IsOptional, IsString } from 'class-validator';
 
-export class UpdatePersonDto {
+export class UpdatePersonDto{
   @IsOptional()
   @IsString()
-  names?: string;
+  names: string;
 
   @IsOptional()
   @IsString()
-  father_last_name?: string;
+  father_last_name: string;
 
   @IsOptional()
   @IsString()
-  mother_last_name?: string;
+  mother_last_name: string;
 
   @IsOptional()
   @IsString()
-  photo_url?: string;
+  photo_url: string;
+
+  @IsOptional()
+  @IsString()
+  identity_card: string;
+
+  @IsOptional()
+  @IsString()
+  gender: string;
 
   @IsOptional()
   @IsNumber()
-  identity_card?: number;
-
-  @IsOptional()
-  @IsNumber()
-  identity_card_city_id?: number; //City
+  age: number;
 
   @IsOptional()
   @IsString()
-  gender?: string;
+  material_status: string;
 
   @IsOptional()
-  @IsNumber()
-  age?: number;
-
-  @IsOptional()
-  @IsString()
-  material_status?: string;
-
-  @IsOptional()
-  @IsString()
-  dependents?: string;
-
-  @IsOptional()
-  @IsString()
-  personal_number?: string;
-
-  @IsOptional()
-  @IsString()
-  email?: string;
-
-  @IsOptional()
+  @Type(() => Date)
   @IsDate()
-  birth_date?: Date;
+  birth_date: Date;
 
   @IsOptional()
   @IsNumber()
-  city_id?: number; //City
+  account_id: number;
 
   @IsOptional()
   @IsNumber()
-  country_id?: number; //Country
+  public_id: number;
 
   @IsOptional()
   @IsNumber()
-  person_type_id?: number; //PersonType
-
-  @IsOptional()
-  @IsString()
-  value_1?: string;
-
-  @IsOptional()
-  @IsString()
-  value_2?: string;
-
-  @IsOptional()
-  @IsString()
-  value_3?: string;
-
-  @IsOptional()
-  @IsString()
-  value_4?: string;
-
-  @IsOptional()
-  @IsString()
-  value_5?: string;
-
-  @IsOptional()
-  @IsNumber()
-  account_id?: number; //Account
+  user_id: number;
 }
