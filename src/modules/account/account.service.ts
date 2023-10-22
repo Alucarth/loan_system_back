@@ -11,7 +11,7 @@ export class AccountService {
   ) {}
 
   async findAll(): Promise<Account[]> {
-    return this.accountRepository.find({ relations: ['branch'] });
+    return this.accountRepository.find();
   }
 
   create(account_dto: CreateAccountDto): Promise<CreateAccountDto> {
@@ -25,7 +25,6 @@ export class AccountService {
   async findAccountById(id: number): Promise<Account> {
     return this.accountRepository.findOne({
       where: { id: id },
-      relations: ['branch'],
     });
   }
 

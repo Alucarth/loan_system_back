@@ -9,6 +9,8 @@ import { AddressService } from '../address/address.service';
 import { cityProviders } from '../city/city.providers';
 import { countryProviders } from '../country/country.providers';
 import { PersonSeeder } from './person.seeder';
+// import { APP_GUARD } from '@nestjs/core';
+// import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Module({
   imports: [DatabaseModule],
@@ -22,6 +24,10 @@ import { PersonSeeder } from './person.seeder';
     PersonService,
     AddressService,
     PersonSeeder,
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: JwtAuthGuard,
+    // },
   ],
 })
 export class PersonModule {}

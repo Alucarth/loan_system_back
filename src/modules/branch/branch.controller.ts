@@ -18,10 +18,10 @@ import { BranchService } from './branch.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Branch')
+@UseGuards(JwtAuthGuard)
 @Controller('branch')
 export class BranchController {
   constructor(private readonly _branchService: BranchService) {}
-  @UseGuards(JwtAuthGuard)
   @Get()
   @HttpCode(HttpStatus.OK)
   async findAll() {

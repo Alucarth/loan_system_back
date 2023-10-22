@@ -52,7 +52,7 @@ export class Account {
 
   @DeleteDateColumn()
   deleted_at: Date; // Deletion date
-
+  //TODO: revisar para futuras consultas
   @OneToMany(() => Branch, (branch) => branch.account)
   branches: Branch[];
 

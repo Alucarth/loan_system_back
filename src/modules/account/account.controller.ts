@@ -10,13 +10,16 @@ import {
   Patch,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 // import { Account } from 'src/modules/account/account.entity';
 import { CreateAccountDto, UpdateAccountDto } from './account.dto';
 import { AccountService } from './account.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Account')
+@UseGuards(JwtAuthGuard)
 @Controller('account')
 export class AccountController {
   constructor(private readonly _accountService: AccountService) {}
