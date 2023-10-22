@@ -73,8 +73,7 @@ export class PersonSeeder implements OnModuleInit {
     ];
     // //TareaDilan: revisar funcionalidad
     for (const person of personData) {
-      const newPerson = this.personRepository.create(person);
-      await this.personRepository.save(newPerson);
+      await this.personRepository.save(person);
     }
     console.log('Cargando registros de Person en la base de datos...');
   }

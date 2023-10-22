@@ -39,8 +39,6 @@ export class EmployeeTypeSeeder implements OnModuleInit {
 
     await new Promise((resolve) => setTimeout(resolve, 600)); //asumiendo que se creo el usuario
     const [accounts, users] = await Promise.all([
-      // this.cityRepository.find(),
-      // this.countryRepository.find(),
       this.accountRepository.find(),
       this.userRepository.find(),
     ]);
@@ -62,7 +60,7 @@ export class EmployeeTypeSeeder implements OnModuleInit {
     ];
 
     for (const employee_type of employee_types) {
-      await this._employeeTypeService.create(employee_type);
+      this.employeeTypeRepository.save(employee_type);
     }
   }
 }

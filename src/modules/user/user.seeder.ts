@@ -43,30 +43,22 @@ export class UserSeeder implements OnApplicationBootstrap {
       {
         username: 'dilan',
         password: '123456',
-        person: persons[0],
+        person_id: persons[0].id,
         account_id: 1,
         public_id: 0,
       },
       {
         username: 'admin',
         password: '123456',
-        person: persons[1],
+        person_id: persons[1].id,
         account_id: 1,
         public_id: 0,
       },
       // Agregar más objetos con datos de prueba
     ];
 
-    for (const data of userData) {
-      const user = new User();
-      //console.log(data);
-      user.username = data.username;
-      user.password = data.password;
-      user.person_id = data.person.id;
-      user.account_id = data.account_id;
-      user.public_id = data.public_id;
-
-      await this._userService.create(user);
+    for (const user of userData) {
+      this.personRepository.create(user);
     }
   }
 }

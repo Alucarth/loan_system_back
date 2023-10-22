@@ -45,16 +45,8 @@ export class AccountSeeder implements OnModuleInit {
       // Agregar más objetos con datos de prueba
     ];
 
-    for (const data of accountData) {
-      const account = new Account();
-      account.account_name = data.account_name;
-      account.company_name = data.company_name;
-      account.logo_url = data.logo_url;
-      account.interval = data.interval;
-      account.label_1 = data.label_1;
-      account.label_2 = data.label_2;
-
-      await this._accountService.create(account);
+    for (const account of accountData) {
+      await this.accountRepository.save(account);
     }
   }
 }
