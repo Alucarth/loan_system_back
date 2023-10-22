@@ -62,14 +62,14 @@ export class Product {
   @ManyToOne(() => GuarantyType, (guaranty_type) => guaranty_type.id)
   @JoinColumn({ name: 'guaranty_type_id', referencedColumnName: 'id' })
   guaranty_type: GuarantyType;
-//revisar por que sale error
-//   //referencia al quota_type_id
-//   @Column({ name: 'quota_type_id' })
-//   quota_type_id: number;
+  //revisar por que sale error
+  //   //referencia al quota_type_id
+  //   @Column({ name: 'quota_type_id' })
+  //   quota_type_id: number;
 
-//   @ManyToOne(() => QuotaType, (quota_type) => quota_type.id)
-//   @JoinColumn({ name: 'quota_type_id', referencedColumnName: 'id' })
-//   quota_type: QuotaType;
+  //   @ManyToOne(() => QuotaType, (quota_type) => quota_type.id)
+  //   @JoinColumn({ name: 'quota_type_id', referencedColumnName: 'id' })
+  //   quota_type: QuotaType;
 
   //referencia al account_id
   @Column({ name: 'account_id' })
