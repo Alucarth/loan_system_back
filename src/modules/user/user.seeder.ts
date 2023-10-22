@@ -32,7 +32,7 @@ export class UserSeeder implements OnApplicationBootstrap {
     );
 
     // Esperando que PersonModule se inicialice antes jajaja bien bien
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     await this.userRepository.query('DROP TRIGGER IF EXISTS user_public_id;');
     await this.userRepository.query(
       'CREATE TRIGGER user_public_id before INSERT  on user for EACH ROW BEGIN  set new.public_id = (SELECT COALESCE (max(public_id),0) +1 from user WHERE account_id = NEW.account_id);  END',

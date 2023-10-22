@@ -21,9 +21,7 @@ export class PersonService {
   ) {}
 
   async findAll(): Promise<Person[]> {
-    return this.personRepository.find({
-      relations: ['city', 'country', 'account', 'person_type'],
-    });
+    return this.personRepository.find();
   }
 
   // async findReferences(cliente_id: number): Promise<Person[]> {

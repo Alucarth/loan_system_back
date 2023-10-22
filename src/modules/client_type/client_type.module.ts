@@ -6,12 +6,15 @@ import { ClientTypeService } from './client_type.service';
 
 import { ClientTypeSeeder } from './client_type.seeder';
 import { userProviders } from '../user/user.providers';
+import { accountProviders } from '../account/account.providers';
 
 @Module({
   imports: [DatabaseModule],
   controllers: [ClientTypeController],
   providers: [
     ...clientTypeProviders,
+    ...userProviders,
+    ...accountProviders,
     ...userProviders,
     ClientTypeService,
     ClientTypeSeeder,
