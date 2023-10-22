@@ -10,16 +10,18 @@ import {
   Patch,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateBranchDto, UpdateBranchDto } from './branch.dto';
 import { BranchService } from './branch.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Branch')
 @Controller('branch')
 export class BranchController {
   constructor(private readonly _branchService: BranchService) {}
-
+  @UseGuards(JwtAuthGuard)
   @Get()
   @HttpCode(HttpStatus.OK)
   async findAll() {
