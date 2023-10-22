@@ -10,6 +10,7 @@ import {
   Patch,
   Post,
   Put,
+  Request,
   UseGuards,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -24,8 +25,8 @@ export class BranchController {
   constructor(private readonly _branchService: BranchService) {}
   @Get()
   @HttpCode(HttpStatus.OK)
-  async findAll() {
-    return this._branchService.findAll();
+  async findAll(@Request() req) {
+    return this._branchService.findAll(req);
   }
 
   @Post()
@@ -42,8 +43,8 @@ export class BranchController {
   }
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  findAccountById(@Param('id', ParseIntPipe) id: number) {
-    return this._branchService.findBranchById(id);
+  findAccountById(@Request() req, @Param('id', ParseIntPipe) id: number) {
+    return this._branchService.findBranchById(req, id);
   }
   @Put(':id')
   @HttpCode(HttpStatus.OK)

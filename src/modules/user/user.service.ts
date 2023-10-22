@@ -24,6 +24,17 @@ export class UserService {
     });
   }
 
+  findOneById(user_id: number): Promise<any> {
+    return this.userRepository.findOne({
+      relations: {
+        person: {
+          account: true,
+        },
+      },
+      where: { id: user_id },
+    });
+  }
+
   async create(user_dto: User): Promise<User> {
     const saltOrRounds = 10;
     user_dto.password = await bcrypt.hash(user_dto.password, saltOrRounds);

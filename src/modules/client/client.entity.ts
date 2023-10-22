@@ -54,6 +54,18 @@ export class Client {
   client_type: ClientType;
 
   @Column({ nullable: true })
+  bank: string;
+
+  @Column({ nullable: true })
+  titular_bank: string;
+
+  @Column({ nullable: true })
+  number_account_bank: string;
+
+  @Column({ nullable: true })
+  gchash: string;
+
+  @Column({ nullable: true })
   value_1: string;
 
   @Column({ nullable: true })

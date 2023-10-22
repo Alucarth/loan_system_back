@@ -10,16 +10,21 @@ export class BranchService {
     private branchRepository: Repository<Branch>,
   ) {}
 
-  async findAll(): Promise<Branch[]> {
-    return this.branchRepository.find();
+  async findAll(request: any): Promise<Branch[]> {
+    return this.branchRepository.find({
+      where: { account_id: request.account_id },
+    });
   }
 
   create(branch_dto: CreateBranchDto): Promise<CreateBranchDto> {
     return this.branchRepository.save(branch_dto);
   }
 
-  findBranchById(id: number) {
-    return this.branchRepository.findOneBy({ id: id });
+  findBranchById(request: any, id: number) {
+    return this.branchRepository.findOneBy({
+      public_id: id,
+      account_id: request.account_id,
+    });
   }
   async updateById(id: number, updateData: UpdateBranchDto): Promise<Branch> {
     const branch = await this.branchRepository.findOneBy({ id: id });

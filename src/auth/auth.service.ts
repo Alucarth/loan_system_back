@@ -50,7 +50,6 @@ export class AuthService {
     const payload = {
       name: user.username,
       sub: user.id,
-      account_id: user.account_id,
     };
     console.log(user);
     return {
