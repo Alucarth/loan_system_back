@@ -46,7 +46,7 @@ export class Person {
   age: number;
 
   @Column({ nullable: true })
-  material_status: string;
+  civil_status: string;
 
   @Column({ nullable: true })
   birth_date: Date;

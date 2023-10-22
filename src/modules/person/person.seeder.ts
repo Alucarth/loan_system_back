@@ -28,110 +28,54 @@ export class PersonSeeder implements OnModuleInit {
     }
     console.log('Iniciando el seeder -> (Person).');
     console.log('Esperando a los datos de las tablas relacionadas a Person');
-    const [cities, countries, accounts] = await Promise.all([
-      this.cityRepository.find(),
-      this.countryRepository.find(),
+    const [accounts] = await Promise.all([
+      // this.cityRepository.find(),
+      // this.countryRepository.find(),
       this.accountRepository.find(),
     ]);
+    await this.personRepository.query(
+      'DROP TRIGGER IF EXISTS person_public_id;',
+    );
+    await this.personRepository.query(
+      'CREATE TRIGGER person_public_id before INSERT  on person for EACH ROW BEGIN  set new.public_id = (SELECT COALESCE (max(public_id),0) +1 from person WHERE account_id = NEW.account_id);  END',
+    );
     console.log('datos cargados de las tablas relacionadas a Person');
 
-    // const personData = [
-    //   {
-    //     names: 'Juan',
-    //     father_last_name: 'Perez',
-    //     mother_last_name: 'Gonzalez',
-    //     photo_url: 'https://example.com/photo1.jpg',
-    //     identity_card: 123456,
-    //     identity_card_city: cities[2],
-    //     gender: 'Male',
-    //     age: 25,
-    //     material_status: 'Single',
-    //     dependents: '0',
-    //     personal_number: '789456',
-    //     email: 'juan@perez.com',
-    //     birth_date: new Date('1998-05-15'),
-    //     city: cities[1],
-    //     country: countries[1],
-    //     person_type: personTypes[0],
-    //     value_1: 'Value 1',
-    //     value_2: 'Value 2',
-    //     value_3: 'Value 3',
-    //     value_4: 'Value 4',
-    //     value_5: 'Value 5',
-    //     account: accounts[0],
-    //     person_id: null,
-    //   },
-    //   {
-    //     names: 'Dilan',
-    //     father_last_name: 'Torrez',
-    //     mother_last_name: 'Salinas',
-    //     photo_url: 'https://example.com/photo1.jpg',
-    //     identity_card: 123456,
-    //     identity_card_city: cities[2],
-    //     gender: 'Male',
-    //     age: 25,
-    //     material_status: 'Single',
-    //     dependents: '0',
-    //     personal_number: '789456',
-    //     email: 'dilan@torrez.com',
-    //     birth_date: new Date('1997-08-27'),
-    //     city: cities[1],
-    //     country: countries[1],
-    //     person_type: personTypes[0],
-    //     value_1: 'Value 1',
-    //     value_2: 'Value 2',
-    //     value_3: 'Value 3',
-    //     value_4: 'Value 4',
-    //     value_5: 'Value 5',
-    //     account: accounts[0],
-    //     person_id: null,
-    //   },
-    //   {
-    //     names: 'David',
-    //     father_last_name: 'Torrez',
-    //     mother_last_name: 'Salinas',
-    //     photo_url: 'https://example.com/photo1.jpg',
-    //     identity_card: 123456,
-    //     identity_card_city: cities[2],
-    //     gender: 'Male',
-    //     age: 25,
-    //     material_status: 'Single',
-    //     dependents: '0',
-    //     personal_number: '789456',
-    //     email: 'David@Torrez.com',
-    //     birth_date: new Date('1998-05-15'),
-    //     city: cities[1],
-    //     country: countries[1],
-    //     person_type: personTypes[0],
-    //     value_1: 'Value 1',
-    //     value_2: 'Value 2',
-    //     value_3: 'Value 3',
-    //     value_4: 'Value 4',
-    //     value_5: 'Value 5',
-    //     account: accounts[0],
-    //     person_id: null,
-    //   },
-    // ];
+    const personData = [
+      {
+        names: 'Dilan',
+        father_last_name: 'Torrez',
+        mother_last_name: 'Salinas',
+        photo_url: 'https://example.com/photo1.jpg',
+        identity_card: '123456',
+        gender: 'Male',
+        age: 25,
+        civil_status: 'Single',
+        personal_number: '789456',
+        birth_date: new Date('1997-08-27'),
+        account: accounts[0],
+        public_id: 0,
+      },
+      {
+        names: 'David',
+        father_last_name: 'Torrez',
+        mother_last_name: 'Salinas',
+        photo_url: 'https://example.com/photo1.jpg',
+        identity_card: '6047054',
+        gender: 'Male',
+        age: 25,
+        civil_status: 'Single',
+        personal_number: '789456',
+        birth_date: new Date('1986-07-21'),
+        account: accounts[0],
+        public_id: 0,
+      },
+    ];
     // //TareaDilan: revisar funcionalidad
-    // for (const person of personData) {
-    //   const {
-    //     identity_card_city,
-    //     city,
-    //     country,
-    //     person_type,
-    //     account,
-    //     ...personData
-    //   } = person;
-    //   const newPerson = this.personRepository.create({
-    //     ...personData,
-    //     identity_card_city: identity_card_city,
-    //     city: city,
-    //     country: country,
-    //     person_type: person_type,
-    //     account: account,
-    //   });
-    //   await this.personRepository.save(newPerson);
-    // }
-    // console.log('Cargando registros de Person en la base de datos...');
+    for (const person of personData) {
+      const newPerson = this.personRepository.create(person);
+      await this.personRepository.save(newPerson);
+    }
+    console.log('Cargando registros de Person en la base de datos...');
   }
 }

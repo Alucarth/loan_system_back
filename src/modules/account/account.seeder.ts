@@ -1,7 +1,7 @@
-import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
-import { Account } from "./account.entity";
-import { AccountService } from "src/modules/account/account.service";
-import { Repository } from "typeorm";
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { Account } from './account.entity';
+import { AccountService } from 'src/modules/account/account.service';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AccountSeeder implements OnModuleInit {
@@ -9,17 +9,20 @@ export class AccountSeeder implements OnModuleInit {
     private readonly _accountService: AccountService,
     @Inject('ACCOUNT_REPOSITORY')
     private accountRepository: Repository<Account>,
-  ) { }
+  ) {}
 
   async onModuleInit() {
-
     //await this.accountRepository.query('TRUNCATE TABLE account RESTART IDENTITY CASCADE');
     const exist = await this.accountRepository.find();
     if (exist.length > 0) {
-      console.log('Saltando proceso del seeder -> (Account). Ya existen registros en la base de datos.');
+      console.log(
+        'Saltando proceso del seeder -> (Account). Ya existen registros en la base de datos.',
+      );
       return;
     }
-    console.log('Iniciando el seeder -> (Account). Cargando registros en la base de datos.');
+    console.log(
+      'Iniciando el seeder -> (Account). Cargando registros en la base de datos.',
+    );
     const accountData = [
       {
         account_name: 'Cuenta 1',

@@ -58,18 +58,18 @@ export class PersonService {
 
   async create(person_dto: CreatePersonDto): Promise<Person> {
     // Buscar entidades relacionadas
-    const identity_card_city: City = await this.cityRepository.findOneBy({
-      id: person_dto.identity_card_city_id,
-    });
-    const city: City = await this.cityRepository.findOneBy({
-      id: person_dto.city_id,
-    });
+    // const identity_card_city: City = await this.cityRepository.findOneBy({
+    //   id: person_dto.identity_card_city_id,
+    // });
+    // const city: City = await this.cityRepository.findOneBy({
+    //   id: person_dto.city_id,
+    // });
     const account: Account = await this.accountRepository.findOneBy({
       id: person_dto.account_id,
     });
-    const country: Country = await this.countryRepository.findOneBy({
-      id: person_dto.country_id,
-    });
+    // const country: Country = await this.countryRepository.findOneBy({
+    //   id: person_dto.country_id,
+    // });
 
     // Crear una nueva entidad Persona y rellenar sus propiedades
     const person = new Person();
@@ -85,7 +85,7 @@ export class PersonService {
     // person.identity_card = person_dto.identity_card ?? null;
     person.gender = person_dto.gender ?? null;
     person.photo_url = person_dto.photo_url ?? null;
-    person.material_status = person_dto.material_status ?? null;
+    person.civil_status = person_dto.civil_status ?? null;
     // person.dependents = person_dto.dependents ?? null;
     // person.personal_number = person_dto.personal_number ?? null;
     // person.email = person_dto.email ?? null;

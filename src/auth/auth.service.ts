@@ -3,7 +3,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/modules/user/user.entity';
 import { UserService } from 'src/modules/user/user.service';
-
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AuthService {
   constructor(
@@ -33,11 +33,16 @@ export class AuthService {
   // passport local strategy
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.userService.findOne(username);
-    if (user && user.password === password) {
-      const { password, ...rest } = user; //envia todo en la variable rest menos password
-      return rest;
-    }
 
+    // if (user && user.password === password) {
+    if (user) {
+      const passwordValid = await bcrypt.compare(password, user.password);
+      if (passwordValid) {
+        const { password, ...rest } = user; //envia todo en la variable rest menos password
+        return rest;
+      }
+      return null;
+    }
     return null;
   }
 

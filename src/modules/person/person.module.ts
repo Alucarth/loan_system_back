@@ -8,6 +8,7 @@ import { PersonService } from './person.service';
 import { AddressService } from '../address/address.service';
 import { cityProviders } from '../city/city.providers';
 import { countryProviders } from '../country/country.providers';
+import { PersonSeeder } from './person.seeder';
 
 @Module({
   imports: [DatabaseModule],
@@ -20,6 +21,7 @@ import { countryProviders } from '../country/country.providers';
     ...countryProviders,
     PersonService,
     AddressService,
+    PersonSeeder,
   ],
 })
 export class PersonModule {}

@@ -11,6 +11,7 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
+import { Account } from '../account/account.entity';
 
 @Entity()
 export class User {
@@ -31,7 +32,7 @@ export class User {
 
   //referencia de usuario
   @Column({ nullable: true, name: 'person_id' })
-  user_id: number;
+  person_id: number;
 
   @ManyToOne(() => Person, (person) => person.id)
   @JoinColumn({ name: 'person_id', referencedColumnName: 'id' })
@@ -39,6 +40,18 @@ export class User {
 
   //antes de establecer este tipo de relaciones consultar sobre esto
   //esto esta mal el user no deberia tener busqueda por relacion inversa no esta mal la idea pero a nivel logico no deberia hacerse por que genera estres con las consultas en la base de datos
+
+  //referencia al account_id
+  @Column({ name: 'account_id' })
+  account_id: number;
+
+  @ManyToOne(() => Account, (account) => account.branches)
+  @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
+  account: Account;
+
+  //public id unique by account_id
+  @Column({ name: 'public_id' })
+  public_id: number;
 
   @CreateDateColumn()
   created_at: Date; // Creation date
@@ -48,4 +61,12 @@ export class User {
 
   @DeleteDateColumn()
   deleted_at: Date; // Deletion date
+
+  // //referencia de usuario
+  // @Column({ nullable: true, name: 'user_id' })
+  // user_id: number;
+
+  // @ManyToOne(() => User, (user) => user.id)
+  // @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  // user: User;
 }
