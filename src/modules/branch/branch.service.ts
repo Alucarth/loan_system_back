@@ -2,6 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Branch } from 'src/modules/branch/branch.entity';
 import { CreateBranchDto, UpdateBranchDto } from './branch.dto';
+import { RequestUserDto } from '../user/user.dto';
 
 @Injectable()
 export class BranchService {
@@ -10,7 +11,7 @@ export class BranchService {
     private branchRepository: Repository<Branch>,
   ) {}
 
-  async findAll(request: any): Promise<Branch[]> {
+  async findAll(request: RequestUserDto): Promise<Branch[]> {
     return this.branchRepository.find({
       where: { account_id: request.account_id },
     });

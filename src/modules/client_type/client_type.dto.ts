@@ -5,15 +5,15 @@ export class CreateClientTypeDto {
   @IsString()
   name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   user_id: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   account_id: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   public_id: number;
 }

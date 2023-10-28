@@ -64,3 +64,15 @@ export class UpdateUserDto {
   @ApiProperty()
   person_id: number;
 }
+
+export class RequestUserDto {
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty()
+  account_id: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty()
+  user_id: number;
+}

@@ -2,6 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { ClientType } from './client_type.entity';
 import { Repository } from 'typeorm';
 import { CreateClientTypeDto, UpdateClientTypeDto } from './client_type.dto';
+import { RequestUserDto } from '../user/user.dto';
 
 @Injectable()
 export class ClientTypeService {
@@ -14,7 +15,13 @@ export class ClientTypeService {
     return this.clientTypeRepository.find({ relations: ['user'] });
   }
 
-  create(clientType_dto: CreateClientTypeDto): Promise<ClientType> {
+  create(
+    clientType_dto: CreateClientTypeDto,
+    req: RequestUserDto,
+  ): Promise<ClientType> {
+    console.log(req.account_id);
+    clientType_dto.account_id = req.account_id;
+    clientType_dto.user_id = req.user_id;
     return this.clientTypeRepository.save(clientType_dto);
   }
 

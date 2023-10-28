@@ -26,6 +26,7 @@ export class BranchController {
   @Get()
   @HttpCode(HttpStatus.OK)
   async findAll(@Request() req) {
+    console.log(req.user);
     return this._branchService.findAll(req);
   }
 
@@ -41,11 +42,13 @@ export class BranchController {
     const response = await this._branchService.create(branchData);
     return response;
   }
+
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   findAccountById(@Request() req, @Param('id', ParseIntPipe) id: number) {
     return this._branchService.findBranchById(req, id);
   }
+
   @Put(':id')
   @HttpCode(HttpStatus.OK)
   async updateById(

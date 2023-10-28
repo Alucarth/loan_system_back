@@ -10,13 +10,17 @@ import {
   Patch,
   Post,
   Put,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateClientTypeDto, UpdateClientTypeDto } from './client_type.dto';
 import { ClientTypeService } from './client_type.service';
 import { ClientType } from './client_type.entity';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('ClientType')
+@UseGuards(JwtAuthGuard)
 @Controller('clientType')
 export class ClientTypeController {
   constructor(private readonly _clientTypeService: ClientTypeService) {}
@@ -37,10 +41,15 @@ export class ClientTypeController {
   @HttpCode(HttpStatus.CREATED)
   async create(
     @Body() clientTypeData: CreateClientTypeDto,
+    @Request() req: any,
   ): Promise<ClientType> {
     console.log('ingresando');
+    console.log(req.user);
     console.log('clientTypeData', clientTypeData);
-    const response = await this._clientTypeService.create(clientTypeData);
+    const response = await this._clientTypeService.create(
+      clientTypeData,
+      req.user,
+    );
 
     return response;
   }
