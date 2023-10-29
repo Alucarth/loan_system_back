@@ -27,14 +27,17 @@ export class ClientTypeController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  async findAll(): Promise<ClientType[]> {
-    return this._clientTypeService.findAll();
+  async findAll(@Request() req: any): Promise<ClientType[]> {
+    return this._clientTypeService.findAll(req.user);
   }
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  findClientTypeById(@Param('id', ParseIntPipe) id: number) {
-    return this._clientTypeService.findClientTypeById(id);
+  findClientTypeById(
+    @Param('id', ParseIntPipe) id: number,
+    @Request() req: any,
+  ) {
+    return this._clientTypeService.findClientTypeById(id, req.user);
   }
 
   @Post()
@@ -43,8 +46,8 @@ export class ClientTypeController {
     @Body() clientTypeData: CreateClientTypeDto,
     @Request() req: any,
   ): Promise<ClientType> {
-    console.log('ingresando');
-    console.log(req.user);
+    // console.log('ingresando');
+    // console.log(req.user);
     console.log('clientTypeData', clientTypeData);
     const response = await this._clientTypeService.create(
       clientTypeData,
@@ -58,23 +61,24 @@ export class ClientTypeController {
   @HttpCode(HttpStatus.OK)
   async updateById(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateData: UpdateClientTypeDto,
+    @Body() clientTypeData: UpdateClientTypeDto,
+    @Request() req: any,
   ) {
-    return this._clientTypeService.updateById(id, updateData);
+    return this._clientTypeService.updateById(id, clientTypeData, req.user);
   }
 
-  @Patch(':id')
-  @HttpCode(HttpStatus.OK)
-  async updateClientTypeById(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateData: Partial<UpdateClientTypeDto>,
-  ) {
-    return this._clientTypeService.updateClientTypeById(id, updateData);
-  }
+  // @Patch(':id')
+  // @HttpCode(HttpStatus.OK)
+  // async updateClientTypeById(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Body() updateData: Partial<UpdateClientTypeDto>,
+  // ) {
+  //   return this._clientTypeService.updateClientTypeById(id, updateData);
+  // }
 
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
-  async deleteById(@Param('id', ParseIntPipe) id: number) {
-    return this._clientTypeService.deleteById(id);
+  async deleteById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
+    return this._clientTypeService.deleteById(id, req.user);
   }
 }
