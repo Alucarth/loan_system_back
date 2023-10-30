@@ -36,7 +36,7 @@ export class Client {
   dependents: string;
 
   @Column({ nullable: true })
-  personal_number: string;
+  personal_number: number;
 
   @Column({ nullable: true })
   email: string;
