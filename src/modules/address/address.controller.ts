@@ -10,13 +10,17 @@ import {
   Patch,
   Post,
   Put,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateAddressDTO, UpdateAddressDTO } from './address.dto';
 import { AddressService } from './address.service';
 import { OcupationService } from '../ocupation/ocupation.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Address')
+@UseGuards(JwtAuthGuard)
 @Controller('address')
 export class AddressController {
   constructor(
@@ -24,17 +28,20 @@ export class AddressController {
     private readonly _ocupationService: OcupationService,
   ) {}
 
-  @Get()
-  @HttpCode(HttpStatus.OK)
-  async findAll() {
-    return this._addressService.findAll();
-  }
+  // @Get()
+  // @HttpCode(HttpStatus.OK)
+  // async findAll() {
+  //   return this._addressService.findAll();
+  // }
 
   // conflicto con findAll y en service esta de tipo any person_id
   @Get(':person_id')
   @HttpCode(HttpStatus.OK)
-  async findAllPerson_id(@Param('person_id', ParseIntPipe) person_id: number) {
-    return this._addressService.findAllByPersonId(person_id);
+  async findAllPersonId(
+    @Param('person_id', ParseIntPipe) person_id: number,
+    @Request() req: any,
+  ) {
+    return this._addressService.findAllPersonId(person_id, req.user);
   }
 
   @Post()
@@ -44,9 +51,9 @@ export class AddressController {
     description: 'The record has been successfully created.',
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create(@Body() accountData: CreateAddressDTO) {
+  async create(@Body() accountData: CreateAddressDTO, @Request() req: any) {
     console.log('acountData', accountData);
-    const response = await this._addressService.create(accountData);
+    const response = await this._addressService.create(accountData, req.user);
     return response;
   }
 
@@ -89,30 +96,30 @@ export class AddressController {
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  findAddressById(@Param('id', ParseIntPipe) id: number) {
-    return this._addressService.findAddressById(id);
+  findAddressById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
+    return this._addressService.findAddressById(id, req.user);
   }
-  @Put(':id')
-  @HttpCode(HttpStatus.OK)
-  async updateById(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateData: UpdateAddressDTO,
-  ) {
-    return this._addressService.updateById(id, updateData);
-  }
+  // @Put(':id')
+  // @HttpCode(HttpStatus.OK)
+  // async updateById(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Body() updateData: UpdateAddressDTO,
+  // ) {
+  //   return this._addressService.updateById(id, updateData);
+  // }
 
-  @Patch(':id')
-  @HttpCode(HttpStatus.OK)
-  async updateAddressById(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateData: Partial<UpdateAddressDTO>,
-  ) {
-    return this._addressService.updateAddressById(id, updateData);
-  }
+  // @Patch(':id')
+  // @HttpCode(HttpStatus.OK)
+  // async updateAddressById(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Body() updateData: Partial<UpdateAddressDTO>,
+  // ) {
+  //   return this._addressService.updateAddressById(id, updateData);
+  // }
 
-  @Delete(':id')
-  @HttpCode(HttpStatus.OK)
-  async deleteById(@Param('id', ParseIntPipe) id: number) {
-    return this._addressService.deleteById(id);
-  }
+  // @Delete(':id')
+  // @HttpCode(HttpStatus.OK)
+  // async deleteById(@Param('id', ParseIntPipe) id: number) {
+  //   return this._addressService.deleteById(id);
+  // }
 }

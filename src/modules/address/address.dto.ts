@@ -37,11 +37,19 @@ export class CreateAddressDTO {
 
   @IsNumber()
   @IsOptional()
+  person_id: number;
+
+  @IsOptional()
+  @IsNumber()
   user_id: number;
 
-  @IsNumber()
   @IsOptional()
-  person_id: number;
+  @IsNumber()
+  account_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  public_id: number;
 }
 
 export class UpdateAddressDTO {
@@ -83,9 +91,17 @@ export class UpdateAddressDTO {
 
   @IsNumber()
   @IsOptional()
+  person_id: number;
+
+  @IsOptional()
+  @IsNumber()
   user_id: number;
 
-  @IsNumber()
   @IsOptional()
-  person_id: number;
+  @IsNumber()
+  account_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  public_id: number;
 }

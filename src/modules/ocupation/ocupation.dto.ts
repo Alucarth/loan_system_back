@@ -48,6 +48,18 @@ export class CreateOcupationDto {
   @IsNotEmpty()
   @IsString()
   description: string;
+
+  @IsOptional()
+  @IsNumber()
+  user_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  account_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  public_id: number;
 }
 
 export class UpdateOcupationDto {
@@ -98,4 +110,16 @@ export class UpdateOcupationDto {
   @IsOptional()
   @IsString()
   description: string;
+
+  @IsOptional()
+  @IsNumber()
+  user_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  account_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  public_id: number;
 }
