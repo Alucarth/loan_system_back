@@ -48,4 +48,17 @@ export class ClientService {
     const client_update = Object.assign(client, payload);
     return await this.clientRepository.save(client_update);
   }
+
+  async delete(id: number, user: RequestUserDto) {
+    const client = await this.clientRepository.findOneBy({
+      public_id: id,
+      account_id: user.account_id,
+    });
+
+    if (!client) {
+      throw new NotFoundException('Client  not found');
+    }
+
+    return this.clientRepository.delete(client.id);
+  }
 }

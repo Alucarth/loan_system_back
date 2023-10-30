@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -52,5 +53,10 @@ export class ClientController {
     @Request() req: any,
   ) {
     return this._clientService.updateById(id, clientData, req.user);
+  }
+
+  @Delete('id')
+  async delete(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
+    return this._clientService.delete(id, req.user);
   }
 }
