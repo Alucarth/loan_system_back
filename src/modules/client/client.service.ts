@@ -18,9 +18,11 @@ export class ClientService {
   }
 
   async findById(id: number, user: RequestUserDto): Promise<Client> {
-    return await this.clientRepository.findOneBy({
-      public_id: id,
-      account_id: user.account_id,
+    return await this.clientRepository.findOne({
+      relations: {
+        person: true,
+      },
+      where: { public_id: id, account_id: user.account_id },
     });
   }
 
