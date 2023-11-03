@@ -13,6 +13,9 @@ export class ClientService {
 
   async findAll(user: RequestUserDto): Promise<Client[]> {
     return await this.clientRepository.find({
+      relations: {
+        person: true,
+      },
       where: { account_id: user.account_id },
     });
   }
