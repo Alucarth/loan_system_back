@@ -22,6 +22,7 @@ import { EmployeeModule } from './modules/employee/employee.module';
 import { EmployeeTypeModule } from './modules/employee_type/employee_type.module';
 import { ProductModule } from './modules/product/product.module';
 import { CurrencyModule } from './modules/currency/currency.module';
+import { DocumentTypeModule } from './modules/document_type/document_type.module';
 @Module({
   imports: [
     CityModule,
@@ -43,6 +44,7 @@ import { CurrencyModule } from './modules/currency/currency.module';
     EmployeeModule,
     ProductModule,
     CurrencyModule,
+    DocumentTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService, QuotaTypeService],
