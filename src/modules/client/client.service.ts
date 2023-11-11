@@ -3,18 +3,24 @@ import { Repository } from 'typeorm';
 import { Client } from './client.entity';
 import { RequestUserDto } from '../user/user.dto';
 import { ClientDto } from './client.dto';
+import { ClientType } from '../client_type/client_type.entity';
 
 @Injectable()
 export class ClientService {
   constructor(
     @Inject('CLIENT_REPOSITORY')
     private clientRepository: Repository<Client>,
+    @Inject('CLIENT_TYPE_REPOSITORY')
+    private clientTypeRepository: Repository<ClientType>,
   ) {}
 
   async findAll(user: RequestUserDto): Promise<Client[]> {
     return await this.clientRepository.find({
       relations: {
-        person: true,
+        person: {
+          document_type: true,
+        },
+        client_type: true,
       },
       where: { account_id: user.account_id },
     });
@@ -23,16 +29,34 @@ export class ClientService {
   async findById(id: number, user: RequestUserDto): Promise<Client> {
     return await this.clientRepository.findOne({
       relations: {
-        person: true,
+        person: {
+          document_type: true,
+        },
+        client_type: true,
       },
       where: { public_id: id, account_id: user.account_id },
     });
   }
 
   async create(payload: ClientDto, user: RequestUserDto): Promise<Client> {
+    let client_type = await this.clientTypeRepository.findOne({
+      where: { name: 'Nuevo' },
+    });
+
+    if (!client_type) {
+      client_type = await this.clientTypeRepository.save({
+        account_id: user.account_id,
+        user_id: user.user_id,
+        name: 'Nuevo',
+        public_id: 0,
+      });
+    }
+
+    payload.client_type_id = client_type.id;
     payload.account_id = user.account_id;
     payload.user_id = user.user_id;
     payload.public_id = 0;
+
     return await this.clientRepository.save(payload);
   }
 

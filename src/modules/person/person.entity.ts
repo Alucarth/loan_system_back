@@ -24,10 +24,10 @@ export class Person {
   @Column()
   names: string;
 
-  @Column()
+  @Column({ nullable: true })
   father_last_name: string;
 
-  @Column()
+  @Column({ nullable: true })
   mother_last_name: string;
 
   @Column({ nullable: true })

@@ -11,7 +11,7 @@ import { Country } from '../country/country.entity';
 import { ClientType } from '../client_type/client_type.entity';
 
 export class ClientDto {
-  @IsNotEmpty()
+  @IsOptional()
   @IsObject()
   person: Person;
 
@@ -31,15 +31,19 @@ export class ClientDto {
   @IsString()
   email: string;
 
-  @IsNotEmpty()
-  @IsObject()
-  city: City;
+  // @IsNotEmpty()
+  // @IsObject()
+  // city: City;
 
-  @IsNotEmpty()
-  @IsObject()
-  country: Country;
+  // @IsNotEmpty()
+  // @IsObject()
+  // country: Country;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsNumber()
+  client_type_id: number;
+
+  @IsOptional()
   @IsObject()
   client_type: ClientType;
 

@@ -1,3 +1,4 @@
+import { PartialType } from '@nestjs/swagger';
 import {
   IsOptional,
   IsNotEmpty,
@@ -5,45 +6,58 @@ import {
   IsNumber,
   IsDate,
 } from 'class-validator';
+import { DocumentType } from '../document_type/document_type.entity';
 
 export class CreatePersonDto {
   @IsNotEmpty()
   @IsString()
   names: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   father_last_name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   mother_last_name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   photo_url: string;
 
-  @IsNotEmpty()
-  @IsNumber()
+  @IsOptional()
+  @IsString()
   identity_card: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   gender: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   age: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   civil_status?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsDate()
   birth_date: Date;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsString()
+  nick_name: string;
+
+  @IsOptional()
+  @IsNumber()
+  document_type_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  document_type: DocumentType;
+
+  @IsOptional()
   @IsNumber()
   public_id: number;
 
@@ -51,3 +65,5 @@ export class CreatePersonDto {
   @IsNumber()
   account_id: number; //Account
 }
+
+export class UpdatePersonDto extends PartialType(CreatePersonDto) {}

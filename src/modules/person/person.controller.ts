@@ -10,13 +10,15 @@ import {
   Patch,
   Post,
   Put,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
-import { CreatePersonDto } from './create-person.dto';
-import { UpdatePersonDto } from './update-person.dto';
+import { CreatePersonDto, UpdatePersonDto } from './create-person.dto';
 import { PersonService } from './person.service';
 import { ApiTags } from '@nestjs/swagger';
 import { AddressService } from '../address/address.service';
-
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+@UseGuards(JwtAuthGuard)
 @ApiTags('Person')
 @Controller('person')
 export class PersonController {
@@ -45,9 +47,9 @@ export class PersonController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async create(@Body() personData: CreatePersonDto) {
+  async create(@Body() personData: CreatePersonDto, @Request() req: any) {
     console.log('personData aaaaaaaaaa', personData);
-    const person = await this._personService.create(personData);
+    const person = await this._personService.create(personData, req.user);
     return person;
   }
 
@@ -59,16 +61,16 @@ export class PersonController {
   //   return this._personService.findReferences(client_id);
   // }
 
-  @Post('reference')
-  @HttpCode(HttpStatus.CREATED)
-  async createReference(@Body() personArray: any[]) {
-    console.log('array person', personArray);
-    personArray.forEach(async (person: CreatePersonDto) => {
-      await this._personService.create(person);
-    });
-    // aqui devolver array con lo guardado tarea para el pasante jajaja
-    return 'person reference register';
-  }
+  // @Post('reference')
+  // @HttpCode(HttpStatus.CREATED)
+  // async createReference(@Body() personArray: any[]) {
+  //   console.log('array person', personArray);
+  //   personArray.forEach(async (person: CreatePersonDto) => {
+  //     await this._personService.create(person);
+  //   });
+  //   // aqui devolver array con lo guardado tarea para el pasante jajaja
+  //   return 'person reference register';
+  // }
 
   @Put(':id')
   @HttpCode(HttpStatus.OK)

@@ -35,7 +35,7 @@ export class Client {
   @Column({ nullable: true })
   dependents: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'bigint' })
   personal_number: number;
 
   @Column({ nullable: true })
@@ -49,8 +49,11 @@ export class Client {
   @JoinColumn({ name: 'country_id' })
   country: Country;
 
+  @Column({ nullable: true, name: 'client_type_id' })
+  client_type_id: number;
+
   @ManyToOne(() => ClientType, (client_type) => client_type.id)
-  @JoinColumn({ name: 'client_type_id' })
+  @JoinColumn({ name: 'client_type_id', referencedColumnName: 'id' })
   client_type: ClientType;
 
   @Column({ nullable: true })
