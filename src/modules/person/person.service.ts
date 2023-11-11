@@ -25,6 +25,13 @@ export class PersonService {
     return this.personRepository.find();
   }
 
+  async findByPublicId(public_id, user: RequestUserDto) {
+    return await this.personRepository.findOneBy({
+      public_id: public_id,
+      account_id: user.account_id,
+    });
+  }
+
   // async findReferences(cliente_id: number): Promise<Person[]> {
   //   return await this.personRepository.find({
   //     relations: {
@@ -94,6 +101,8 @@ export class PersonService {
     person.account_id = user.account_id;
     person.user_id = user.user_id;
     person.public_id = 0;
+    person.document_type = person_dto.document_type ?? null;
+    person.photo_url = person_dto.photo_url ?? null;
     // person.value_1 = person_dto.value_1 ?? null;
     // person.value_2 = person_dto.value_2 ?? null;
     // person.value_3 = person_dto.value_3 ?? null;
@@ -118,13 +127,31 @@ export class PersonService {
     });
   }
 
-  async updateById(id: number, updateData: UpdatePersonDto): Promise<Person> {
-    const person = await this.personRepository.findOneBy({ id: id });
+  async updateById(
+    id: number,
+    updateData: UpdatePersonDto,
+    user: RequestUserDto,
+  ): Promise<Person> {
+    const person = await this.personRepository.findOneBy({
+      public_id: id,
+      account_id: user.account_id,
+    });
+    console.log('person', person);
     if (!person) {
       throw new NotFoundException('Person not found');
     }
-    const updatedPerson = Object.assign(person, updateData);
-    return this.personRepository.save(updatedPerson);
+    // const updatedPerson = Object.assign(person, updateData);`
+    person.names = updateData.names;
+    person.father_last_name = updateData.father_last_name;
+    person.mother_last_name = updateData.mother_last_name;
+    person.identity_card = updateData.identity_card;
+    person.gender = updateData.gender;
+    person.civil_status = updateData.civil_status;
+    person.age = updateData.age;
+    person.birth_date = updateData.birth_date;
+    person.document_type_id = updateData.document_type_id;
+    person.photo_url = updateData.photo_url ?? null;
+    return this.personRepository.save(person);
   }
 
   async updatePersonById(

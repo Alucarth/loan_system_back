@@ -5,6 +5,7 @@ import {
   IsString,
   IsNumber,
   IsDate,
+  IsObject,
 } from 'class-validator';
 import { DocumentType } from '../document_type/document_type.entity';
 
@@ -42,7 +43,7 @@ export class CreatePersonDto {
   civil_status?: string;
 
   @IsOptional()
-  @IsDate()
+  @IsString()
   birth_date: Date;
 
   @IsOptional()
@@ -54,7 +55,7 @@ export class CreatePersonDto {
   document_type_id: number;
 
   @IsOptional()
-  @IsNumber()
+  @IsObject()
   document_type: DocumentType;
 
   @IsOptional()

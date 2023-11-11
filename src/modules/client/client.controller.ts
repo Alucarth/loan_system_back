@@ -10,13 +10,18 @@ import {
   Post,
   Put,
   Request,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ClientService } from './client.service';
 import { Client } from './client.entity';
 import { ClientDto } from './client.dto';
+import { diskStorage } from 'multer';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { fileFilter, fileName } from 'src/helpers/files.utils';
 
 @ApiTags('Client')
 @UseGuards(JwtAuthGuard)
@@ -58,5 +63,28 @@ export class ClientController {
   @Delete('id')
   async delete(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
     return this._clientService.delete(id, req.user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('upload')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: fileName,
+      }),
+      fileFilter: fileFilter,
+    }),
+  )
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log('file: ', file);
+    return file;
+    // try {
+    //   return this.response.status200({
+    //     data: { file: file, message: 'Archivo Registrado !' },
+    //   });
+    // } catch (e) {
+    //   return this.response.status500({});
+    // }
   }
 }
