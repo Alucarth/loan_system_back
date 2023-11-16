@@ -63,25 +63,25 @@ export class ClientDto {
   @IsString()
   gchash: string;
 
-  @IsOptional()
-  @IsString()
-  value_1: string;
+  // @IsOptional()
+  // @IsString()
+  // value_1: string;
 
-  @IsOptional()
-  @IsString()
-  value_2: string;
+  // @IsOptional()
+  // @IsString()
+  // value_2: string;
 
-  @IsOptional()
-  @IsString()
-  value_3: string;
+  // @IsOptional()
+  // @IsString()
+  // value_3: string;
 
-  @IsOptional()
-  @IsString()
-  value_4: string;
+  // @IsOptional()
+  // @IsString()
+  // value_4: string;
 
-  @IsOptional()
-  @IsString()
-  value_5: string;
+  // @IsOptional()
+  // @IsString()
+  // value_5: string;
 
   @IsOptional()
   @IsNumber()

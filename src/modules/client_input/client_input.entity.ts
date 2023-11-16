@@ -5,44 +5,31 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Branch } from '../branch/branch.entity';
+import { Account } from '../account/account.entity';
 import { User } from '../user/user.entity';
 
 @Entity()
-export class Account {
+export class ClientInput {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  account_name: string;
+  @Column({ nullable: true })
+  label: string;
 
-  @Column()
-  company_name: string;
+  //referencia al account_id
+  @Column({ name: 'account_id' })
+  account_id: number;
 
-  @Column()
-  logo_url: string;
+  @ManyToOne(() => Account, (account) => account.branches)
+  @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
+  account: Account;
 
-  @Column()
-  interval: number;
-
-  // @Column({ nullable: true })
-  // label_1: string;
-
-  // @Column({ nullable: true })
-  // label_2: string;
-
-  // @Column({ nullable: true })
-  // label_3: string;
-
-  // @Column({ nullable: true })
-  // label_4: string;
-
-  // @Column({ nullable: true })
-  // label_5: string;
+  //public id unique by account_id
+  @Column({ name: 'public_id' })
+  public_id: number;
 
   @CreateDateColumn()
   created_at: Date; // Creation date
@@ -52,9 +39,6 @@ export class Account {
 
   @DeleteDateColumn()
   deleted_at: Date; // Deletion date
-  //TODO: revisar para futuras consultas
-  @OneToMany(() => Branch, (branch) => branch.account)
-  branches: Branch[];
 
   //referencia de usuario
   @Column({ nullable: true, name: 'user_id' })
