@@ -64,27 +64,4 @@ export class ClientController {
   async delete(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
     return this._clientService.delete(id, req.user);
   }
-
-  @UseGuards(JwtAuthGuard)
-  @Post('upload')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        destination: './uploads',
-        filename: fileName,
-      }),
-      fileFilter: fileFilter,
-    }),
-  )
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log('file: ', file);
-    return file;
-    // try {
-    //   return this.response.status200({
-    //     data: { file: file, message: 'Archivo Registrado !' },
-    //   });
-    // } catch (e) {
-    //   return this.response.status500({});
-    // }
-  }
 }

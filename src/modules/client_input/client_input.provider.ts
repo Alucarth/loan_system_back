@@ -3,7 +3,7 @@ import { ClientInput } from './client_input.entity';
 
 export const clientInputProviders = [
   {
-    provide: 'CLIENT_REPOSITORY',
+    provide: 'CLIENT_INPUT_REPOSITORY',
     useFactory: (dataSource: DataSource) =>
       dataSource.getRepository(ClientInput),
     inject: ['DATA_SOURCE'],

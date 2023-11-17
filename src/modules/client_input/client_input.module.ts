@@ -1,12 +1,19 @@
 import { Module } from '@nestjs/common';
-import { ClientInput } from './client_input.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseModule } from 'src/database/database.module';
-import { DataSource } from 'typeorm';
 import { clientInputProviders } from './client_input.provider';
+import { accountProviders } from '../account/account.providers';
+import { ClientInputSeeder } from './client_input.seeder';
+import { ClientInputController } from './client_input.controller';
+import { ClientInputService } from './client_input.service';
 
 @Module({
   imports: [DatabaseModule],
-  providers: [...clientInputProviders],
+  controllers: [ClientInputController],
+  providers: [
+    ...clientInputProviders,
+    ...accountProviders,
+    ClientInputSeeder,
+    ClientInputService,
+  ],
 })
 export class ClientInputsModule {}
