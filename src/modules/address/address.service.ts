@@ -51,12 +51,12 @@ export class AddressService {
     const address = new Address();
 
     address.address = address_dto.address;
-    address.address_type = address_dto.address_type;
+    // address.address_type = address_dto.address_type;
     address.comments = address_dto.comments;
     address.phone_number = address_dto.phone_number;
     address.zone = address_dto.zone;
-    address.status = address_dto.status;
-    address.property = address_dto.property;
+    // address.status = address_dto.status;
+    // address.property = address_dto.property;
     address.city = city;
     address.person = person;
     address.public_id = 0;

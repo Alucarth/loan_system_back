@@ -15,6 +15,7 @@ import { Person } from '../person/person.entity';
 import { Ocupation } from '../ocupation/ocupation.entity';
 import { User } from '../user/user.entity';
 import { Account } from '../account/account.entity';
+import { Zone } from '../zone/zone.entity';
 @Index(['public_id', 'account_id'], { unique: true })
 @Entity()
 export class Address {
@@ -25,6 +26,12 @@ export class Address {
   @JoinColumn({ name: 'person_id' })
   person: Person;
 
+  @Column()
+  address: string;
+
+  @Column({ nullable: true })
+  phone_number: number;
+
   @Column({ nullable: true, name: 'city_id' })
   city_id: number;
 
@@ -32,27 +39,24 @@ export class Address {
   @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
   city: City;
 
-  @Column()
-  address: string;
+  @Column({ nullable: true, name: 'zone_id' })
+  zone_id: number;
+
+  @ManyToOne(() => Zone, (zone) => zone.id)
+  @JoinColumn({ name: 'zone_id', referencedColumnName: 'id' })
+  zone: Zone;
 
   @Column({ nullable: true })
-  phone_number: number;
-
-  //puede seruna tabla pero estoy hay que discutirlo
-  @Column({ nullable: true })
-  zone: string;
+  latitude: string;
 
   @Column({ nullable: true })
-  property: string;
-
-  @Column({ nullable: true })
-  address_type: string;
+  longitude: string;
 
   @Column({ nullable: true })
   comments: string;
 
-  @Column({ nullable: true })
-  status: string;
+  @Column({ default: false })
+  direcction_type: boolean;
 
   //referencia al account_id
   @Column({ name: 'account_id' })
