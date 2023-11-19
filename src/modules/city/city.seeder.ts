@@ -2,12 +2,13 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { City } from './city.entity';
 import { Repository } from 'typeorm';
 import { CityService } from './city.service';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CitySeeder implements OnModuleInit {
   constructor(
-    private readonly cityService: CityService,
-    @Inject('CITY_REPOSITORY')
+    // private readonly cityService: CityService,
+    @InjectRepository(City)
     private cityRepository: Repository<City>,
   ) {}
 
@@ -34,7 +35,7 @@ export class CitySeeder implements OnModuleInit {
       city.name = data.name;
       city.short_name = data.short_name;
 
-      await this.cityService.create(city);
+      await this.cityRepository.create(city);
     }
   }
 }

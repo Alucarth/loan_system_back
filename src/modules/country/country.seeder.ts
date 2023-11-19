@@ -2,12 +2,13 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Country } from './country.entity';
 import { Repository } from 'typeorm';
 import { CountryService } from './country.service';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CountrySeeder implements OnModuleInit {
   constructor(
     private readonly countryService: CountryService,
-    @Inject('COUNTRY_REPOSITORY')
+    @InjectRepository(Country)
     private countryRepository: Repository<Country>,
   ) {}
 

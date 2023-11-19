@@ -6,14 +6,15 @@ import { Person } from 'src/modules/person/person.entity';
 import { City } from 'src/modules/city/city.entity';
 import { CreateAddressDTO, UpdateAddressDTO } from './address.dto';
 import { RequestUserDto } from '../user/user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class AddressService {
   constructor(
-    @Inject('ADDRESS_REPOSITORY')
+    @InjectRepository(Address)
     private addressRepository: Repository<Address>,
-    @Inject('PERSON_REPOSITORY')
+    @InjectRepository(Person)
     private personRepository: Repository<Person>,
-    @Inject('CITY_REPOSITORY')
+    @InjectRepository(City)
     private cityRepository: Repository<City>,
   ) {}
 

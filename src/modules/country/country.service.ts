@@ -2,11 +2,12 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Country } from 'src/modules/country/country.entity';
 import { Repository } from 'typeorm';
 import { CreateCountryDto, UpdateCountryDto } from './country.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CountryService {
   constructor(
-    @Inject('COUNTRY_REPOSITORY')
+    @InjectRepository(Country)
     private countryRepository: Repository<Country>,
   ) {}
 
