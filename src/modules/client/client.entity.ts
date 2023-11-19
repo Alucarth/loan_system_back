@@ -68,21 +68,6 @@ export class Client {
   @Column({ nullable: true })
   gchash: string;
 
-  @Column({ nullable: true })
-  value_1: string;
-
-  @Column({ nullable: true })
-  value_2: string;
-
-  @Column({ nullable: true })
-  value_3: string;
-
-  @Column({ nullable: true })
-  value_4: string;
-
-  @Column({ nullable: true })
-  value_5: string;
-
   //referencia al account_id
   @Column({ name: 'account_id' })
   account_id: number;

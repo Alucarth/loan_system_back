@@ -25,6 +25,7 @@ import { CurrencyModule } from './modules/currency/currency.module';
 import { DocumentTypeModule } from './modules/document_type/document_type.module';
 import { ClientInputsModule } from './modules/client_input/client_input.module';
 import { ClientValueModule } from './modules/client_value/client_value.module';
+import { ZoneModule } from './modules/zone/zone.module';
 @Module({
   imports: [
     CityModule,
@@ -49,6 +50,7 @@ import { ClientValueModule } from './modules/client_value/client_value.module';
     DocumentTypeModule,
     ClientInputsModule,
     ClientValueModule,
+    ZoneModule,
   ],
   controllers: [AppController],
   providers: [AppService, QuotaTypeService],
