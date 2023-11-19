@@ -3,11 +3,12 @@ import { Repository } from 'typeorm';
 import { Rol } from './rol.entity';
 import { RolService } from './rol.service';
 import { CreateRolDto } from './rol.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class RolSeeder implements OnModuleInit {
   constructor(
-    @Inject('ROL_REPOSITORY')
+    @InjectRepository(Rol)
     private rolRepository: Repository<Rol>,
     private readonly _rolService: RolService,
   ) {}

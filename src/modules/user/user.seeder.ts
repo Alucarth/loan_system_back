@@ -9,14 +9,15 @@ import { User } from './user.entity';
 import { Person } from 'src/modules/person/person.entity';
 import { UserService } from './user.service';
 import { CreateUserDto } from './user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UserSeeder implements OnApplicationBootstrap {
   constructor(
-    @Inject('USER_REPOSITORY')
+    @InjectRepository(User)
     private userRepository: Repository<User>,
     private readonly _userService: UserService,
-    @Inject('PERSON_REPOSITORY')
+    @InjectRepository(Person)
     private personRepository: Repository<Person>,
   ) {}
   async onApplicationBootstrap() {

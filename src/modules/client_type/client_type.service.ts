@@ -3,11 +3,12 @@ import { ClientType } from './client_type.entity';
 import { Repository } from 'typeorm';
 import { CreateClientTypeDto, UpdateClientTypeDto } from './client_type.dto';
 import { RequestUserDto } from '../user/user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ClientTypeService {
   constructor(
-    @Inject('CLIENT_TYPE_REPOSITORY')
+    @InjectRepository(ClientType)
     private clientTypeRepository: Repository<ClientType>,
   ) {}
 

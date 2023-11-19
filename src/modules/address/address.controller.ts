@@ -23,10 +23,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 @UseGuards(JwtAuthGuard)
 @Controller('address')
 export class AddressController {
-  constructor(
-    private readonly _addressService: AddressService,
-    private readonly _ocupationService: OcupationService,
-  ) {}
+  constructor(private readonly _addressService: AddressService) {}
 
   // @Get()
   // @HttpCode(HttpStatus.OK)

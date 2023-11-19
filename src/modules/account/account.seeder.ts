@@ -2,12 +2,13 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Account } from './account.entity';
 import { AccountService } from 'src/modules/account/account.service';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AccountSeeder implements OnModuleInit {
   constructor(
     private readonly _accountService: AccountService,
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
   ) {}
 

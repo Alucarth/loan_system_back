@@ -3,11 +3,12 @@ import { Repository } from 'typeorm';
 import { Branch } from 'src/modules/branch/branch.entity';
 import { CreateBranchDto, UpdateBranchDto } from './branch.dto';
 import { RequestUserDto } from '../user/user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class BranchService {
   constructor(
-    @Inject('BRANCH_REPOSITORY')
+    @InjectRepository(Branch)
     private branchRepository: Repository<Branch>,
   ) {}
 

@@ -2,12 +2,13 @@ import { Inject, OnModuleInit } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Zone } from './zone.entity';
 import { Account } from '../account/account.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 export class ZoneSeeder implements OnModuleInit {
   constructor(
-    @Inject('ZONE_REPOSITORY')
+    @InjectRepository(Zone)
     private zoneRepository: Repository<Zone>,
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
   ) {}
 

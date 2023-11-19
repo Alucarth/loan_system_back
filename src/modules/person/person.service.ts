@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Person } from 'src/modules/person/person.entity';
 import { CreatePersonDto, UpdatePersonDto } from './create-person.dto';
@@ -7,17 +7,18 @@ import { City } from 'src/modules/city/city.entity';
 import { Account } from 'src/modules/account/account.entity';
 import { Country } from 'src/modules/country/country.entity';
 import { RequestUserDto } from '../user/user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class PersonService {
   constructor(
-    @Inject('PERSON_REPOSITORY')
+    @InjectRepository(Person)
     private personRepository: Repository<Person>,
-    @Inject('CITY_REPOSITORY')
+    @InjectRepository(City)
     private cityRepository: Repository<City>,
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
-    @Inject('COUNTRY_REPOSITORY')
+    @InjectRepository(Country)
     private countryRepository: Repository<Country>,
   ) {}
 

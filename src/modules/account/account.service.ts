@@ -2,11 +2,12 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Account } from 'src/modules/account/account.entity';
 import { CreateAccountDto, UpdateAccountDto } from './account.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AccountService {
   constructor(
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
   ) {}
 

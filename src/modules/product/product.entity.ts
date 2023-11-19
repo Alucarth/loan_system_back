@@ -75,7 +75,7 @@ export class Product {
   @Column({ name: 'account_id' })
   account_id: number;
 
-  @ManyToOne(() => Account, (account) => account.branches)
+  @ManyToOne(() => Account, (account) => account.id)
   @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
   account: Account;
 

@@ -1,10 +1,11 @@
 import { Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Employee } from './employee.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 export class EmployeeService {
   constructor(
-    @Inject('EMPLOYEE_REPOSITORY')
+    @InjectRepository(Employee)
     private employeeRepository: Repository<Employee>,
   ) {}
 

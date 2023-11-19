@@ -5,13 +5,14 @@ import { Ocupation } from 'src/modules/ocupation/ocupation.entity';
 import { Repository } from 'typeorm';
 import { CreateOcupationDto, UpdateOcupationDto } from './ocupation.dto';
 import { RequestUserDto } from '../user/user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class OcupationService {
   constructor(
-    @Inject('OCUPATION_REPOSITORY')
+    @InjectRepository(Ocupation)
     private ocupationRepository: Repository<Ocupation>,
-    @Inject('ADDRESS_REPOSITORY')
+    @InjectRepository(Address)
     private addressRepository: Repository<Address>,
   ) {}
 

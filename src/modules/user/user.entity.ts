@@ -45,7 +45,7 @@ export class User {
   @Column({ name: 'account_id' })
   account_id: number;
 
-  @ManyToOne(() => Account, (account) => account.branches)
+  @ManyToOne(() => Account, (account) => account.id)
   @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
   account: Account;
 
@@ -61,12 +61,4 @@ export class User {
 
   @DeleteDateColumn()
   deleted_at: Date; // Deletion date
-
-  // //referencia de usuario
-  // @Column({ nullable: true, name: 'user_id' })
-  // user_id: number;
-
-  // @ManyToOne(() => User, (user) => user.id)
-  // @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
-  // user: User;
 }

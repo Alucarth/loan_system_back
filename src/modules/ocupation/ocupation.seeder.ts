@@ -1,17 +1,15 @@
-import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Address } from '../address/address.entity';
 import { Ocupation } from './ocupation.entity';
-import { OcupationService } from './ocupation.service';
-import { CreateOcupationDto } from './ocupation.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class OcupationSeeder implements OnModuleInit {
   constructor(
-    @Inject('OCUPATION_REPOSITORY')
+    @InjectRepository(Ocupation)
     private ocupationRepository: Repository<Ocupation>,
-    private readonly _ocupationService: OcupationService,
-    @Inject('ADDRESS_REPOSITORY')
+    @InjectRepository(Address)
     private addressRepository: Repository<Address>,
   ) {}
 

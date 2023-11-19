@@ -4,19 +4,21 @@ import { Employee } from './employee.entity';
 import { Account } from '../account/account.entity';
 import { User } from '../user/user.entity';
 import { Person } from '../person/person.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { EmployeeType } from '../employee_type/employee_type.entity';
 
 @Injectable()
 export class EmployeeSeeder implements OnModuleInit {
   constructor(
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
-    @Inject('USER_REPOSITORY')
+    @InjectRepository(User)
     private userRepository: Repository<User>,
-    @Inject('EMPLOYEE_TYPE_REPOSITORY')
-    private employeeTypeRepository: Repository<Person>,
-    @Inject('PERSON_REPOSITORY')
+    @InjectRepository(EmployeeType)
+    private employeeTypeRepository: Repository<EmployeeType>,
+    @InjectRepository(Person)
     private personRepository: Repository<Person>,
-    @Inject('EMPLOYEE_REPOSITORY')
+    @InjectRepository(Employee)
     private employeeRepository: Repository<Employee>,
   ) {}
 

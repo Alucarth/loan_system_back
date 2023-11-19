@@ -2,12 +2,12 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { GuarantyTypeService } from './guaranty_type.service';
 import { GuarantyType } from './guaranty_type.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class GuarantyTypeSeeder implements OnModuleInit {
   constructor(
-    private readonly guarantyTypeService: GuarantyTypeService,
-    @Inject('GUARANTY_TYPE_REPOSITORY')
+    @InjectRepository(GuarantyType)
     private guarantyTypeRepository: Repository<GuarantyType>,
   ) {}
 

@@ -1,11 +1,12 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { ClientValue } from './client_value.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ClientValueSeeder implements OnModuleInit {
   constructor(
-    @Inject('CLIENT_VALUE_RESPOSITORY')
+    @InjectRepository(ClientValue)
     private clientValueRepository: Repository<ClientValue>,
   ) {}
 

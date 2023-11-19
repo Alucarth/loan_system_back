@@ -2,13 +2,14 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { ClientInput } from './client_input.entity';
 import { Account } from '../account/account.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ClientInputSeeder implements OnModuleInit {
   constructor(
-    @Inject('CLIENT_INPUT_REPOSITORY')
+    @InjectRepository(ClientInput)
     private clientInputRepository: Repository<ClientInput>,
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
   ) {}
 

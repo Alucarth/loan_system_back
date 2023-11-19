@@ -3,14 +3,15 @@ import { DocumentTypeService } from './document_type.service';
 import { DocumentType } from './document_type.entity';
 import { Repository } from 'typeorm';
 import { Account } from '../account/account.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class DocumentTypeSeeder implements OnModuleInit {
   constructor(
     private readonly _documentTypeService: DocumentTypeService,
-    @Inject('DOCUMENT_TYPE_REPOSITORY')
+    @InjectRepository(DocumentType)
     private documentTypeRepository: Repository<DocumentType>,
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
   ) {}
 

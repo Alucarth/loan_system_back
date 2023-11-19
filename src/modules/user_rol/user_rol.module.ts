@@ -1,23 +1,15 @@
 import { Module } from '@nestjs/common';
-
-import { DatabaseModule } from 'src/database/database.module';
-
-import { rolProviders } from '../rol/rol.providers';
 import { UserRolSeeder } from './user_rol.seeder';
 import { UserRolController } from './user_rol.controller';
-import { userRolProviders } from './user_rol.providers';
-import { userProviders } from '../user/user.providers';
 import { UserRolService } from './user_rol.services';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserRol } from './user_rol.entity';
+import { Rol } from '../rol/rol.entity';
+import { User } from '../user/user.entity';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [TypeOrmModule.forFeature([UserRol, Rol, User])],
   controllers: [UserRolController],
-  providers: [
-    ...userRolProviders,
-    ...rolProviders,
-    ...userProviders,
-    UserRolService,
-    UserRolSeeder,
-  ],
+  providers: [UserRolService, UserRolSeeder],
 })
 export class UserRolModule {}

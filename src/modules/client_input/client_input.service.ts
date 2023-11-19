@@ -3,11 +3,12 @@ import { Repository } from 'typeorm';
 import { ClientInput } from './client_input.entity';
 import { RequestUserDto } from '../user/user.dto';
 import { CreateClientInputDto } from './client.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ClientInputService {
   constructor(
-    @Inject('CLIENT_INPUT_REPOSITORY')
+    @InjectRepository(ClientInput)
     private clientInputRepository: Repository<ClientInput>,
   ) {}
 

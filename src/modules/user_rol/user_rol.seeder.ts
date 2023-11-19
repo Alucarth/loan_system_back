@@ -5,16 +5,17 @@ import { UserRol } from './user_rol.entity';
 import { Rol } from '../rol/rol.entity';
 import { CreateUserRolDto } from './user_rol.dto';
 import { UserRolService } from './user_rol.services';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UserRolSeeder implements OnApplicationBootstrap {
   constructor(
-    @Inject('USER_ROL_REPOSITORY')
+    @InjectRepository(UserRol)
     private userRolRepository: Repository<UserRol>,
     private readonly _userRolService: UserRolService,
-    @Inject('ROL_REPOSITORY')
+    @InjectRepository(Rol)
     private rolRepository: Repository<Rol>,
-    @Inject('USER_REPOSITORY')
+    @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
   async onApplicationBootstrap() {

@@ -1,19 +1,14 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from 'src/database/database.module';
-import { OcupationSeeder } from './ocupation.seeder';
 import { OcupationController } from './ocupation.controller';
-import { ocupationProviders } from './ocupation.providers';
-import { addressProviders } from '../address/address.providers';
 import { OcupationService } from './ocupation.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Ocupation } from './ocupation.entity';
+import { Address } from '../address/address.entity';
+import { Account } from '../account/account.entity';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [TypeOrmModule.forFeature([Ocupation, Address, Account])],
   controllers: [OcupationController],
-  providers: [
-    ...ocupationProviders,
-    ...addressProviders,
-    OcupationService,
-    
-  ],
+  providers: [OcupationService],
 })
 export class OcupationModule {}

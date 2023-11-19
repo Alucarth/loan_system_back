@@ -2,11 +2,12 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { DocumentType } from './document_type.entity';
 import { RequestUserDto } from '../user/user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class DocumentTypeService {
   constructor(
-    @Inject('DOCUMENT_TYPE_REPOSITORY')
+    @InjectRepository(DocumentType)
     private documentTypeRespository: Repository<DocumentType>,
   ) {}
 

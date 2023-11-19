@@ -2,11 +2,12 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreditType } from './credit_type.entity';
 import { CreateCreditTypeDto, UpdateCreditTypeDto } from './credit_type.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CreditTypeService {
   constructor(
-    @Inject('CREDIT_TYPE_REPOSITORY')
+    @InjectRepository(CreditType)
     private creditTypeRepository: Repository<CreditType>,
   ) {}
 
@@ -19,10 +20,16 @@ export class CreditTypeService {
   }
 
   async findCreditTypeById(id: number) {
-    return this.creditTypeRepository.find({ where: { id:id }, relations: ['user'] });
+    return this.creditTypeRepository.find({
+      where: { id: id },
+      relations: ['user'],
+    });
   }
 
-  async updateById(id: number, updateData: UpdateCreditTypeDto): Promise<CreditType> {
+  async updateById(
+    id: number,
+    updateData: UpdateCreditTypeDto,
+  ): Promise<CreditType> {
     const creditType = await this.creditTypeRepository.findOneBy({ id: id });
     if (!creditType) {
       throw new NotFoundException('Credit Type not found');
@@ -31,7 +38,10 @@ export class CreditTypeService {
     return this.creditTypeRepository.save(updatedCreditType);
   }
 
-  async updateCreditTypeById(id: number,updateData: Partial<UpdateCreditTypeDto>): Promise<CreditType> {
+  async updateCreditTypeById(
+    id: number,
+    updateData: Partial<UpdateCreditTypeDto>,
+  ): Promise<CreditType> {
     const creditType = await this.creditTypeRepository.findOneBy({ id: id });
     if (!creditType) {
       throw new NotFoundException('Credit Type not found');

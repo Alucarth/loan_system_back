@@ -4,17 +4,18 @@ import { City } from '../city/city.entity';
 import { Country } from '../country/country.entity';
 import { Account } from '../account/account.entity';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class PersonSeeder implements OnModuleInit {
   constructor(
-    @Inject('PERSON_REPOSITORY')
+    @InjectRepository(Person)
     private personRepository: Repository<Person>,
-    @Inject('CITY_REPOSITORY')
+    @InjectRepository(City)
     private cityRepository: Repository<City>,
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
-    @Inject('COUNTRY_REPOSITORY')
+    @InjectRepository(Country)
     private countryRepository: Repository<Country>,
   ) {}
 

@@ -1,19 +1,18 @@
-import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { ClientTypeService } from './client_type.service';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { ClientType } from './client_type.entity';
 import { Account } from '../account/account.entity';
 import { User } from '../user/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ClientTypeSeeder implements OnModuleInit {
   constructor(
-    private readonly clientTypeService: ClientTypeService,
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
-    @Inject('USER_REPOSITORY')
+    @InjectRepository(User)
     private userRepository: Repository<User>,
-    @Inject('CLIENT_TYPE_REPOSITORY')
+    @InjectRepository(ClientType)
     private clientTypeRepository: Repository<ClientType>,
   ) {}
 

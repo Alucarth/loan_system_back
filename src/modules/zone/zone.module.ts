@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from 'src/database/database.module';
-import { zoneProviders } from './zone.providers';
 import { ZoneSeeder } from './zone.seeder';
-import { accountProviders } from '../account/account.providers';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Zone } from './zone.entity';
+import { Account } from '../account/account.entity';
 
 @Module({
-  imports: [DatabaseModule],
-  providers: [...zoneProviders, ZoneSeeder, ...accountProviders],
+  imports: [TypeOrmModule.forFeature([Zone, Account])],
+  providers: [ZoneSeeder],
 })
 export class ZoneModule {}

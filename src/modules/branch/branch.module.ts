@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from 'src/database/database.module';
-import { branchProviders } from './branch.providers';
 import { BranchService } from './branch.service';
 import { BranchController } from './branch.controller';
 import { BranchSeeder } from './branch.seeder';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Account } from '../account/account.entity';
+import { Branch } from './branch.entity';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [TypeOrmModule.forFeature([Account, Branch])],
   controllers: [BranchController],
-  providers: [...branchProviders, BranchService, BranchSeeder], //se esta quitando los seedders por que se requiere adicionar triggers y en nest no esta disponible todabia esta funcionalidad
+  providers: [BranchService, BranchSeeder], //se esta quitando los seedders por que se requiere adicionar triggers y en nest no esta disponible todabia esta funcionalidad
 })
 export class BranchModule {}

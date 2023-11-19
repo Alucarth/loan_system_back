@@ -5,11 +5,9 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Branch } from '../branch/branch.entity';
 import { User } from '../user/user.entity';
 
 @Entity()
@@ -29,21 +27,6 @@ export class Account {
   @Column()
   interval: number;
 
-  // @Column({ nullable: true })
-  // label_1: string;
-
-  // @Column({ nullable: true })
-  // label_2: string;
-
-  // @Column({ nullable: true })
-  // label_3: string;
-
-  // @Column({ nullable: true })
-  // label_4: string;
-
-  // @Column({ nullable: true })
-  // label_5: string;
-
   @CreateDateColumn()
   created_at: Date; // Creation date
 
@@ -52,9 +35,9 @@ export class Account {
 
   @DeleteDateColumn()
   deleted_at: Date; // Deletion date
-  //TODO: revisar para futuras consultas
-  @OneToMany(() => Branch, (branch) => branch.account)
-  branches: Branch[];
+  // //TODO: revisar para futuras consultas
+  // @OneToMany(() => Branch, (branch) => branch.account)
+  // branches: Branch[];
 
   //referencia de usuario
   @Column({ nullable: true, name: 'user_id' })
