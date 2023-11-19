@@ -10,7 +10,6 @@ export class RolSeeder implements OnModuleInit {
   constructor(
     @InjectRepository(Rol)
     private rolRepository: Repository<Rol>,
-    private readonly _rolService: RolService,
   ) {}
 
   async onModuleInit() {
@@ -43,7 +42,7 @@ export class RolSeeder implements OnModuleInit {
 
       rol.name = data.name;
 
-      await this._rolService.create(rol);
+      await this.rolRepository.save(rol);
     }
   }
 }
