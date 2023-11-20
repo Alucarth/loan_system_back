@@ -5,9 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { City } from '../city/city.entity';
 import { Address } from './address.entity';
 import { Person } from '../person/person.entity';
-import { Ocupation } from '../ocupation/ocupation.entity';
 @Module({
-  imports: [TypeOrmModule.forFeature([City, Address, Person, Ocupation])],
+  imports: [TypeOrmModule.forFeature([City, Address, Person])],
   controllers: [AddressController],
   providers: [AddressService],
 })

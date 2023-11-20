@@ -12,7 +12,6 @@ import {
 } from 'typeorm';
 import { City } from '../city/city.entity';
 import { Person } from '../person/person.entity';
-import { Ocupation } from '../ocupation/ocupation.entity';
 import { User } from '../user/user.entity';
 import { Account } from '../account/account.entity';
 import { Zone } from '../zone/zone.entity';

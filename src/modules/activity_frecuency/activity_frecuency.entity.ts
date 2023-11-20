@@ -9,51 +9,17 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Address } from '../address/address.entity';
-import { User } from '../user/user.entity';
 import { Account } from '../account/account.entity';
+import { User } from '../user/user.entity';
+
 @Index(['public_id', 'account_id'], { unique: true })
 @Entity()
-export class Ocupation {
+export class ActivityFrecuency {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  ocupation: string;
-
-  @Column({ nullable: true })
-  ocupation_type: string;
-
-  @Column({ nullable: true })
-  main_ocupation: string;
-
-  @Column({ nullable: true })
-  company_name: string;
-
-  @Column({ nullable: true })
-  work_them: string;
-
-  @Column({ nullable: true })
-  net_income: string;
-
-  @Column({ nullable: true })
-  periodicity_income: string;
-
-  @Column({ nullable: true })
-  workdays: number;
-
-  @Column({ nullable: true })
-  working_hours: number;
-
-  @Column({ nullable: true })
-  status: string;
-
-  @Column({ nullable: true })
-  description: string;
-
-  @ManyToOne(() => Address, (address) => address.id)
-  @JoinColumn({ name: 'address_id', referencedColumnName: 'id' })
-  address: Address;
+  name: string;
 
   //referencia al account_id
   @Column({ name: 'account_id' })

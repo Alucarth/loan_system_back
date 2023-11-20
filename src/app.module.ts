@@ -10,8 +10,6 @@ import { CityModule } from './modules/city/city.module';
 import { AuthModule } from './auth/auth.module';
 import { AddressModule } from './modules/address/address.module';
 import { RolModule } from './modules/rol/rol.module';
-
-import { OcupationModule } from './modules/ocupation/ocupation.module';
 import { QuotaTypeService } from './modules/quota_type/quota_type.service';
 import { QuotaTypeModule } from './modules/quota_type/quota_type.module';
 import { GuarantyTypeModule } from './modules/guaranty_type/guaranty_type.module';
@@ -30,6 +28,9 @@ import { PropertyTypeModule } from './modules/property_type/property_type.module
 import { DatabaseModule } from './database/database.module';
 import { UserRolModule } from './modules/user_rol/user_rol.module';
 import { LocationTypeModule } from './modules/location_type/location_type.module';
+import { ActivityClientModule } from './modules/activity_client/activity_client.module';
+import { ActivityTypeModule } from './modules/activity_type/activity_type.module';
+import { ActivityFrecuencyModule } from './modules/activity_frecuency/activity_frecuency.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -42,7 +43,6 @@ import { LocationTypeModule } from './modules/location_type/location_type.module
     RolModule,
     UserModule,
     AddressModule,
-    // OcupationModule,
     AuthModule,
     QuotaTypeModule,
     GuarantyTypeModule,
@@ -59,6 +59,9 @@ import { LocationTypeModule } from './modules/location_type/location_type.module
     PropertyTypeModule,
     UserRolModule,
     LocationTypeModule,
+    ActivityClientModule,
+    ActivityTypeModule,
+    ActivityFrecuencyModule,
   ],
   controllers: [AppController],
   providers: [AppService, QuotaTypeService],

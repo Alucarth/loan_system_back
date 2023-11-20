@@ -16,7 +16,6 @@ import {
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateAddressDTO, UpdateAddressDTO } from './address.dto';
 import { AddressService } from './address.service';
-import { OcupationService } from '../ocupation/ocupation.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Address')

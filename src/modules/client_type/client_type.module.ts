@@ -6,9 +6,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientType } from './client_type.entity';
 import { Account } from '../account/account.entity';
 import { User } from '../user/user.entity';
+import { Client } from '../client/client.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ClientType, Account, User])],
+  imports: [TypeOrmModule.forFeature([Client, ClientType, Account, User])],
   controllers: [ClientTypeController],
   providers: [ClientTypeService, ClientTypeSeeder],
 })
