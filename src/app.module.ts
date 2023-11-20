@@ -29,6 +29,7 @@ import { ZoneModule } from './modules/zone/zone.module';
 import { PropertyTypeModule } from './modules/property_type/property_type.module';
 import { DatabaseModule } from './database/database.module';
 import { UserRolModule } from './modules/user_rol/user_rol.module';
+import { LocationTypeModule } from './modules/location_type/location_type.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -57,6 +58,7 @@ import { UserRolModule } from './modules/user_rol/user_rol.module';
     ZoneModule,
     PropertyTypeModule,
     UserRolModule,
+    LocationTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService, QuotaTypeService],

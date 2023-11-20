@@ -25,7 +25,6 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { fileFilter, fileName } from 'src/helpers/files.utils';
-import { createReadStream } from 'fs';
 import { join } from 'path';
 @UseGuards(JwtAuthGuard)
 @ApiTags('Person')

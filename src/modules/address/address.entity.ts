@@ -16,6 +16,8 @@ import { Ocupation } from '../ocupation/ocupation.entity';
 import { User } from '../user/user.entity';
 import { Account } from '../account/account.entity';
 import { Zone } from '../zone/zone.entity';
+import { PropertyType } from '../property_type/property_type.entity';
+import { LocationType } from '../location_type/location_type.entity';
 @Index(['public_id', 'account_id'], { unique: true })
 @Entity()
 export class Address {
@@ -45,6 +47,20 @@ export class Address {
   @ManyToOne(() => Zone, (zone) => zone.id)
   @JoinColumn({ name: 'zone_id', referencedColumnName: 'id' })
   zone: Zone;
+
+  @Column({ nullable: true, name: 'property_type_id' })
+  property_type_id: number;
+
+  @ManyToOne(() => PropertyType, (property_type) => property_type.id)
+  @JoinColumn({ name: 'property_type_id', referencedColumnName: 'id' })
+  property_type: PropertyType;
+
+  @Column({ nullable: true, name: 'location_type_id' })
+  location_type_id: number;
+
+  @ManyToOne(() => LocationType, (location_type) => location_type.id)
+  @JoinColumn({ name: 'location_type_id', referencedColumnName: 'id' })
+  location_type: LocationType;
 
   @Column({ nullable: true })
   latitude: string;

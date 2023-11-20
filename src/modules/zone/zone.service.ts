@@ -3,11 +3,12 @@ import { Repository } from 'typeorm';
 import { Zone } from './zone.entity';
 import { RequestUserDto } from '../user/user.dto';
 import { ZoneDto } from './zone.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ZoneService {
   constructor(
-    @Inject('ZONE_REPOSITORY')
+    @InjectRepository(Zone)
     private zoneRepository: Repository<Zone>,
   ) {}
 
