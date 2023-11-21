@@ -31,6 +31,8 @@ import { LocationTypeModule } from './modules/location_type/location_type.module
 import { ActivityClientModule } from './modules/activity_client/activity_client.module';
 import { ActivityTypeModule } from './modules/activity_type/activity_type.module';
 import { ActivityFrecuencyModule } from './modules/activity_frecuency/activity_frecuency.module';
+import { RelationshipModule } from './modules/relationship/relationship.module';
+import { PersonalReferenceModule } from './modules/personal_reference/personal_reference.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -62,6 +64,8 @@ import { ActivityFrecuencyModule } from './modules/activity_frecuency/activity_f
     ActivityClientModule,
     ActivityTypeModule,
     ActivityFrecuencyModule,
+    RelationshipModule,
+    PersonalReferenceModule,
   ],
   controllers: [AppController],
   providers: [AppService, QuotaTypeService],
