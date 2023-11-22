@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { Person } from 'src/modules/person/person.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserSeeder implements OnApplicationBootstrap {
@@ -13,6 +14,7 @@ export class UserSeeder implements OnApplicationBootstrap {
     private personRepository: Repository<Person>,
   ) {}
   async onApplicationBootstrap() {
+    const saltOrRounds = 10;
     const exist = await this.userRepository.find();
     if (exist.length > 0) {
       console.log(
