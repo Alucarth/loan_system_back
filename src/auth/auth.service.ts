@@ -37,12 +37,12 @@ export class AuthService {
 
     // if (user && user.password === password) {
     if (user) {
-      // const passwordValid = await bcrypt.compare(password, user.password);
-      // if (passwordValid) {
-      const { password, ...rest } = user; //envia todo en la variable rest menos password
-      return rest;
-      // }
-      // return null;
+      const passwordValid = await bcrypt.compare(password, user.password);
+      if (passwordValid) {
+        const { password, ...rest } = user; //envia todo en la variable rest menos password
+        return rest;
+      }
+      return null;
     }
     return null;
   }

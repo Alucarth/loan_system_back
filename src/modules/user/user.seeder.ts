@@ -34,17 +34,18 @@ export class UserSeeder implements OnApplicationBootstrap {
     );
     const persons = await this.personRepository.find();
     // console.log(persons);
+    const password = await bcrypt.hash('123456', saltOrRounds);
     const userData = [
       {
         username: 'dilan',
-        password: '123456',
+        password: password,
         person_id: persons[0].id,
         account_id: 1,
         public_id: 0,
       },
       {
         username: 'admin',
-        password: '123456',
+        password: password,
         person_id: persons[1].id,
         account_id: 1,
         public_id: 0,
