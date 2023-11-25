@@ -21,7 +21,7 @@ import { ActivityClientService } from './activity_clilent.service';
 @ApiTags('ActivityClient')
 @UseGuards(JwtAuthGuard)
 @Controller('activity_client')
-export class AddressController {
+export class ActivityClientController {
   constructor(
     private readonly _acitivityClientService: ActivityClientService,
   ) {}

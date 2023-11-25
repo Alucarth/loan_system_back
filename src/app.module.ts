@@ -28,11 +28,11 @@ import { PropertyTypeModule } from './modules/property_type/property_type.module
 import { DatabaseModule } from './database/database.module';
 import { UserRolModule } from './modules/user_rol/user_rol.module';
 import { LocationTypeModule } from './modules/location_type/location_type.module';
-import { ActivityClientModule } from './modules/activity_client/activity_client.module';
 import { ActivityTypeModule } from './modules/activity_type/activity_type.module';
 import { ActivityFrecuencyModule } from './modules/activity_frecuency/activity_frecuency.module';
 import { RelationshipModule } from './modules/relationship/relationship.module';
 import { PersonalReferenceModule } from './modules/personal_reference/personal_reference.module';
+import { ActivityClientModule } from './modules/activity_client/activity_client.module';
 @Module({
   imports: [
     DatabaseModule,
