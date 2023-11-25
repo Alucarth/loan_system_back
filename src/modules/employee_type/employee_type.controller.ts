@@ -18,8 +18,8 @@ import {
   UpdateEmployeeTypeDto,
 } from './employee_type.dto';
 
-@ApiTags('PersonType')
-@Controller('person_type')
+@ApiTags('EmployeeType')
+@Controller('employee_type')
 export class EmployeeTypeController {
   constructor(private readonly _employeeTypeService: EmployeeTypeService) {}
 
