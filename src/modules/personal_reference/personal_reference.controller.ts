@@ -13,7 +13,7 @@ import { CreatePersonalReferenceDTO } from './personal_reference.dto';
 
 @ApiTags('PersonalReference')
 @UseGuards(JwtAuthGuard)
-@Controller('property_type')
+@Controller('personal_reference')
 export class PersonalReferenceController {
   constructor(
     private readonly _personal_reference_Service: PersonalReferenceService,
@@ -29,9 +29,10 @@ export class PersonalReferenceController {
     @Body() personalReferenceData: CreatePersonalReferenceDTO,
     @Request() req: any,
   ) {
+    console.log(personalReferenceData);
     return await this._personal_reference_Service.create(
-      req.user,
       personalReferenceData,
+      req.user,
     );
   }
 }

@@ -8,6 +8,7 @@ import { ActivityType } from '../activity_type/activity_type.entity';
 import { ClientType } from '../client_type/client_type.entity';
 import { ActivityClientController } from './activity_client.controller';
 import { ActivityClientService } from './activity_clilent.service';
+import { ActivityClientSeeder } from './activity_client.seeder';
 
 @Module({
   imports: [
@@ -21,6 +22,6 @@ import { ActivityClientService } from './activity_clilent.service';
     ]),
   ],
   controllers: [ActivityClientController],
-  providers: [ActivityClientService],
+  providers: [ActivityClientService, ActivityClientSeeder],
 })
 export class ActivityClientModule {}

@@ -23,6 +23,7 @@ export class PersonalReferenceService {
     personal_reference: CreatePersonalReferenceDTO,
     request: RequestUserDto,
   ) {
+    console.log('service', personal_reference);
     personal_reference.account_id = request.account_id;
     personal_reference.public_id = 0;
     personal_reference.user_id = request.user_id;
