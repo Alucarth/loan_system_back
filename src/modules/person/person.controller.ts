@@ -20,10 +20,6 @@ import {
 import { CreatePersonDto, UpdatePersonDto } from './create-person.dto';
 import { PersonService } from './person.service';
 import { ApiTags } from '@nestjs/swagger';
-<<<<<<< HEAD
-import { Person } from './person.entity';
-
-=======
 import { AddressService } from '../address/address.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -31,7 +27,6 @@ import { diskStorage } from 'multer';
 import { fileFilter, fileName } from 'src/helpers/files.utils';
 import { join } from 'path';
 @UseGuards(JwtAuthGuard)
->>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
 @ApiTags('Person')
 @Controller('person')
 export class PersonController {
@@ -73,35 +68,6 @@ export class PersonController {
   //   return this._personService.findReferences(client_id);
   // }
 
-<<<<<<< HEAD
-  //@Post('reference')
-  //@HttpCode(HttpStatus.CREATED)
-  //async createReference(@Body() personArray: any[]) {
-  //  console.log('array person', personArray);
-  //  personArray.forEach(async (person: CreatePersonDto) => {
-  //    await this._personService.create(person);
-  //  });
-  //  // aqui devolver array con lo guardado tarea para el pasante jajaja
-  //  return 'person reference register';
-  //}
-
-  // utilice el método Promise.all con map
-  // en lugar de forEach para iterar sobre el 
-  // personArray y crear cada persona de forma asíncrona
-  @Post('reference')
-    @HttpCode(HttpStatus.CREATED)
-    async createReference(@Body() personArray: any[]) {
-      console.log('array person', personArray);
-
-      const savedPersons = await Promise.all(
-        personArray.map(async (person: CreatePersonDto) => {
-          return await this._personService.create(person);
-        })
-      );
-
-      return savedPersons;
-    }
-=======
   // @Post('reference')
   // @HttpCode(HttpStatus.CREATED)
   // async createReference(@Body() personArray: any[]) {
@@ -112,7 +78,6 @@ export class PersonController {
   //   // aqui devolver array con lo guardado tarea para el pasante jajaja
   //   return 'person reference register';
   // }
->>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
 
   @Put(':id')
   @HttpCode(HttpStatus.OK)

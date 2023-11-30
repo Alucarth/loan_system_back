@@ -1,10 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Person } from 'src/modules/person/person.entity';
-<<<<<<< HEAD
-import { CreatePersonDto } from './create-person.dto';
-import { UpdatePersonDto } from './update-person.dto';
-=======
 import { CreatePersonDto, UpdatePersonDto } from './create-person.dto';
 
 import { City } from 'src/modules/city/city.entity';
@@ -12,20 +8,12 @@ import { Account } from 'src/modules/account/account.entity';
 import { Country } from 'src/modules/country/country.entity';
 import { RequestUserDto } from '../user/user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
->>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
 
 @Injectable()
 export class PersonService {
   constructor(
     @InjectRepository(Person)
     private personRepository: Repository<Person>,
-<<<<<<< HEAD
-  ) {}
-
-  async findAll(): Promise<Person[]> {
-    return this.personRepository.find({
-      relations: ['account'],
-=======
     @InjectRepository(City)
     private cityRepository: Repository<City>,
     @InjectRepository(Account)
@@ -42,7 +30,6 @@ export class PersonService {
     return await this.personRepository.findOneBy({
       public_id: public_id,
       account_id: user.account_id,
->>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
     });
   }
 
@@ -57,40 +44,6 @@ export class PersonService {
   //   });
   // }
 
-<<<<<<< HEAD
-  async create(createPersonDto: CreatePersonDto): Promise<Person> {
-    const person = new Person();
-    Object.assign(person, createPersonDto);
-    return await this.personRepository.save(person);
-  }
-
-  async update(id: number, updatePersonDto: UpdatePersonDto): Promise<Person> {
-    const person = await this.personRepository.findOne({where: { id: id }});
-    if (!person) {
-      throw new NotFoundException('Person not found');
-    }
-    Object.assign(person, updatePersonDto);
-    return await this.personRepository.save(person);
-  }
-
-  async findPersonById(id: number): Promise<Person> {
-    const person = await this.personRepository.findOne({
-      where: { id: id },
-      relations: ['account'],
-    });
-    if (!person) {
-      throw new NotFoundException('Person not found');
-    }
-    return person;
-  }
-
-  async updateById(id: number, updateData: UpdatePersonDto): Promise<Person> {
-    const person = await this.personRepository.findOne({where: { id: id }});
-    if (!person) {
-      throw new NotFoundException('Person not found');
-    }
-    Object.assign(person, updateData);
-=======
   /*async create(person_dto: CreatePersonDto): Promise<Person>{
         
         const city_card: City = await this.cityRepository.findOneBy({id: person_dto.identity_card_city.id}) 
@@ -199,7 +152,6 @@ export class PersonService {
     person.birth_date = updateData.birth_date;
     person.document_type_id = updateData.document_type_id;
     person.photo_url = updateData.photo_url ?? null;
->>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
     return this.personRepository.save(person);
   }
 

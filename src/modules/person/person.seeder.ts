@@ -1,29 +1,19 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Person } from './person.entity';
 import { Repository } from 'typeorm';
-<<<<<<< HEAD
-import { Account } from '../account/account.entity';
-import { CreatePersonDto } from './create-person.dto';
-=======
 import { InjectRepository } from '@nestjs/typeorm';
->>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
 
 @Injectable()
 export class PersonSeeder implements OnModuleInit {
   constructor(
     @InjectRepository(Person)
     private personRepository: Repository<Person>,
-<<<<<<< HEAD
-    @Inject('ACCOUNT_REPOSITORY')
-    private accountRepository: Repository<Account>,
-=======
     @InjectRepository(City)
     private cityRepository: Repository<City>,
     @InjectRepository(Account)
     private accountRepository: Repository<Account>,
     @InjectRepository(Country)
     private countryRepository: Repository<Country>,
->>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
   ) {}
 
   async onModuleInit() {
@@ -36,13 +26,9 @@ export class PersonSeeder implements OnModuleInit {
     }
     console.log('Iniciando el seeder -> (Person).');
     console.log('Esperando a los datos de las tablas relacionadas a Person');
-<<<<<<< HEAD
-    const accounts = await Promise.all([
-=======
     const [accounts] = await Promise.all([
       // this.cityRepository.find(),
       // this.countryRepository.find(),
->>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
       this.accountRepository.find(),
     ]);
     await this.personRepository.query(
@@ -53,30 +39,6 @@ export class PersonSeeder implements OnModuleInit {
     );
     console.log('datos cargados de las tablas relacionadas a Person');
 
-<<<<<<< HEAD
-    // Perform database population logic here
-    const personsToCreate: CreatePersonDto[] = [
-      // Define the data for the persons you want to create
-      {
-        names: 'John',
-        father_last_name: 'Doe',
-        mother_last_name: 'Smith',
-        photo_url: 'https://example.com/photo.jpg',
-        identity_card: '123456789',
-        gender: 'Male',
-        age: 30,
-        material_status: 'Single',
-        birth_date: new Date('1993-01-01'),
-        account_id: 1, //accounts[0].id, // Suponiendo que se desea saber si existe y asignar el primer account
-        public_id: 1,
-        user_id: 2, 
-      },
-      // aqui se van añadiendo mas personas si es nesesario
-    ];
-
-    const createdPersons = await this.personRepository.save(personsToCreate);
-    console.log('Created persons:', createdPersons);
-=======
     const personData = [
       {
         names: 'Dilan',
@@ -112,6 +74,5 @@ export class PersonSeeder implements OnModuleInit {
       await this.personRepository.save(person);
     }
     console.log('Cargando registros de Person en la base de datos...');
->>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
   }
 }
