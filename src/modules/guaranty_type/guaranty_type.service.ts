@@ -1,12 +1,16 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { GuarantyType } from './guaranty_type.entity';
-import { CreateGuarantyTypeDto, UpdateGuarantyTypeDto } from './guaranty_type.dto';
+import {
+  CreateGuarantyTypeDto,
+  UpdateGuarantyTypeDto,
+} from './guaranty_type.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class GuarantyTypeService {
   constructor(
-    @Inject('GUARANTY_TYPE_REPOSITORY')
+    @InjectRepository(GuarantyType)
     private guarantyTypeRepository: Repository<GuarantyType>,
   ) {}
 
@@ -19,11 +23,19 @@ export class GuarantyTypeService {
   }
 
   async findGuarantyTypeById(id: number) {
-    return this.guarantyTypeRepository.find({ where: { id:id }, relations: ['user'] });
+    return this.guarantyTypeRepository.find({
+      where: { id: id },
+      relations: ['user'],
+    });
   }
 
-  async updateById(id: number, updateData: UpdateGuarantyTypeDto): Promise<GuarantyType> {
-    const guarantyType = await this.guarantyTypeRepository.findOneBy({ id: id });
+  async updateById(
+    id: number,
+    updateData: UpdateGuarantyTypeDto,
+  ): Promise<GuarantyType> {
+    const guarantyType = await this.guarantyTypeRepository.findOneBy({
+      id: id,
+    });
     if (!guarantyType) {
       throw new NotFoundException('Credit Type not found');
     }
@@ -31,8 +43,13 @@ export class GuarantyTypeService {
     return this.guarantyTypeRepository.save(updatedGuarantyType);
   }
 
-  async updateGuarantyTypeById(id: number,updateData: Partial<UpdateGuarantyTypeDto>): Promise<GuarantyType> {
-    const guarantyType = await this.guarantyTypeRepository.findOneBy({ id: id });
+  async updateGuarantyTypeById(
+    id: number,
+    updateData: Partial<UpdateGuarantyTypeDto>,
+  ): Promise<GuarantyType> {
+    const guarantyType = await this.guarantyTypeRepository.findOneBy({
+      id: id,
+    });
     if (!guarantyType) {
       throw new NotFoundException('Credit Type not found');
     }
@@ -41,7 +58,9 @@ export class GuarantyTypeService {
   }
 
   async deleteById(id: number): Promise<void> {
-    const guarantyType = await this.guarantyTypeRepository.findOneBy({ id: id });
+    const guarantyType = await this.guarantyTypeRepository.findOneBy({
+      id: id,
+    });
     if (!guarantyType) {
       throw new NotFoundException('Credit Type not found!');
     }

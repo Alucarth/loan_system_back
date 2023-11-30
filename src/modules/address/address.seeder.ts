@@ -5,16 +5,17 @@ import { Address } from './address.entity';
 import { Person } from '../person/person.entity';
 import { City } from '../city/city.entity';
 import { CreateAddressDTO } from './address.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AddressSeeder implements OnModuleInit {
   constructor(
     private readonly _addressService: AddressService,
-    @Inject('ADDRESS_REPOSITORY')
+    @InjectRepository(Address)
     private addressRepository: Repository<Address>,
-    @Inject('CITY_REPOSITORY')
+    @InjectRepository(City)
     private cityRepository: Repository<City>,
-    @Inject('PERSON_REPOSITORY')
+    @InjectRepository(Person)
     private personRepository: Repository<Person>,
   ) {}
 
@@ -29,6 +30,13 @@ export class AddressSeeder implements OnModuleInit {
     }
     console.log(
       'Iniciando el seeder -> (Address). Cargando registros en la base de datos.',
+    );
+
+    await this.addressRepository.query(
+      'DROP TRIGGER IF EXISTS address_public_id;',
+    );
+    await this.addressRepository.query(
+      'CREATE TRIGGER address_public_id before INSERT  on address for EACH ROW BEGIN  set new.public_id = (SELECT COALESCE (max(public_id),0) +1 from address WHERE account_id = NEW.account_id);  END',
     );
   }
 }

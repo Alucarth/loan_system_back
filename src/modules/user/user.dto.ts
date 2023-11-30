@@ -26,6 +26,16 @@ export class CreateUserDto {
   @IsNumber()
   @ApiProperty()
   person_id: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty()
+  account_id: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty()
+  public_id: number;
 }
 
 export class UpdateUserDto {
@@ -53,4 +63,16 @@ export class UpdateUserDto {
   @IsNumber()
   @ApiProperty()
   person_id: number;
+}
+
+export class RequestUserDto {
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty()
+  account_id: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty()
+  user_id: number;
 }

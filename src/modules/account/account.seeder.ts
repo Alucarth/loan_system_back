@@ -1,25 +1,29 @@
-import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
-import { Account } from "./account.entity";
-import { AccountService } from "src/modules/account/account.service";
-import { Repository } from "typeorm";
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { Account } from './account.entity';
+import { AccountService } from 'src/modules/account/account.service';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AccountSeeder implements OnModuleInit {
   constructor(
     private readonly _accountService: AccountService,
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
-  ) { }
+  ) {}
 
   async onModuleInit() {
-
     //await this.accountRepository.query('TRUNCATE TABLE account RESTART IDENTITY CASCADE');
     const exist = await this.accountRepository.find();
     if (exist.length > 0) {
-      console.log('Saltando proceso del seeder -> (Account). Ya existen registros en la base de datos.');
+      console.log(
+        'Saltando proceso del seeder -> (Account). Ya existen registros en la base de datos.',
+      );
       return;
     }
-    console.log('Iniciando el seeder -> (Account). Cargando registros en la base de datos.');
+    console.log(
+      'Iniciando el seeder -> (Account). Cargando registros en la base de datos.',
+    );
     const accountData = [
       {
         account_name: 'Cuenta 1',
@@ -42,16 +46,8 @@ export class AccountSeeder implements OnModuleInit {
       // Agregar más objetos con datos de prueba
     ];
 
-    for (const data of accountData) {
-      const account = new Account();
-      account.account_name = data.account_name;
-      account.company_name = data.company_name;
-      account.logo_url = data.logo_url;
-      account.interval = data.interval;
-      account.label_1 = data.label_1;
-      account.label_2 = data.label_2;
-
-      await this._accountService.create(account);
+    for (const account of accountData) {
+      await this.accountRepository.save(account);
     }
   }
 }

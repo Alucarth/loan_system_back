@@ -2,13 +2,12 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 
 import { Branch } from './branch.entity';
 import { Repository } from 'typeorm';
-import { BranchService } from './branch.service';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class BranchSeeder implements OnModuleInit {
   constructor(
-    private readonly _branchService: BranchService,
-    @Inject('BRANCH_REPOSITORY')
+    @InjectRepository(Branch)
     private branchRepository: Repository<Branch>,
   ) {}
 
@@ -53,7 +52,7 @@ export class BranchSeeder implements OnModuleInit {
       branch.phone = data.phone;
       branch.account_id = 1;
       branch.public_id = 0;
-      await this._branchService.create(branch);
+      this.branchRepository.create(branch);
     }
   }
 }

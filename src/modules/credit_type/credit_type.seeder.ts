@@ -2,12 +2,13 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreditTypeService } from './credit_type.service';
 import { CreditType } from './credit_type.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CreditTypeSeeder implements OnModuleInit {
   constructor(
     private readonly creditTypeService: CreditTypeService,
-    @Inject('CREDIT_TYPE_REPOSITORY')
+    @InjectRepository(CreditType)
     private clientTypeRepository: Repository<CreditType>,
   ) {}
 

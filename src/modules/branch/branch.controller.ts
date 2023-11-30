@@ -10,20 +10,24 @@ import {
   Patch,
   Post,
   Put,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateBranchDto, UpdateBranchDto } from './branch.dto';
 import { BranchService } from './branch.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Branch')
+@UseGuards(JwtAuthGuard)
 @Controller('branch')
 export class BranchController {
   constructor(private readonly _branchService: BranchService) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  async findAll() {
-    return this._branchService.findAll();
+  async findAll(@Request() req: any) {
+    return this._branchService.findAll(req.user);
   }
 
   @Post()
@@ -33,37 +37,29 @@ export class BranchController {
     description: 'The record has been successfully created.',
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create(@Body() branchData: CreateBranchDto) {
-    console.log('branchData', branchData);
-    const response = await this._branchService.create(branchData);
-    return response;
+  async create(@Body() branchData: CreateBranchDto, @Request() req: any) {
+    return await this._branchService.create(branchData, req);
   }
+
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  findAccountById(@Param('id', ParseIntPipe) id: number) {
-    return this._branchService.findBranchById(id);
+  findAccountById(@Request() req, @Param('id', ParseIntPipe) id: number) {
+    return this._branchService.findBranchById(id, req.user);
   }
+
   @Put(':id')
   @HttpCode(HttpStatus.OK)
   async updateById(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateData: UpdateBranchDto,
+    @Request() req: any,
   ) {
-    return this._branchService.updateById(id, updateData);
-  }
-
-  @Patch(':id')
-  @HttpCode(HttpStatus.OK)
-  async updateAccountById(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateData: Partial<UpdateBranchDto>,
-  ) {
-    return this._branchService.updateBranchById(id, updateData);
+    return this._branchService.updateById(id, updateData, req.user);
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
-  async deleteById(@Param('id', ParseIntPipe) id: number) {
-    return this._branchService.deleteById(id);
+  async deleteById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
+    return this._branchService.deleteById(id, req.user);
   }
 }

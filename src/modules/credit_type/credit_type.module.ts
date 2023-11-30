@@ -1,14 +1,12 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from 'src/database/database.module';
-import { creditTypeProviders } from './credit_type.providers';
-import { userProviders } from '../user/user.providers';
 import { CreditTypeService } from './credit_type.service';
-import { CreditTypeSeeder } from './credit_type.seeder';
 import { CreditTypeController } from './credit_type.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CreditType } from './credit_type.entity';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [TypeOrmModule.forFeature([CreditType])],
   controllers: [CreditTypeController],
-  providers: [...creditTypeProviders, ...userProviders, CreditTypeService],
+  providers: [CreditTypeService],
 })
 export class CreditTypeModule {}

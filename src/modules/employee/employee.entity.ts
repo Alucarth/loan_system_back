@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -13,6 +14,7 @@ import { Account } from '../account/account.entity';
 import { User } from '../user/user.entity';
 import { EmployeeType } from '../employee_type/employee_type.entity';
 
+@Index(['public_id', 'account_id'], { unique: true })
 @Entity()
 export class Employee {
   @PrimaryGeneratedColumn()
@@ -22,7 +24,7 @@ export class Employee {
   @Column({ name: 'person_id' })
   person_id: number;
 
-  @ManyToOne(() => Person, (person) => [person.id])
+  @ManyToOne(() => Person, (person) => person.id)
   @JoinColumn({ name: 'person_id', referencedColumnName: 'id' })
   person: Person;
 
@@ -34,7 +36,7 @@ export class Employee {
   @Column({ name: 'account_id' })
   account_id: number;
 
-  @ManyToOne(() => Account, (account) => account.branches)
+  @ManyToOne(() => Account, (account) => account.id)
   @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
   account: Account;
 

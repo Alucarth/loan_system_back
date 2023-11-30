@@ -5,15 +5,16 @@ import { User } from 'src/modules/user/user.entity';
 import { UserRol } from 'src/modules/user_rol/user_rol.entity';
 import { Repository } from 'typeorm';
 import { CreateUserRolDto, UpdateUserRolDto } from './user_rol.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UserRolService {
   constructor(
-    @Inject('USER_ROL_REPOSITORY')
+    @InjectRepository(UserRol)
     private userRolRepository: Repository<UserRol>,
-    @Inject('ROL_REPOSITORY')
+    @InjectRepository(Rol)
     private rolRepository: Repository<Rol>,
-    @Inject('USER_REPOSITORY')
+    @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
 

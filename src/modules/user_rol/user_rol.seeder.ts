@@ -5,16 +5,18 @@ import { UserRol } from './user_rol.entity';
 import { Rol } from '../rol/rol.entity';
 import { CreateUserRolDto } from './user_rol.dto';
 import { UserRolService } from './user_rol.services';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CreateRolDto } from '../rol/rol.dto';
 
 @Injectable()
 export class UserRolSeeder implements OnApplicationBootstrap {
   constructor(
-    @Inject('USER_ROL_REPOSITORY')
+    @InjectRepository(UserRol)
     private userRolRepository: Repository<UserRol>,
     private readonly _userRolService: UserRolService,
-    @Inject('ROL_REPOSITORY')
+    @InjectRepository(Rol)
     private rolRepository: Repository<Rol>,
-    @Inject('USER_REPOSITORY')
+    @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
   async onApplicationBootstrap() {
@@ -28,24 +30,38 @@ export class UserRolSeeder implements OnApplicationBootstrap {
     console.log(
       'Iniciando el seeder -> (UserRol). Cargando registros en la base de datos.',
     );
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    const rolData = [
+      {
+        name: 'Adminstrador',
+      },
+      {
+        name: 'Desarrollador',
+      },
+      {
+        name: 'Cliente',
+      },
+      // Agregar más objetos con datos de prueba
+    ];
+
+    for (const data of rolData) {
+      const rol = new CreateRolDto();
+
+      rol.name = data.name;
+
+      await this.rolRepository.save(rol);
+    }
 
     // Esperando que PersonModule se inicialice antes
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    // await new Promise((resolve) => setTimeout(resolve, 500));
     const rols = await this.rolRepository.find();
+    // console.log(rols);
     const users = await this.userRepository.find();
-
+    // console.log(users);
     const userRolData = [
       {
         rol_id: rols[0],
         user_id: users[0],
-      },
-      {
-        rol_id: rols[1],
-        user_id: users[0],
-      },
-      {
-        rol_id: rols[2],
-        user_id: users[1],
       },
       // Agregar más objetos con datos de prueba
     ];

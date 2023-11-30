@@ -2,16 +2,17 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Account } from 'src/modules/account/account.entity';
 import { CreateAccountDto, UpdateAccountDto } from './account.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AccountService {
   constructor(
-    @Inject('ACCOUNT_REPOSITORY')
+    @InjectRepository(Account)
     private accountRepository: Repository<Account>,
   ) {}
 
   async findAll(): Promise<Account[]> {
-    return this.accountRepository.find({ relations: ['branch'] });
+    return this.accountRepository.find();
   }
 
   create(account_dto: CreateAccountDto): Promise<CreateAccountDto> {
@@ -25,7 +26,6 @@ export class AccountService {
   async findAccountById(id: number): Promise<Account> {
     return this.accountRepository.findOne({
       where: { id: id },
-      relations: ['branch'],
     });
   }
 

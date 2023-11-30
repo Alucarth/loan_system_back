@@ -2,11 +2,12 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRolDto, UpdateRolDto } from './rol.dto';
 import { Rol } from 'src/modules/rol/rol.entity';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class RolService {
   constructor(
-    @Inject('ROL_REPOSITORY')
+    @InjectRepository(Rol)
     private rolRepository: Repository<Rol>,
   ) {}
 

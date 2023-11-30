@@ -13,6 +13,7 @@ import {
 import { Account } from '../account/account.entity';
 import { Address } from '../address/address.entity';
 import { User } from '../user/user.entity';
+import { DocumentType } from '../document_type/document_type.entity';
 
 @Index(['public_id', 'account_id'], { unique: true })
 @Entity()
@@ -23,10 +24,10 @@ export class Person {
   @Column()
   names: string;
 
-  @Column()
+  @Column({ nullable: true })
   father_last_name: string;
 
-  @Column()
+  @Column({ nullable: true })
   mother_last_name: string;
 
   @Column({ nullable: true })
@@ -46,11 +47,20 @@ export class Person {
   age: number;
 
   @Column({ nullable: true })
-  material_status: string;
+  civil_status: string;
 
   @Column({ nullable: true })
   birth_date: Date;
 
+  @Column({ nullable: true, name: 'document_type_id' })
+  document_type_id: number;
+
+  @ManyToOne(() => DocumentType, (document_type) => document_type.id)
+  @JoinColumn({ name: 'document_type_id', referencedColumnName: 'id' })
+  document_type: DocumentType;
+
+  @Column({ nullable: true })
+  nick_name: string;
   //referencia al account_id
   @Column({ name: 'account_id' })
   account_id: number;

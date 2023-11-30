@@ -1,4 +1,11 @@
-import { IsOptional, IsNotEmpty, IsString, IsNumber } from 'class-validator';
+import {
+  IsOptional,
+  IsNotEmpty,
+  IsString,
+  IsNumber,
+  IsObject,
+} from 'class-validator';
+import { Zone } from '../zone/zone.entity';
 
 export class CreateAddressDTO {
   @IsNumber()
@@ -15,9 +22,9 @@ export class CreateAddressDTO {
   @IsOptional()
   phone_number: number;
 
-  @IsString()
+  @IsObject()
   @IsOptional()
-  zone: string;
+  zone: Zone;
 
   @IsString()
   @IsOptional()
@@ -37,11 +44,19 @@ export class CreateAddressDTO {
 
   @IsNumber()
   @IsOptional()
+  person_id: number;
+
+  @IsOptional()
+  @IsNumber()
   user_id: number;
 
-  @IsNumber()
   @IsOptional()
-  person_id: number;
+  @IsNumber()
+  account_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  public_id: number;
 }
 
 export class UpdateAddressDTO {
@@ -65,9 +80,9 @@ export class UpdateAddressDTO {
   @IsOptional()
   zone: string;
 
-  @IsString()
-  @IsOptional()
-  property: string;
+  // @IsString()
+  // @IsOptional()
+  // property: string;
 
   @IsString()
   @IsOptional()
@@ -77,15 +92,23 @@ export class UpdateAddressDTO {
   @IsOptional()
   comments: string;
 
-  @IsString()
-  @IsOptional()
-  status: string;
-
-  @IsNumber()
-  @IsOptional()
-  user_id: number;
+  // @IsString()
+  // @IsOptional()
+  // status: string;
 
   @IsNumber()
   @IsOptional()
   person_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  user_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  account_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  public_id: number;
 }

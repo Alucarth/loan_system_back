@@ -9,6 +9,6 @@ export class Rol {
   @Column()
   name: string;
 
-  @OneToOne(() => UserRol, userRol => userRol.rol)
+  @OneToOne(() => UserRol, (userRol) => userRol.rol)
   userRol: UserRol; // Agregado esta propiedad para la relación con UserRol
 }

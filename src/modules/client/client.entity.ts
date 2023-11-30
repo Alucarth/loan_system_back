@@ -35,8 +35,8 @@ export class Client {
   @Column({ nullable: true })
   dependents: string;
 
-  @Column({ nullable: true })
-  personal_number: string;
+  @Column({ nullable: true, type: 'bigint' })
+  personal_number: number;
 
   @Column({ nullable: true })
   email: string;
@@ -49,30 +49,30 @@ export class Client {
   @JoinColumn({ name: 'country_id' })
   country: Country;
 
+  @Column({ nullable: true, name: 'client_type_id' })
+  client_type_id: number;
+
   @ManyToOne(() => ClientType, (client_type) => client_type.id)
-  @JoinColumn({ name: 'client_type_id' })
+  @JoinColumn({ name: 'client_type_id', referencedColumnName: 'id' })
   client_type: ClientType;
 
   @Column({ nullable: true })
-  value_1: string;
+  bank: string;
 
   @Column({ nullable: true })
-  value_2: string;
+  titular_bank: string;
 
   @Column({ nullable: true })
-  value_3: string;
+  number_account_bank: string;
 
   @Column({ nullable: true })
-  value_4: string;
-
-  @Column({ nullable: true })
-  value_5: string;
+  gchash: string;
 
   //referencia al account_id
   @Column({ name: 'account_id' })
   account_id: number;
 
-  @ManyToOne(() => Account, (account) => account.branches)
+  @ManyToOne(() => Account, (account) => account.id)
   @JoinColumn({ name: 'account_id', referencedColumnName: 'id' })
   account: Account;
 

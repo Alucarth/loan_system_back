@@ -10,13 +10,28 @@ import {
   Patch,
   Post,
   Put,
+  Request,
+  Res,
+  StreamableFile,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
-import { CreatePersonDto } from './create-person.dto';
-import { UpdatePersonDto } from './update-person.dto';
+import { CreatePersonDto, UpdatePersonDto } from './create-person.dto';
 import { PersonService } from './person.service';
 import { ApiTags } from '@nestjs/swagger';
+<<<<<<< HEAD
 import { Person } from './person.entity';
 
+=======
+import { AddressService } from '../address/address.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { fileFilter, fileName } from 'src/helpers/files.utils';
+import { join } from 'path';
+@UseGuards(JwtAuthGuard)
+>>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
 @ApiTags('Person')
 @Controller('person')
 export class PersonController {
@@ -44,9 +59,9 @@ export class PersonController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async create(@Body() personData: CreatePersonDto) {
+  async create(@Body() personData: CreatePersonDto, @Request() req: any) {
     console.log('personData aaaaaaaaaa', personData);
-    const person = await this._personService.create(personData);
+    const person = await this._personService.create(personData, req.user);
     return person;
   }
 
@@ -58,6 +73,7 @@ export class PersonController {
   //   return this._personService.findReferences(client_id);
   // }
 
+<<<<<<< HEAD
   //@Post('reference')
   //@HttpCode(HttpStatus.CREATED)
   //async createReference(@Body() personArray: any[]) {
@@ -85,14 +101,28 @@ export class PersonController {
 
       return savedPersons;
     }
+=======
+  // @Post('reference')
+  // @HttpCode(HttpStatus.CREATED)
+  // async createReference(@Body() personArray: any[]) {
+  //   console.log('array person', personArray);
+  //   personArray.forEach(async (person: CreatePersonDto) => {
+  //     await this._personService.create(person);
+  //   });
+  //   // aqui devolver array con lo guardado tarea para el pasante jajaja
+  //   return 'person reference register';
+  // }
+>>>>>>> 7a56b74d233900c6f86d3b60e875ab248c35d476
 
   @Put(':id')
   @HttpCode(HttpStatus.OK)
   async updateById(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateData: UpdatePersonDto,
+    @Request() req: any,
   ) {
-    return this._personService.updateById(id, updateData);
+    console.log('personData update', updateData);
+    return this._personService.updateById(id, updateData, req.user);
   }
 
   @Patch(':id')
@@ -108,5 +138,50 @@ export class PersonController {
   @HttpCode(HttpStatus.OK)
   async deleteById(@Param('id', ParseIntPipe) id: number) {
     return this._personService.deleteById(id);
+  }
+  // @Get('/download/:id')
+  // async getFile(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Request() req: any,
+  // ): Promise<StreamableFile> {
+  //   const person = await this._personService.findByPublicId(id, req.user);
+  //   console.log(person);
+  //   console.log(join(process.cwd() + `${person.photo_url}`));
+  //   const file = createReadStream(join(process.cwd(), `${person.photo_url}`));
+  //   return new StreamableFile(file);
+  // }
+
+  @Get('download/:id')
+  async downloadFile(
+    @Res() res,
+    @Param('id', ParseIntPipe) id: number,
+    @Request() req: any,
+  ) {
+    //  const data = await this.institucionEducativaImagenService.getOneActivoBySieId(id);
+    const person = await this._personService.findByPublicId(id, req.user);
+    res.download(`${join(process.cwd())}/${person.photo_url}`);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('upload')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: fileName,
+      }),
+      fileFilter: fileFilter,
+    }),
+  )
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log('file: ', file);
+    return file;
+    // try {
+    //   return this.response.status200({
+    //     data: { file: file, message: 'Archivo Registrado !' },
+    //   });
+    // } catch (e) {
+    //   return this.response.status500({});
+    // }
   }
 }

@@ -1,24 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AddressController } from './address.controller';
-import { DatabaseModule } from 'src/database/database.module';
-import { addressProviders } from './address.providers';
 import { AddressService } from './address.service';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { City } from '../city/city.entity';
+import { Address } from './address.entity';
+import { Person } from '../person/person.entity';
 import { AddressSeeder } from './address.seeder';
-import { personProviders } from '../person/person.providers';
-import { ocupationProviders } from '../ocupation/ocupation.providers';
-import { OcupationService } from '../ocupation/ocupation.service';
-import { cityProviders } from '../city/city.providers';
 @Module({
-  imports: [DatabaseModule],
+  imports: [TypeOrmModule.forFeature([City, Address, Person])],
   controllers: [AddressController],
-  providers: [
-    ...addressProviders,
-    ...cityProviders,
-    ...personProviders,
-    ...ocupationProviders,
-    OcupationService,
-    AddressService,
-  ],
+  providers: [AddressService, AddressSeeder],
 })
 export class AddressModule {}

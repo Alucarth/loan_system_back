@@ -7,11 +7,12 @@ import {
   CreateEmployeeTypeDto,
   UpdateEmployeeTypeDto,
 } from './employee_type.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class EmployeeTypeService {
   constructor(
-    @Inject('EMPLOYEE_TYPE_REPOSITORY')
+    @InjectRepository(EmployeeType)
     private employeeTypeRepository: Repository<EmployeeType>,
   ) {}
 
