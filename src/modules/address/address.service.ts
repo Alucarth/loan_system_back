@@ -47,15 +47,16 @@ export class AddressService {
     const person: Person = await this.personRepository.findOneBy({
       id: address_dto.person_id,
     });
-
     // Crear una nueva entidad Address y rellenar sus propiedades
     const address = new Address();
 
     address.address = address_dto.address;
-    // address.address_type = address_dto.address_type;
+    address.address_type = address_dto.address_type ?? null;
     address.comments = address_dto.comments;
     address.phone_number = address_dto.phone_number;
-    address.zone = address_dto.zone;
+    address.zone_id = address_dto.zone_id ?? null;
+    address.property_type_id = address_dto.property_type_id;
+    // address.zone_id = address_dto.zone_id ?? null;
     // address.status = address_dto.status;
     // address.property = address_dto.property;
     address.city = city;

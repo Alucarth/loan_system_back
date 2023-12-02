@@ -6,11 +6,9 @@ import {
   IsObject,
 } from 'class-validator';
 import { Zone } from '../zone/zone.entity';
+import { PartialType } from '@nestjs/swagger';
 
 export class CreateAddressDTO {
-  @IsNumber()
-  id: number;
-
   @IsNumber()
   @IsOptional()
   city_id: number;
@@ -22,17 +20,29 @@ export class CreateAddressDTO {
   @IsOptional()
   phone_number: number;
 
-  @IsObject()
+  @IsNumber()
   @IsOptional()
-  zone: Zone;
+  zone_id: number;
 
-  @IsString()
+  @IsNumber()
   @IsOptional()
-  property: string;
+  property_type_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  location_type_id: number;
+
+  // @IsString()
+  // @IsOptional()
+  // property: string;
 
   @IsString()
   @IsOptional()
   address_type: string;
+
+  @IsString()
+  @IsOptional()
+  direcction_type: boolean;
 
   @IsString()
   @IsOptional()
@@ -58,57 +68,57 @@ export class CreateAddressDTO {
   @IsNumber()
   public_id: number;
 }
+export class UpdateAddressDTO extends PartialType(CreateAddressDTO) {}
+// export class UpdateAddressDTO {
+//   @IsNumber()
+//   @IsOptional()
+//   id: number;
 
-export class UpdateAddressDTO {
-  @IsNumber()
-  @IsOptional()
-  id: number;
+//   @IsNumber()
+//   @IsOptional()
+//   city_id: number;
 
-  @IsNumber()
-  @IsOptional()
-  city_id: number;
+//   @IsString()
+//   @IsOptional()
+//   address: string;
 
-  @IsString()
-  @IsOptional()
-  address: string;
+//   @IsNumber()
+//   @IsOptional()
+//   phone_number: number;
 
-  @IsNumber()
-  @IsOptional()
-  phone_number: number;
+//   @IsString()
+//   @IsOptional()
+//   zone: string;
 
-  @IsString()
-  @IsOptional()
-  zone: string;
+//   // @IsString()
+//   // @IsOptional()
+//   // property: string;
 
-  // @IsString()
-  // @IsOptional()
-  // property: string;
+//   @IsString()
+//   @IsOptional()
+//   address_type: string;
 
-  @IsString()
-  @IsOptional()
-  address_type: string;
+//   @IsString()
+//   @IsOptional()
+//   comments: string;
 
-  @IsString()
-  @IsOptional()
-  comments: string;
+//   // @IsString()
+//   // @IsOptional()
+//   // status: string;
 
-  // @IsString()
-  // @IsOptional()
-  // status: string;
+//   @IsNumber()
+//   @IsOptional()
+//   person_id: number;
 
-  @IsNumber()
-  @IsOptional()
-  person_id: number;
+//   @IsOptional()
+//   @IsNumber()
+//   user_id: number;
 
-  @IsOptional()
-  @IsNumber()
-  user_id: number;
+//   @IsOptional()
+//   @IsNumber()
+//   account_id: number;
 
-  @IsOptional()
-  @IsNumber()
-  account_id: number;
-
-  @IsOptional()
-  @IsNumber()
-  public_id: number;
-}
+//   @IsOptional()
+//   @IsNumber()
+//   public_id: number;
+// }

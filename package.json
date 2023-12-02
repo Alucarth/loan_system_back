@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@fawmi/vue-google-maps": "^0.9.79",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.2",
     "@nestjs/core": "^9.0.0",
@@ -41,7 +42,8 @@
     "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "typeorm": "^0.3.17"
+    "typeorm": "^0.3.17",
+    "vue3-google-map": "^0.18.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
