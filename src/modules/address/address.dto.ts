@@ -4,6 +4,7 @@ import {
   IsString,
   IsNumber,
   IsObject,
+  IsBoolean,
 } from 'class-validator';
 import { Zone } from '../zone/zone.entity';
 import { PartialType } from '@nestjs/swagger';
@@ -40,7 +41,7 @@ export class CreateAddressDTO {
   @IsOptional()
   address_type: string;
 
-  @IsString()
+  @IsBoolean()
   @IsOptional()
   direcction_type: boolean;
 

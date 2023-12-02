@@ -23,6 +23,12 @@ export class AddressService {
     user: RequestUserDto,
   ): Promise<Address[]> {
     return await this.addressRepository.find({
+      relations: {
+        city: true,
+        zone: true,
+        property_type: true,
+        location_type: true,
+      },
       where: {
         person: {
           public_id: person_id,
@@ -48,13 +54,23 @@ export class AddressService {
       id: address_dto.person_id,
     });
     // Crear una nueva entidad Address y rellenar sus propiedades
+    // let address = null;
+    // if (address_dto?.public_id) {
+    //   address = this.addressRepository.findOneBy({
+    //     account_id: user.account_id,
+    //     public_id: address_dto.public_id,
+    //   });
+
+    // } else {
     const address = new Address();
+    // }
 
     address.address = address_dto.address;
     address.address_type = address_dto.address_type ?? null;
     address.comments = address_dto.comments;
-    address.phone_number = address_dto.phone_number;
+    address.phone_number = address_dto.phone_number ?? null;
     address.zone_id = address_dto.zone_id ?? null;
+    address.location_type_id = address_dto.location_type_id ?? null;
     address.property_type_id = address_dto.property_type_id;
     // address.zone_id = address_dto.zone_id ?? null;
     // address.status = address_dto.status;
@@ -76,14 +92,21 @@ export class AddressService {
     });
   }
 
-  // async updateById(id: number, updateData: UpdateAddressDTO): Promise<Address> {
-  //   const address = await this.addressRepository.findOneBy({ id: id });
-  //   if (!address) {
-  //     throw new NotFoundException('Address not found!');
-  //   }
-  //   const updatedAddress = Object.assign(address, updateData);
-  //   return this.addressRepository.save(updatedAddress);
-  // }
+  async updateById(
+    public_id: number,
+    updateData: UpdateAddressDTO,
+    user: RequestUserDto,
+  ): Promise<Address> {
+    const address = await this.addressRepository.findOneBy({
+      account_id: user.account_id,
+      public_id: public_id,
+    });
+    if (!address) {
+      throw new NotFoundException('Address not found!');
+    }
+    const updatedAddress = Object.assign(address, updateData);
+    return this.addressRepository.save(updatedAddress);
+  }
 
   // async updateAddressById(
   //   id: number,
@@ -97,11 +120,14 @@ export class AddressService {
   //   return this.addressRepository.save(updatedAddress);
   // }
 
-  // async deleteById(id: number): Promise<void> {
-  //   const address = await this.addressRepository.findOneBy({ id: id });
-  //   if (!address) {
-  //     throw new NotFoundException('Address not found!');
-  //   }
-  //   await this.addressRepository.delete(id);
-  // }
+  async deleteById(public_id: number, user: RequestUserDto): Promise<void> {
+    const address = await this.addressRepository.findOneBy({
+      public_id: public_id,
+      account_id: user.account_id,
+    });
+    if (!address) {
+      throw new NotFoundException('Address not found!');
+    }
+    await this.addressRepository.delete(address.id);
+  }
 }
