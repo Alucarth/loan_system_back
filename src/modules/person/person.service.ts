@@ -92,6 +92,8 @@ export class PersonService {
     // valores no obligatorio
     // person.identity_card = person_dto.identity_card ?? null;
     person.gender = person_dto.gender ?? null;
+    person.nick_name = person_dto.nick_name ?? null;
+    person.husband_firstname = person_dto.husband_firstname ?? null;
     person.photo_url = person_dto.photo_url ?? null;
     person.civil_status = person_dto.civil_status ?? null;
     // person.dependents = person_dto.dependents ?? null;
@@ -152,6 +154,8 @@ export class PersonService {
     person.birth_date = updateData.birth_date;
     person.document_type_id = updateData.document_type_id;
     person.photo_url = updateData.photo_url ?? null;
+    person.nick_name = updateData.nick_name ?? null;
+    person.husband_firstname = updateData.husband_firstname ?? null;
     return this.personRepository.save(person);
   }
 

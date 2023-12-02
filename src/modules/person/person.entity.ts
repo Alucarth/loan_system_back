@@ -44,6 +44,9 @@ export class Person {
   gender: string;
 
   @Column({ nullable: true })
+  husband_firstname: string;
+
+  @Column({ nullable: true })
   age: number;
 
   @Column({ nullable: true })

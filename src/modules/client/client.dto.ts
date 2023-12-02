@@ -31,6 +31,9 @@ export class ClientDto {
   @IsString()
   email: string;
 
+  @IsOptional()
+  @IsString()
+  ages: string;
   // @IsNotEmpty()
   // @IsObject()
   // city: City;
