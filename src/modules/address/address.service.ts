@@ -46,6 +46,7 @@ export class AddressService {
     address_dto: CreateAddressDTO,
     user: RequestUserDto,
   ): Promise<Address> {
+    console.log('payload address', address_dto);
     // Buscar entidades relacionadas
     const city: City = await this.cityRepository.findOneBy({
       id: address_dto.city_id,
@@ -72,6 +73,7 @@ export class AddressService {
     address.zone_id = address_dto.zone_id ?? null;
     address.location_type_id = address_dto.location_type_id ?? null;
     address.property_type_id = address_dto.property_type_id;
+    address.direcction_type = address_dto.direcction_type;
     // address.zone_id = address_dto.zone_id ?? null;
     // address.status = address_dto.status;
     // address.property = address_dto.property;
@@ -97,6 +99,7 @@ export class AddressService {
     updateData: UpdateAddressDTO,
     user: RequestUserDto,
   ): Promise<Address> {
+    console.log('payload update address', updateData);
     const address = await this.addressRepository.findOneBy({
       account_id: user.account_id,
       public_id: public_id,
