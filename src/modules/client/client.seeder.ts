@@ -21,12 +21,21 @@ export class ClientSeeder implements OnModuleInit {
     console.log('Iniciando el seeder -> (client).');
     console.log('Esperando a los datos de las tablas relacionadas a client');
 
+    /*
+    esto me da problema de DeadLock 
+    solo pasa en esta y en el de user 
+    nota: si se ejecuta de una ves el npm run start no hay problema pero considero que si sera un problema a futuro
+
+    nito ayuda del senior en esto y gracias
+
     await this.clientRepository.query(
       'DROP TRIGGER IF EXISTS client_public_id;',
     );
     await this.clientRepository.query(
       'CREATE TRIGGER client_public_id before INSERT  on client for EACH ROW BEGIN  set new.public_id = (SELECT COALESCE (max(public_id),0) +1 from client WHERE account_id = NEW.account_id);  END',
     );
+    
+    */
 
     const clientDtoData = [
       {
