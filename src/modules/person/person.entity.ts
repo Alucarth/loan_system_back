@@ -14,6 +14,7 @@ import { Account } from '../account/account.entity';
 import { Address } from '../address/address.entity';
 import { User } from '../user/user.entity';
 import { DocumentType } from '../document_type/document_type.entity';
+import { City } from '../city/city.entity';
 
 @Index(['public_id', 'account_id'], { unique: true })
 @Entity()
@@ -36,9 +37,15 @@ export class Person {
   @Column({ nullable: true })
   identity_card: string;
 
-  // @ManyToOne(() => City, (city) => city.id)
-  // @JoinColumn({ name: 'identity_card_city_id' })
-  // identity_card_city: City;
+  @Column({ nullable: true })
+  complement: string;
+
+  @Column({ nullable: true, name: 'identity_card_city_id' })
+  identity_card_city_id: number;
+
+  @ManyToOne(() => City, (city) => city.id)
+  @JoinColumn({ name: 'identity_card_city_id' })
+  identity_card_city: City;
 
   @Column({ nullable: true })
   gender: string;

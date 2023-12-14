@@ -55,6 +55,14 @@ export class CreatePersonDto {
   nick_name: string;
 
   @IsOptional()
+  @IsString()
+  complement: string;
+
+  @IsOptional()
+  @IsNumber()
+  identity_card_city_id: number;
+
+  @IsOptional()
   @IsNumber()
   document_type_id: number;
 

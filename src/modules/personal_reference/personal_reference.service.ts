@@ -19,6 +19,20 @@ export class PersonalReferenceService {
     });
   }
 
+  async findAllByClientId(
+    client_public_id: number,
+    user: RequestUserDto,
+  ): Promise<PersonalReference[]> {
+    return await this.PersonalReferenceRepository.find({
+      where: {
+        person: {
+          public_id: client_public_id,
+          account_id: user.account_id,
+        },
+      },
+    });
+  }
+
   async create(
     personal_reference: CreatePersonalReferenceDTO,
     request: RequestUserDto,

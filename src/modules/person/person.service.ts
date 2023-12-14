@@ -149,6 +149,8 @@ export class PersonService {
     person.mother_last_name = updateData.mother_last_name;
     person.identity_card = updateData.identity_card;
     person.gender = updateData.gender;
+    person.complement = updateData.complement;
+    person.identity_card_city_id = updateData.identity_card_city_id;
     person.civil_status = updateData.civil_status;
     person.age = updateData.age;
     person.birth_date = updateData.birth_date;

@@ -25,9 +25,15 @@ export class CitySeeder implements OnModuleInit {
       'Iniciando el seeder -> (City). Cargando registros en la base de datos.',
     );
     const cities = [
-      { name: 'Miraflores', short_name: 'MF' },
-      { name: 'Obrajes', short_name: 'OB' },
-      { name: 'San Pedro', short_name: 'SP' },
+      { name: 'La Paz', short_name: 'LP' },
+      { name: 'Santa Cruz', short_name: 'SC' },
+      { name: 'Cochabamba', short_name: 'CB' },
+      { name: 'Oruro', short_name: 'OR' },
+      { name: 'Potosi', short_name: 'PT' },
+      { name: 'Beni', short_name: 'BN' },
+      { name: 'Pando', short_name: 'PN' },
+      { name: 'Chuquisaca', short_name: 'CH' },
+      { name: 'Tarija', short_name: 'TJ' },
     ];
 
     for (const data of cities) {

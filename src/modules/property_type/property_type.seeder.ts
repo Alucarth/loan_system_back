@@ -54,6 +54,11 @@ export class PropertyTypeSeeder implements OnModuleInit {
         account: accounts[0],
         public_id: 0,
       },
+      {
+        name: 'Otros',
+        account: accounts[0],
+        public_id: 0,
+      },
     ];
 
     for (const property of properties) {
