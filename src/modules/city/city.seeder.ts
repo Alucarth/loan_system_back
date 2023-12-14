@@ -35,7 +35,7 @@ export class CitySeeder implements OnModuleInit {
       city.name = data.name;
       city.short_name = data.short_name;
 
-      await this.cityRepository.create(city);
+      await this.cityRepository.save(city);
     }
   }
 }

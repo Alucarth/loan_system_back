@@ -50,11 +50,14 @@ export class AccountService {
     return this.accountRepository.save(updatedAccount);
   }
 
-  async deleteById(id: number): Promise<void> {
+  async softDeleteById(id: number): Promise<void> {
     const account = await this.accountRepository.findOneBy({ id: id });
+    // uso de NotFoundException si account no existe
     if (!account) {
       throw new NotFoundException('Account not found!');
     }
-    await this.accountRepository.delete(id);
+    // actualiza el campo deleted_At en lugar de borrar el registro (softDelete)
+    await this.accountRepository.update({ id }, { deleted_at: new Date() });
   }
+  
 }

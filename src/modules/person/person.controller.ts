@@ -26,6 +26,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { fileFilter, fileName } from 'src/helpers/files.utils';
 import { join } from 'path';
+import { Person } from './person.entity';
 @UseGuards(JwtAuthGuard)
 @ApiTags('Person')
 @Controller('person')

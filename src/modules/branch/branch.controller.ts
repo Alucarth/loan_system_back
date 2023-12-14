@@ -57,9 +57,15 @@ export class BranchController {
     return this._branchService.updateById(id, updateData, req.user);
   }
 
-  @Delete(':id')
+  /*@Delete(':id')
   @HttpCode(HttpStatus.OK)
   async deleteById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
     return this._branchService.deleteById(id, req.user);
+  }*/
+  // softDelete
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  async softDeleteById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
+    return this._branchService.softDeleteById(id, req.user);
   }
 }

@@ -52,7 +52,8 @@ export class BranchSeeder implements OnModuleInit {
       branch.phone = data.phone;
       branch.account_id = 1;
       branch.public_id = 0;
-      this.branchRepository.create(branch);
+      //this.branchRepository.create(branch);
+      await this.branchRepository.save(branch);
     }
   }
 }

@@ -75,4 +75,14 @@ export class BranchService {
     }
     await this.branchRepository.delete(id);
   }
+
+  async softDeleteById(id: number, user: RequestUserDto): Promise<void> {
+    const branch = await this.branchRepository.findOne({
+      where: { public_id: id, account_id: user.account_id },
+    });
+    if (!branch) {
+      throw new NotFoundException('Branch not found!');
+    }
+    await this.branchRepository.update({ id }, { deleted_at: new Date() });
+  }
 }

@@ -2,6 +2,9 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Person } from './person.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { City } from '../city/city.entity';
+import { Account } from '../account/account.entity';
+import { Country } from '../country/country.entity';
 
 @Injectable()
 export class PersonSeeder implements OnModuleInit {

@@ -9,6 +9,6 @@ import { Branch } from './branch.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Account, Branch])],
   controllers: [BranchController],
-  providers: [BranchService, BranchSeeder], //se esta quitando los seedders por que se requiere adicionar triggers y en nest no esta disponible todabia esta funcionalidad
+  providers: [BranchService, BranchSeeder], // se esta quitando los seedders por que se requiere adicionar triggers y en nest no esta disponible todabia esta funcionalidad
 })
 export class BranchModule {}

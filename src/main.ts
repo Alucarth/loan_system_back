@@ -15,6 +15,7 @@ async function bootstrap() {
     .setDescription('The  API description')
     .setVersion('1.0')
     .addTag('loans')
+    .addBearerAuth() // Esta línea agrega la opción de autenticación Bearer en Swagger
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
