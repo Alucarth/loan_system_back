@@ -11,9 +11,13 @@ export class CreatePersonalReferenceDTO {
   @IsNotEmpty()
   person_id: number;
 
-  @IsNumber()
+  // @IsNumber()
+  // @IsNotEmpty()
+  // relationship_id: number;
+
+  @IsString()
   @IsNotEmpty()
-  relationship_id: number;
+  relationship: string;
 
   @IsString()
   names: string;

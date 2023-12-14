@@ -34,12 +34,15 @@ export class PersonalReference {
   @Column()
   last_name: string;
 
-  @Column({ nullable: true, name: 'relationship_id' })
-  relationship_id: number;
+  // @Column({ nullable: true, name: 'relationship_id' })
+  // relationship_id: number;
 
-  @ManyToOne(() => Relationship, (relationship) => relationship.id)
-  @JoinColumn({ name: 'relationship_id', referencedColumnName: 'id' })
-  relationship: Relationship;
+  // @ManyToOne(() => Relationship, (relationship) => relationship.id)
+  // @JoinColumn({ name: 'relationship_id', referencedColumnName: 'id' })
+  // relationship: Relationship;
+
+  @Column({ nullable: true })
+  relationship: string;
 
   @Column({ nullable: true })
   address: string;

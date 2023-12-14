@@ -64,7 +64,7 @@ import { ActivityClientModule } from './modules/activity_client/activity_client.
     ActivityClientModule,
     ActivityTypeModule,
     ActivityFrecuencyModule,
-    RelationshipModule,
+    // RelationshipModule,
     PersonalReferenceModule,
   ],
   controllers: [AppController],

@@ -2,6 +2,10 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
   Post,
   Request,
   UseGuards,
@@ -22,6 +26,18 @@ export class PersonalReferenceController {
   @Get()
   async findAll(@Request() req: any) {
     return this._personal_reference_Service.findAll(req.user);
+  }
+
+  @Get(':client_public_id')
+  @HttpCode(HttpStatus.OK)
+  async findAllByClient(
+    @Param('client_public_id', ParseIntPipe) client_public_id: number,
+    @Request() req: any,
+  ) {
+    return this._personal_reference_Service.findAllByClientId(
+      client_public_id,
+      req.user,
+    );
   }
 
   @Post()
