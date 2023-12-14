@@ -24,6 +24,10 @@ export class CreatePersonDto {
 
   @IsOptional()
   @IsString()
+  husband_firstname: string;
+
+  @IsOptional()
+  @IsString()
   photo_url: string;
 
   @IsOptional()

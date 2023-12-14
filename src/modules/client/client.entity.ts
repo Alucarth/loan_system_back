@@ -35,6 +35,9 @@ export class Client {
   @Column({ nullable: true })
   dependents: string;
 
+  @Column({ nullable: true })
+  ages: string;
+
   @Column({ nullable: true, type: 'bigint' })
   personal_number: number;
 

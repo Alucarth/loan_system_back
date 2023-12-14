@@ -73,6 +73,9 @@ export class Address {
   @Column({ default: false })
   direcction_type: boolean;
 
+  @Column({ nullable: true })
+  address_type: string;
+
   //referencia al account_id
   @Column({ name: 'account_id' })
   account_id: number;

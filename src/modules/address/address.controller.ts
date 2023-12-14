@@ -95,14 +95,15 @@ export class AddressController {
   findAddressById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
     return this._addressService.findAddressById(id, req.user);
   }
-  // @Put(':id')
-  // @HttpCode(HttpStatus.OK)
-  // async updateById(
-  //   @Param('id', ParseIntPipe) id: number,
-  //   @Body() updateData: UpdateAddressDTO,
-  // ) {
-  //   return this._addressService.updateById(id, updateData);
-  // }
+  @Put(':id')
+  @HttpCode(HttpStatus.OK)
+  async updateById(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateData: UpdateAddressDTO,
+    @Request() req: any,
+  ) {
+    return this._addressService.updateById(id, updateData, req.user);
+  }
 
   // @Patch(':id')
   // @HttpCode(HttpStatus.OK)
@@ -113,9 +114,9 @@ export class AddressController {
   //   return this._addressService.updateAddressById(id, updateData);
   // }
 
-  // @Delete(':id')
-  // @HttpCode(HttpStatus.OK)
-  // async deleteById(@Param('id', ParseIntPipe) id: number) {
-  //   return this._addressService.deleteById(id);
-  // }
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  async deleteById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
+    return this._addressService.deleteById(id, req.user);
+  }
 }
