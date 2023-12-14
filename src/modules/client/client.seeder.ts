@@ -27,5 +27,25 @@ export class ClientSeeder implements OnModuleInit {
     await this.clientRepository.query(
       'CREATE TRIGGER client_public_id before INSERT  on client for EACH ROW BEGIN  set new.public_id = (SELECT COALESCE (max(public_id),0) +1 from client WHERE account_id = NEW.account_id);  END',
     );
+
+    const clientDtoData = [
+      {
+        person_id: 1,
+        dependents: 'Número de dependientes',
+        personal_number: 123456,
+        email: 'correo@ejemplo.com',
+        client_type_id: 1,
+        bank: 'Nombre del banco',
+        titular_bank: 'Titular de la cuenta',
+        number_account_bank: 'Número de cuenta',
+        account_id: 1,
+        public_id: 0,
+      },
+      // Agregar más objetos con datos de prueba
+    ];
+
+    for (const data of clientDtoData) {
+      await this.clientRepository.save(data);
+    }
   }
 }
