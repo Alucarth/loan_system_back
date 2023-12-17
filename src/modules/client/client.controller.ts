@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseIntPipe,
   Post,
@@ -53,8 +55,9 @@ export class ClientController {
     return this._clientService.updateById(id, clientData, req.user);
   }
 
-  @Delete('id')
-  async delete(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
-    return this._clientService.delete(id, req.user);
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  async softDeleteById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
+    return this._clientService.softDelete(id, req.user);
   }
 }

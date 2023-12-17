@@ -1,10 +1,15 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
+  Param,
+  ParseIntPipe,
+  Patch,
   Post,
+  Put,
   Request,
   UseGuards,
 } from '@nestjs/common';
@@ -37,4 +42,46 @@ export class ClientInputController {
   ) {
     return await this._clientInputService.create(clientInputData, req);
   }
+
+  @Put(':id')
+  @HttpCode(HttpStatus.OK)
+  @ApiResponse({
+    status: 200,
+    description: 'The record has been successfully updated.',
+  })
+  async updateById(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() clientInputData: CreateClientInputDto,
+    @Request() req: any,
+  ) {
+    return await this._clientInputService.updateById(id, clientInputData, req.user);
+  }
+
+  @Patch(':id')
+  @HttpCode(HttpStatus.OK)
+  @ApiResponse({
+    status: 200,
+    description: 'The record has been successfully updated.',
+  })
+  async patchById(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() clientInputData: CreateClientInputDto,
+    @Request() req: any,
+  ) {
+    return await this._clientInputService.patchById(id, clientInputData, req.user);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  @ApiResponse({
+    status: 200,
+    description: 'The record has been successfully deleted.',
+  })
+  async softDeleteById(
+    @Param('id', ParseIntPipe) id: number,
+    @Request() req: any,
+  ) {
+    return this._clientInputService.softDeleteById(id, req.user);
+  }
+
 }

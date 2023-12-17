@@ -36,9 +36,9 @@ import { ActivityClientModule } from './modules/activity_client/activity_client.
 @Module({
   imports: [
     DatabaseModule,
+    AccountModule,
     CityModule,
     CountryModule,
-    AccountModule,
     BranchModule,
     EmployeeTypeModule,
     PersonModule,

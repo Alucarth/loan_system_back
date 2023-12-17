@@ -12,13 +12,14 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 // import { Account } from 'src/modules/account/account.entity';
 import { CreateAccountDto, UpdateAccountDto } from './account.dto';
 import { AccountService } from './account.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Account')
+@ApiBearerAuth() // Esta línea indica que la autenticación Bearer es requerida
 @UseGuards(JwtAuthGuard)
 @Controller('account')
 export class AccountController {
@@ -67,7 +68,7 @@ export class AccountController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
-  async deleteById(@Param('id', ParseIntPipe) id: number) {
-    return this._accountService.deleteById(id);
+  async softDeleteById(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    return await this._accountService.softDeleteById(id);
   }
 }

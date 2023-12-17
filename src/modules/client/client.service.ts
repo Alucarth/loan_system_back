@@ -91,4 +91,16 @@ export class ClientService {
 
     return this.clientRepository.delete(client.id);
   }
+
+  async softDelete(id: number, user: RequestUserDto): Promise<void> {
+    const client = await this.clientRepository.findOneBy({
+      public_id: id,
+      account_id: user.account_id,
+    });
+  
+    if (!client) {
+      throw new NotFoundException('Client not found');
+    }
+    await this.clientRepository.update({ id }, { deleted_at: new Date() });
+  }
 }

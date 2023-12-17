@@ -63,7 +63,7 @@ export class ClientTypeService {
   //   return this.clientTypeRepository.save(updatedClientType);
   // }
 
-  async deleteById(id: number, user: RequestUserDto): Promise<void> {
+  /*async deleteById(id: number, user: RequestUserDto): Promise<void> {
     const clientType = await this.clientTypeRepository.findOneBy({
       public_id: id,
       account_id: user.account_id,
@@ -72,5 +72,16 @@ export class ClientTypeService {
       throw new NotFoundException('Client Type not found!');
     }
     await this.clientTypeRepository.delete(id);
+  }*/
+
+  async softDeleteById(id: number, user: RequestUserDto): Promise<void> {
+    const clientType = await this.clientTypeRepository.findOneBy({
+      public_id: id,
+      account_id: user.account_id,
+    });
+    if (!clientType) {
+      throw new NotFoundException('Client Type not found!');
+    }
+    await this.clientTypeRepository.update({ id }, { deleted_at: new Date() });
   }
 }

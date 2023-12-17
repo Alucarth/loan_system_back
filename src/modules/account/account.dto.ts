@@ -17,27 +17,9 @@ export class CreateAccountDto {
   @IsString()
   logo_url: string;
 
-  //aqui si lo dejo con opcional por que no se que datos entrarian
-  // pero si se que son cadenas (String)
   @IsOptional()
-  @IsString()
-  label_1: string;
-
-  @IsOptional()
-  @IsString()
-  label_2: string;
-
-  @IsOptional()
-  @IsString()
-  label_3: string;
-
-  @IsOptional()
-  @IsString()
-  label_4: string;
-
-  @IsOptional()
-  @IsString()
-  label_5: string;
+  @IsNumber()
+  user_id: number;
 }
 
 export class UpdateAccountDto {
@@ -58,22 +40,6 @@ export class UpdateAccountDto {
   interval: number;
 
   @IsOptional()
-  @IsString()
-  label_1: string;
-
-  @IsOptional()
-  @IsString()
-  label_2: string;
-
-  @IsOptional()
-  @IsString()
-  label_3: string;
-
-  @IsOptional()
-  @IsString()
-  label_4: string;
-
-  @IsOptional()
-  @IsString()
-  label_5: string;
+  @IsNumber()
+  user_id: number;
 }

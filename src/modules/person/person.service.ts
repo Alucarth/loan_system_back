@@ -165,16 +165,16 @@ export class PersonService {
     id: number,
     updateData: Partial<UpdatePersonDto>,
   ): Promise<Person> {
-    const person = await this.personRepository.findOneBy({ id: id });
+    const person = await this.personRepository.findOne({where: { id: id }});
     if (!person) {
       throw new NotFoundException('Person not found');
     }
-    const updatedPerson = Object.assign(person, updateData);
-    return this.personRepository.save(updatedPerson);
+    Object.assign(person, updateData);
+    return this.personRepository.save(person);
   }
 
   async deleteById(id: number): Promise<void> {
-    const person = await this.personRepository.findOneBy({ id: id });
+    const person = await this.personRepository.findOne({where: { id: id }});
     if (!person) {
       throw new NotFoundException('Person not found!');
     }

@@ -30,8 +30,6 @@ export class AccountSeeder implements OnModuleInit {
         company_name: 'Empresa 1',
         logo_url: 'https://ejemplo.com/logo1.png',
         interval: 30,
-        label_1: 'Etiqueta 1',
-        label_2: 'Etiqueta 2',
         // Agregar más datos de prueba si es necesario
       },
       {
@@ -39,8 +37,6 @@ export class AccountSeeder implements OnModuleInit {
         company_name: 'Empresa 2',
         logo_url: 'https://ejemplo.com/logo2.png',
         interval: 60,
-        label_1: 'Etiqueta 3',
-        label_2: 'Etiqueta 4',
         // Agregar más datos de prueba si es necesario
       },
       // Agregar más objetos con datos de prueba

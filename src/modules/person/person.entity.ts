@@ -37,6 +37,10 @@ export class Person {
   @Column({ nullable: true })
   identity_card: string;
 
+  // @ManyToOne(() => City, (city) => city.id)
+  // @JoinColumn({ name: 'identity_card_city_id' })
+  // identity_card_city: City;
+
   @Column({ nullable: true })
   complement: string;
 

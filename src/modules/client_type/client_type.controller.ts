@@ -76,9 +76,15 @@ export class ClientTypeController {
   //   return this._clientTypeService.updateClientTypeById(id, updateData);
   // }
 
-  @Delete(':id')
+  /*@Delete(':id')
   @HttpCode(HttpStatus.OK)
   async deleteById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
     return this._clientTypeService.deleteById(id, req.user);
+  }*/
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  async softDeleteById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
+    return this._clientTypeService.softDeleteById(id, req.user);
   }
 }
