@@ -31,15 +31,13 @@ import { Person } from './person.entity';
 @ApiTags('Person')
 @Controller('person')
 export class PersonController {
-  constructor(
-    private readonly _personService: PersonService,
-  ) {}
+  constructor(private readonly _personService: PersonService) {}
 
   @Get()
-    @HttpCode(HttpStatus.OK)
-    async findAll(): Promise<Person[]> {
-      return this._personService.findAll();
-    }
+  @HttpCode(HttpStatus.OK)
+  async findAll(): Promise<Person[]> {
+    return this._personService.findAll();
+  }
 
   // @Get('clients')
   // @HttpCode(HttpStatus.OK)
@@ -48,10 +46,10 @@ export class PersonController {
   // }
 
   @Get(':id')
-    @HttpCode(HttpStatus.OK)
-    findPersonById(@Param('id', ParseIntPipe) id: number) {
-      return this._personService.findPersonById(id);
-    }
+  @HttpCode(HttpStatus.OK)
+  findPersonById(@Param('id', ParseIntPipe) id: number) {
+    return this._personService.findPersonById(id);
+  }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)

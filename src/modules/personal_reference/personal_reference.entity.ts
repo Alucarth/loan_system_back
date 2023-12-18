@@ -29,10 +29,7 @@ export class PersonalReference {
   person: Person;
 
   @Column()
-  names: string;
-
-  @Column()
-  last_name: string;
+  full_name: string;
 
   // @Column({ nullable: true, name: 'relationship_id' })
   // relationship_id: number;
@@ -48,7 +45,7 @@ export class PersonalReference {
   address: string;
 
   //referencia al phone_number
-  @Column({ name: 'phone_number' })
+  @Column({ nullable: true, name: 'phone_number' })
   phone_number: number;
 
   //referencia al account_id

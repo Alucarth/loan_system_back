@@ -108,7 +108,7 @@ export class AddressService {
       throw new NotFoundException('Address not found!');
     }
     const updatedAddress = Object.assign(address, updateData);
-    return this.addressRepository.save(updatedAddress);
+    return await this.addressRepository.save(updatedAddress);
   }
 
   // async updateAddressById(

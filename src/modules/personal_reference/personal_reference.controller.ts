@@ -1,12 +1,14 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
   Param,
   ParseIntPipe,
   Post,
+  Put,
   Request,
   UseGuards,
 } from '@nestjs/common';
@@ -50,5 +52,25 @@ export class PersonalReferenceController {
       personalReferenceData,
       req.user,
     );
+  }
+
+  @Put(':id')
+  @HttpCode(HttpStatus.OK)
+  async updateById(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateData: CreatePersonalReferenceDTO,
+    @Request() req: any,
+  ) {
+    return this._personal_reference_Service.updateById(
+      id,
+      updateData,
+      req.user,
+    );
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  async deleteById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
+    return this._personal_reference_Service.deleteById(id, req.user);
   }
 }

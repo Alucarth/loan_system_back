@@ -16,14 +16,11 @@ export class CreatePersonalReferenceDTO {
   // relationship_id: number;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   relationship: string;
 
   @IsString()
-  names: string;
-
-  @IsString()
-  last_name: string;
+  full_name: string;
 
   @IsString()
   @IsOptional()

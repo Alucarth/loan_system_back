@@ -56,11 +56,19 @@ export class CreatePersonDto {
 
   @IsOptional()
   @IsString()
+  infocenter: string;
+
+  @IsOptional()
+  @IsString()
   complement: string;
 
   @IsOptional()
   @IsNumber()
   identity_card_city_id: number;
+
+  @IsOptional()
+  @IsNumber()
+  city_id: number;
 
   @IsOptional()
   @IsNumber()

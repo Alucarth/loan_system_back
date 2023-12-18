@@ -57,7 +57,10 @@ export class ClientController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
-  async softDeleteById(@Param('id', ParseIntPipe) id: number, @Request() req: any) {
+  async softDeleteById(
+    @Param('id', ParseIntPipe) id: number,
+    @Request() req: any,
+  ) {
     return this._clientService.softDelete(id, req.user);
   }
 }

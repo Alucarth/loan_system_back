@@ -97,7 +97,7 @@ export class ClientService {
       public_id: id,
       account_id: user.account_id,
     });
-  
+
     if (!client) {
       throw new NotFoundException('Client not found');
     }

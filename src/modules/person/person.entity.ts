@@ -51,6 +51,16 @@ export class Person {
   @JoinColumn({ name: 'identity_card_city_id' })
   identity_card_city: City;
 
+  @Column({ nullable: true, name: 'city_id' })
+  city_id: number;
+
+  @ManyToOne(() => City, (city) => city.id)
+  @JoinColumn({ name: 'city_id' })
+  city: City;
+
+  @Column({ nullable: true })
+  infocenter: string;
+
   @Column({ nullable: true })
   gender: string;
 

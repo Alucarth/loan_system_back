@@ -68,37 +68,25 @@ export class PersonService {
     user: RequestUserDto,
   ): Promise<Person> {
     // Buscar entidades relacionadas
-    // const identity_card_city: City = await this.cityRepository.findOneBy({
-    //   id: person_dto.identity_card_city_id,
-    // });
-    // const city: City = await this.cityRepository.findOneBy({
-    //   id: person_dto.city_id,
-    // });
-
-    // const country: Country = await this.countryRepository.findOneBy({
-    //   id: person_dto.country_id,
-    // });
 
     // Crear una nueva entidad Persona y rellenar sus propiedades
     const person = new Person();
     person.names = person_dto.names;
     person.father_last_name = person_dto.father_last_name ?? null;
     person.mother_last_name = person_dto.mother_last_name ?? null;
-    person.identity_card = person_dto.identity_card ?? null;
-
-    // Establecer relaciones entre entidades
-    // person.identity_card_city = identity_card_city;
+    // person.identity_card = person_dto.identity_card ?? null;
 
     // valores no obligatorio
-    // person.identity_card = person_dto.identity_card ?? null;
+    person.identity_card = person_dto.identity_card ?? null;
     person.gender = person_dto.gender ?? null;
+    person.infocenter = person_dto.infocenter;
     person.nick_name = person_dto.nick_name ?? null;
     person.husband_firstname = person_dto.husband_firstname ?? null;
     person.photo_url = person_dto.photo_url ?? null;
     person.civil_status = person_dto.civil_status ?? null;
-    // person.dependents = person_dto.dependents ?? null;
-    // person.personal_number = person_dto.personal_number ?? null;
-    // person.email = person_dto.email ?? null;
+    person.identity_card_city_id = person_dto.identity_card_city_id ?? null;
+    person.infocenter = person_dto.infocenter ?? null;
+    person.complement = person_dto.complement ?? null;
     person.birth_date = person_dto.birth_date ?? null;
     person.age = person_dto.age ?? null;
     person.account_id = user.account_id;
@@ -106,18 +94,7 @@ export class PersonService {
     person.public_id = 0;
     person.document_type = person_dto.document_type ?? null;
     person.photo_url = person_dto.photo_url ?? null;
-    // person.value_1 = person_dto.value_1 ?? null;
-    // person.value_2 = person_dto.value_2 ?? null;
-    // person.value_3 = person_dto.value_3 ?? null;
-    // person.value_4 = person_dto.value_4 ?? null;
-    // person.value_5 = person_dto.value_5 ?? null;
-    // person.person_id = person_dto.person_id ?? null;
-
-    // person.city = city ?? null;
-    // person.country = country ?? null;
-
-    // person.account = account;
-    // person.person_type = person_type;
+    person.city_id = person_dto.city_id ?? null;
 
     // Save the new Person entity to the database
     return await this.personRepository.save(person);
@@ -149,8 +126,10 @@ export class PersonService {
     person.mother_last_name = updateData.mother_last_name;
     person.identity_card = updateData.identity_card;
     person.gender = updateData.gender;
+    person.infocenter = updateData.infocenter;
     person.complement = updateData.complement;
     person.identity_card_city_id = updateData.identity_card_city_id;
+    person.city_id = updateData.city_id;
     person.civil_status = updateData.civil_status;
     person.age = updateData.age;
     person.birth_date = updateData.birth_date;
@@ -165,7 +144,7 @@ export class PersonService {
     id: number,
     updateData: Partial<UpdatePersonDto>,
   ): Promise<Person> {
-    const person = await this.personRepository.findOne({where: { id: id }});
+    const person = await this.personRepository.findOne({ where: { id: id } });
     if (!person) {
       throw new NotFoundException('Person not found');
     }
@@ -174,7 +153,7 @@ export class PersonService {
   }
 
   async deleteById(id: number): Promise<void> {
-    const person = await this.personRepository.findOne({where: { id: id }});
+    const person = await this.personRepository.findOne({ where: { id: id } });
     if (!person) {
       throw new NotFoundException('Person not found!');
     }
