@@ -28,14 +28,16 @@ export class ClientSeeder implements OnModuleInit {
 
     nito ayuda del senior en esto y gracias
 
+   
+    
+    */
+    /** esto tiene que estar si o si  */
     await this.clientRepository.query(
       'DROP TRIGGER IF EXISTS client_public_id;',
     );
     await this.clientRepository.query(
       'CREATE TRIGGER client_public_id before INSERT  on client for EACH ROW BEGIN  set new.public_id = (SELECT COALESCE (max(public_id),0) +1 from client WHERE account_id = NEW.account_id);  END',
     );
-    
-    */
 
     const clientDtoData = [
       {

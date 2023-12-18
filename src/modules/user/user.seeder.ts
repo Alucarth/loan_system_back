@@ -42,6 +42,11 @@ export class UserSeeder implements OnApplicationBootstrap {
 
     */
 
+    await this.userRepository.query('DROP TRIGGER IF EXISTS user_public_id;');
+    await this.userRepository.query(
+      'CREATE TRIGGER user_public_id before INSERT  on user for EACH ROW BEGIN  set new.public_id = (SELECT COALESCE (max(public_id),0) +1 from user WHERE account_id = NEW.account_id);  END',
+    );
+
     const persons = await this.personRepository.find();
     // console.log(persons);
     const password = await bcrypt.hash('123456', saltOrRounds);
